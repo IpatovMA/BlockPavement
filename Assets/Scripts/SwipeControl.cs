@@ -29,24 +29,27 @@ public  class SwipeControl : MonoBehaviour
     DownSwipe=false;
     }
  
-    // touch = Input.GetTouch(0);  //проверяем первое касание
-    if (Input.GetMouseButtonDown(0))
+    touch = Input.GetTouch(0);  //проверяем первое касание
+    if (touch.phase == TouchPhase.Began)
     {
-        fp = Input.mousePosition; 
-        lp = Input.mousePosition;
+        fp = touch.position; 
+        lp = touch.position;
     }
  
-    if (Input.GetMouseButton(0)) 
+    if (touch.phase == TouchPhase.Moved) 
     {
-        lp = Input.mousePosition;
-                
-
+        lp = touch.position;
     }
-
+ 
+    if (touch.phase == TouchPhase.Ended) 
+    {
+        ResetFp();
+    }
+    
+    
 
     if (Mathf.Abs(lp.x - fp.x) > dragDistance || Mathf.Abs(lp.y - fp.y) > dragDistance)
     {//это перемещение
-    Debug.Log("Moved");
             //проверяем, перемещение было вертикальным или горизонтальным 
         if (Mathf.Abs(lp.x - fp.x) > Mathf.Abs(lp.y - fp.y))
             {   //Если горизонтальное движение больше, чем вертикальное движение ...
@@ -72,12 +75,6 @@ public  class SwipeControl : MonoBehaviour
         }
             fp = lp; //ставим начальную позицию на новое место
     }
-
-         if (Input.GetMouseButtonUp(0)) {
-             Debug.Log("touchup");
-         ResetFp();
-
-     }
 }
     public static void ResetFp(){
     if(RightSwipe||LeftSwipe||UpSwipe||DownSwipe){
@@ -86,9 +83,8 @@ public  class SwipeControl : MonoBehaviour
     LeftSwipe=false;
     DownSwipe=false;
     }
-        fp = Input.mousePosition; 
-        lp = Input.mousePosition;
-        // Debug.Log("----------------reset");
+        fp = touch.position; 
+        lp = touch.position;
     }
     public static  bool GetRightSwipe(){
         return RightSwipe;
