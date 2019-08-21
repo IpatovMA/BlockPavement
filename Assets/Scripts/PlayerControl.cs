@@ -18,6 +18,8 @@ public class PlayerControl : MonoBehaviour
             Debug.Log("stoped");
             return;
         }
+        if(velocity.magnitude==speed){velocity = Vector2.zero;}
+
         if (Input.GetKeyDown ("w")||SwipeControl.GetUpSwipe())
         {velocity = Vector2.up*speed;
                     Debug.Log("up");
@@ -32,7 +34,7 @@ public class PlayerControl : MonoBehaviour
         }
         if (Input.GetKeyDown ("d")||SwipeControl.GetRightSwipe())
         {velocity = Vector2.right*speed;
-                            Debug.Log("rugth");
+                            Debug.Log("rigth");
         }
             SwipeControl.ResetFp();
 

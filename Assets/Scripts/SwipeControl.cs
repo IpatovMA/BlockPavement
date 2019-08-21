@@ -12,7 +12,7 @@ public  class SwipeControl : MonoBehaviour
     private static bool UpSwipe=false;
     private static bool LeftSwipe=false;
     private static bool DownSwipe=false;
-
+    private static bool AllowSwipes = true;
 
     void Start()
     {
@@ -20,7 +20,7 @@ public  class SwipeControl : MonoBehaviour
     }
 
    void Update(){
-    if (Input.touchCount == 0) return;
+    if (Input.touchCount == 0||!AllowSwipes) return;
 
     if(RightSwipe||LeftSwipe||UpSwipe||DownSwipe){
     RightSwipe=false;
@@ -98,4 +98,11 @@ public  class SwipeControl : MonoBehaviour
     public static bool GetDownSwipe(){
         return DownSwipe;
     }
+    public static void BlockSwipeInput(){
+        AllowSwipes = false;
+    }
+    public static void AllowSwipeInput(){
+        AllowSwipes = true;
+    }
 }
+

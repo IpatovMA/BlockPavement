@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public  class SwipeControl : MonoBehaviour
+public  class SwipeControPlayeInPublic : MonoBehaviour
 {
     public GameObject player;  
     public float speed;

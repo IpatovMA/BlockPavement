@@ -5,8 +5,9 @@ using UnityEngine;
 public class BlockPaver : MonoBehaviour
 {
 
-    public int TotalBlockCount;
+
     public int DoneBlockCount=0;
+    public Material[] materials;
     void Start()
     {
     }
@@ -14,18 +15,23 @@ public class BlockPaver : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(TotalBlockCount==DoneBlockCount){
-            Debug.Log("Level Complete!");
-        }
+
     }
     void OnTriggerEnter2D(Collider2D coll){
         if (coll.gameObject.tag == "clear"){
             coll.gameObject.tag =  "paved";
-            coll.gameObject.GetComponent<SpriteRenderer>().color = new Color(0.72f, 0.2f, 0.2f, 1);
+            coll.gameObject.GetComponent<MeshRenderer>().material = materials[1];
             DoneBlockCount++;
             // Debug.Log(DoneBlockCount);
         }
 
     }
+
+     void ChangeMaterial(int id, Material myMat) { 
+         MeshRenderer mr = GetComponent<MeshRenderer>();
+          Material[] mats = mr.materials;
+           if (id < mats.Length) mats[id] = myMat;
+            mr.materials = mats;
+            }
 
 }
