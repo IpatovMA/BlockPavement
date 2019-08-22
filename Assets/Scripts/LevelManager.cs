@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class LevelManager : MonoBehaviour
 {
@@ -30,6 +32,10 @@ public class LevelManager : MonoBehaviour
             // Invoke("FinalView",0.2f);
             }
         } 
+
+        if(fin&&Input.GetMouseButtonDown(0)){
+                SceneManager.LoadScene("game");
+        }
     }
     void UpdateStage(){
         cam.GetComponent<CameraFollow>().target = LevelStages[LevelStage].transform;
@@ -37,7 +43,7 @@ public class LevelManager : MonoBehaviour
         player = LevelStages[LevelStage].GetComponentInChildren<PlayerControl>().gameObject;
         SwipeControl.ResetFp();
         SwipeControl.BlockSwipeInput();
-            Invoke("AllowSwipeInput",1.2f);
+            Invoke("AllowSwipeInput",0.8f);
         
     }
     void FinalView(){

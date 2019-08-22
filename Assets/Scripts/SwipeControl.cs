@@ -32,6 +32,7 @@ public  class SwipeControl : MonoBehaviour
     touch = Input.GetTouch(0);  //проверяем первое касание
     if (touch.phase == TouchPhase.Began)
     {
+        Debug.Log("бегин");
         fp = touch.position; 
         lp = touch.position;
     }
@@ -43,13 +44,15 @@ public  class SwipeControl : MonoBehaviour
  
     if (touch.phase == TouchPhase.Ended) 
     {
-        ResetFp();
+        fp = touch.position; 
+        lp = touch.position;
     }
     
-    
+    Debug.Log(fp+"  "+lp);
 
     if (Mathf.Abs(lp.x - fp.x) > dragDistance || Mathf.Abs(lp.y - fp.y) > dragDistance)
     {//это перемещение
+    Debug.Log("Есть свайп");
             //проверяем, перемещение было вертикальным или горизонтальным 
         if (Mathf.Abs(lp.x - fp.x) > Mathf.Abs(lp.y - fp.y))
             {   //Если горизонтальное движение больше, чем вертикальное движение ...

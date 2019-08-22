@@ -715,11 +715,6 @@ PrefabInstance:
       propertyPath: TotalBlockCount
       value: 30
       objectReference: {fileID: 0}
-    - target: {fileID: 3740425223964545755, guid: a05cd4e6d59572b4aa4121b3058722c7,
-        type: 3}
-      propertyPath: speed
-      value: 30
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a05cd4e6d59572b4aa4121b3058722c7, type: 3}
 --- !u!4 &1296225856 stripped
@@ -1155,11 +1150,6 @@ PrefabInstance:
       propertyPath: TotalBlockCount
       value: 30
       objectReference: {fileID: 0}
-    - target: {fileID: 3740425223964545755, guid: a05cd4e6d59572b4aa4121b3058722c7,
-        type: 3}
-      propertyPath: speed
-      value: 30
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a05cd4e6d59572b4aa4121b3058722c7, type: 3}
 --- !u!4 &2127130047 stripped
@@ -1248,11 +1238,6 @@ PrefabInstance:
     - target: {fileID: 3076071302422790394, guid: a05cd4e6d59572b4aa4121b3058722c7,
         type: 3}
       propertyPath: TotalBlockCount
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 3740425223964545755, guid: a05cd4e6d59572b4aa4121b3058722c7,
-        type: 3}
-      propertyPath: speed
       value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []

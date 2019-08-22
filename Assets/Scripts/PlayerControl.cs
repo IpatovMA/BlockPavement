@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     public float speed;
+    private Vector2 velocity;
     void Start()
     {
         
@@ -12,31 +13,37 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {   
-        Vector2 velocity = GetComponent<Rigidbody2D>().velocity;
-        if (velocity.magnitude>0.01f) {
-            // SwipeControl.ResetFp();
-            Debug.Log("stoped");
+        velocity = GetComponent<Rigidbody2D>().velocity;
+        if(velocity.magnitude<speed/10){velocity = Vector2.zero;}
+        if (velocity.x!=0){velocity.y=0;}
+        if (velocity.y!=0){velocity.x=0;}
+
+
+        if (velocity.magnitude>0) {
+            SwipeControl.ResetFp();
+            // SwipeControl.BlockSwipeInput();
+        GetComponent<Rigidbody2D>().velocity = velocity;
             return;
         }
-        if(velocity.magnitude==speed){velocity = Vector2.zero;}
+        
 
         if (Input.GetKeyDown ("w")||SwipeControl.GetUpSwipe())
         {velocity = Vector2.up*speed;
-                    Debug.Log("up");
+                    // Debug.Log("up");
         }
         if (Input.GetKeyDown ("s")||SwipeControl.GetDownSwipe())
         {velocity = Vector2.down*speed;
-                    Debug.Log("down");
+                    // Debug.Log("down");
         }
         if (Input.GetKeyDown ("a")||SwipeControl.GetLeftSwipe())
         {velocity = Vector2.left*speed;
-                    Debug.Log("left");
+                    // Debug.Log("left");
         }
         if (Input.GetKeyDown ("d")||SwipeControl.GetRightSwipe())
         {velocity = Vector2.right*speed;
-                            Debug.Log("rigth");
+                            // Debug.Log("rigth");
         }
-            SwipeControl.ResetFp();
+            // SwipeControl.ResetFp();
 
         GetComponent<Rigidbody2D>().velocity = velocity;
     }
