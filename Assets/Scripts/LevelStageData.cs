@@ -5,6 +5,8 @@ using UnityEngine;
 public class LevelStageData : MonoBehaviour
 {
     public int TotalBlockCount;
+    public int MapWidth;
+    public int MapHeight;
 
     void Start()
     {   

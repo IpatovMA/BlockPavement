@@ -10,6 +10,9 @@ public class LevelManager : MonoBehaviour
     public GameObject player;
     private int LevelStage = 0;
     private Camera cam;
+    
+    private LevelStageData StageData;
+
     private bool fin = false;
 
     void Start()
@@ -21,7 +24,7 @@ public class LevelManager : MonoBehaviour
 
     void Update()
     {
-        if(LevelStages[LevelStage].GetComponent<LevelStageData>().TotalBlockCount==player.GetComponent<BlockPaver>().DoneBlockCount){
+        if(StageData.TotalBlockCount==player.GetComponent<BlockPaver>().DoneBlockCount){
             player.SetActive(false);
             if(LevelStage<LevelStages.Length-1){
             LevelStage++;
@@ -39,6 +42,9 @@ public class LevelManager : MonoBehaviour
     }
     void UpdateStage(){
         cam.GetComponent<CameraFollow>().target = LevelStages[LevelStage].transform;
+        StageData = LevelStages[LevelStage].GetComponent<LevelStageData>();
+        cam.GetComponent<CameraFollow>().offset = StageData.MapWidth%2==1 ? 0.5f: 0f;
+        
         LevelStages[LevelStage].SetActive(true);
         player = LevelStages[LevelStage].GetComponentInChildren<PlayerControl>().gameObject;
         SwipeControl.ResetFp();
