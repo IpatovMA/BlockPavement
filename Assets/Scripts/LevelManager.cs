@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour
     public GameObject player;
     private int LevelStage = 0;
     private Camera cam;
+    private CameraFollow camFollow;
     
     private LevelStageData StageData;
 
@@ -18,6 +19,7 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
+        camFollow = cam.GetComponent<CameraFollow>();
         UpdateStage();
 
     }
@@ -41,9 +43,9 @@ public class LevelManager : MonoBehaviour
         }
     }
     void UpdateStage(){
-        cam.GetComponent<CameraFollow>().target = LevelStages[LevelStage].transform;
+        camFollow.target = LevelStages[LevelStage].transform;
         StageData = LevelStages[LevelStage].GetComponent<LevelStageData>();
-        cam.GetComponent<CameraFollow>().offset = StageData.MapWidth%2==1 ? 0.5f: 0f;
+        camFollow.offset = StageData.MapWidth%2==1 ? 0.5f: 0f;
         
         LevelStages[LevelStage].SetActive(true);
         player = LevelStages[LevelStage].GetComponentInChildren<PlayerControl>().gameObject;
@@ -53,9 +55,10 @@ public class LevelManager : MonoBehaviour
         
     }
     void FinalView(){
-        cam.GetComponent<CameraFollow>().target = LevelStages[1].transform;
-        cam.transform.Rotate(0,0,90); 
-        cam.GetComponent<Camera>().orthographicSize = 14;
+        camFollow.target = LevelStages[0].transform;
+        // camFollow.smoothTime =0.8f;
+        //  cam.transform.Rotate(0,0,90); 
+        // cam.GetComponent<Camera>().orthographicSize = 11;
         fin=true;
     }
     void HideMap(){
