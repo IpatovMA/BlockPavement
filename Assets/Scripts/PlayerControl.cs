@@ -6,9 +6,11 @@ public class PlayerControl : MonoBehaviour
 {
     public float speed;
     private Vector2 velocity;
+    private Transform RotationSkin;
     void Start()
     {
-        
+        // RotationSkin = GetComponentInChildren<BoxCollider2D>().gameObject.transform;
+        RotationSkin = transform.Find("align-rotate");
     }
 
     void Update()
@@ -29,22 +31,39 @@ public class PlayerControl : MonoBehaviour
 
         if (Input.GetKeyDown ("w")||SwipeControl.GetUpSwipe())
         {velocity = Vector2.up*speed;
-                    // Debug.Log("up");
+            RotationSkin.eulerAngles= Vector3.forward*90;
+
         }
         if (Input.GetKeyDown ("s")||SwipeControl.GetDownSwipe())
         {velocity = Vector2.down*speed;
+            RotationSkin.eulerAngles= Vector3.forward*(-90);
                     // Debug.Log("down");
         }
         if (Input.GetKeyDown ("a")||SwipeControl.GetLeftSwipe())
         {velocity = Vector2.left*speed;
-                    // Debug.Log("left");
+            RotationSkin.eulerAngles= Vector3.forward*180;
         }
         if (Input.GetKeyDown ("d")||SwipeControl.GetRightSwipe())
         {velocity = Vector2.right*speed;
-                            // Debug.Log("rigth");
+            RotationSkin.eulerAngles= Vector3.zero;
         }
             // SwipeControl.ResetFp();
-
         GetComponent<Rigidbody2D>().velocity = velocity;
+        // PlayerRotation(velocity);
+    }
+
+    void PlayerRotation(Vector2 velocity){
+        Vector3 rotate = Vector3.zero;
+        switch (velocity.normalized.y){
+            case 1: rotate = Vector3.forward;
+                break;
+            case -1: rotate = Vector3.back;
+                break;
+        }
+        if (velocity.normalized.x == -1){
+            rotate = new Vector3(0,0,2);
+        }
+        RotationSkin.Rotate(90*rotate);
+
     }
 }
