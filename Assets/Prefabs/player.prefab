@@ -114,7 +114,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3867914847222299288}
   m_Layer: 0
-  m_Name: align-rotate
+  m_Name: playeralign
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -296,6 +296,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9555608, guid: 5afbef3d62635bc4387bf789cbd0a756, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 119892, guid: 5afbef3d62635bc4387bf789cbd0a756, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -323,6 +327,10 @@ PrefabInstance:
     - target: {fileID: 196092, guid: 5afbef3d62635bc4387bf789cbd0a756, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9512548, guid: 5afbef3d62635bc4387bf789cbd0a756, type: 3}
+      propertyPath: m_Controller
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5afbef3d62635bc4387bf789cbd0a756, type: 3}
@@ -406,6 +414,14 @@ PrefabInstance:
     - target: {fileID: 493922, guid: 5afbef3d62635bc4387bf789cbd0a756, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5552014
+      objectReference: {fileID: 0}
+    - target: {fileID: 9555608, guid: 5afbef3d62635bc4387bf789cbd0a756, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9512548, guid: 5afbef3d62635bc4387bf789cbd0a756, type: 3}
+      propertyPath: m_Controller
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5afbef3d62635bc4387bf789cbd0a756, type: 3}

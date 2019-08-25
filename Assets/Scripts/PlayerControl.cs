@@ -10,7 +10,7 @@ public class PlayerControl : MonoBehaviour
     void Start()
     {
         // RotationSkin = GetComponentInChildren<BoxCollider2D>().gameObject.transform;
-        RotationSkin = transform.Find("align-rotate");
+        RotationSkin = transform.Find("playeralign");
     }
 
     void Update()
