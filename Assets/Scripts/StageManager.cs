@@ -34,10 +34,9 @@ public class StageManager : MonoBehaviour
             if(LevelStage<LevelStages.Length-1){
             LevelStage++;
             UpdateStage();
-            // Invoke("UpdateStage",0.2f);
             }else if(!fin) {
+                LevelManager.State= LevelManager.lvlState.Fin;
                 FinalView();
-            // Invoke("FinalView",0.2f);
             }
         } 
 
@@ -50,17 +49,17 @@ public class StageManager : MonoBehaviour
     void UpdateStage(){
         camFollow.target = LevelStages[LevelStage].transform;
         StageData = LevelStages[LevelStage].GetComponent<LevelStageData>();
-        camFollow.offset = StageData.MapWidth%2==1 ? 0.5f: 0f;
+        // camFollow.offset = StageData.MapWidth%2==1 ? 0.5f: 0f;
         
         LevelStages[LevelStage].SetActive(true);
         player = LevelStages[LevelStage].GetComponentInChildren<PlayerControl>().gameObject;
         SwipeControl.ResetFp();
         SwipeControl.BlockSwipeInput();
-            Invoke("AllowSwipeInput",0.8f);
+            Invoke("AllowSwipeInput",0.6f);
         
     }
     void FinalView(){
-        camFollow.target = LevelStages[0].transform;
+        // camFollow.target = LevelStages[0].transform;
         // camFollow.smoothTime =0.8f;
         //  cam.transform.Rotate(0,0,90); 
         // cam.GetComponent<Camera>().orthographicSize = 11;
