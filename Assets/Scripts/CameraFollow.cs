@@ -20,7 +20,7 @@ public class CameraFollow : MonoBehaviour
     void Start(){
         cam = GetComponent<Camera>();
     }
-    void Update()
+    void FixedUpdate()
     {
             // target = LevelSpawner.Level.transform.Find("Player").transform;
 
@@ -36,11 +36,10 @@ public class CameraFollow : MonoBehaviour
 
          }
 
-    transform.LookAt(target.position+floatPos);
 
             switch(LevelManager.State){
                 case LevelManager.lvlState.Menu:
-                 transform.position = Vector3.Lerp(transform.position, new Vector3(target.position.x + offset+floatPos.x, transform.position.y, transform.position.z), Time.deltaTime * smoothTime);
+                 transform.position =  new Vector3(target.position.x + offset+floatPos.x, transform.position.y, transform.position.z);
                 // MoveTo(new Vector3(target.position.x + offset+floatPos.x, transform.position.y, transform.position.z));
                 ScaleWithFactor(16);
 
@@ -59,13 +58,13 @@ public class CameraFollow : MonoBehaviour
 
             }
 
-
+                transform.LookAt(target.position+floatPos);
            
     }
 
  void ScaleWithFactor(float factor){
      scaler = Vector3.Lerp(new Vector3(0,0,GetComponent<Camera>().fieldOfView), new Vector3(0,0,Stage.MapWidth*factor), Time.deltaTime * smoothTime);
-     cam.fieldOfView = scaler.z; 
+     cam.fieldOfView = Mathf.Lerp(GetComponent<Camera>().fieldOfView, Stage.MapWidth*factor, Time.deltaTime * smoothTime); 
  }
 
     void MoveTo(Vector3 pos){

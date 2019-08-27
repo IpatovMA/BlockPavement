@@ -19,7 +19,7 @@ public  class SwipeControl : MonoBehaviour
  
     }
 
-   void Update(){
+   void FixedUpdate(){
     if (Input.touchCount == 0||!AllowSwipes) return;
 
     if(RightSwipe||LeftSwipe||UpSwipe||DownSwipe){
@@ -32,7 +32,7 @@ public  class SwipeControl : MonoBehaviour
     touch = Input.GetTouch(0);  //проверяем первое касание
     if (touch.phase == TouchPhase.Began)
     {
-        Debug.Log("бегин");
+        // Debug.Log("бегин");
         fp = touch.position; 
         lp = touch.position;
     }

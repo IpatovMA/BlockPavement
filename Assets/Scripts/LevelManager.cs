@@ -27,9 +27,8 @@ public class LevelManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-    Debug.Log(lvlNum);
         if (State == lvlState.Menu&&!Levels[lvlNum].activeSelf){
                         
 
@@ -42,10 +41,9 @@ public class LevelManager : MonoBehaviour
 
         if(State == lvlState.Fin&&Input.GetMouseButtonDown(0)){
                 if(lvlNum==Levels.Length-1) SceneManager.LoadScene("game");
-
+            State = lvlState.Menu; 
             Levels[lvlNum].SetActive(false);
             lvlNum++;   
-            State = lvlState.Menu; 
             // SceneManager.LoadScene("game");
         }
        

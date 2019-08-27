@@ -13,12 +13,12 @@ public class PlayerControl : MonoBehaviour
         RotationSkin = transform.Find("playeralign");
     }
 
-    void Update()
+    void FixedUpdate()
     {   
         velocity = GetComponent<Rigidbody2D>().velocity;
-        if(velocity.magnitude<speed/10){velocity = Vector2.zero;}
-        if (velocity.x!=0){velocity.y=0;}
-        if (velocity.y!=0){velocity.x=0;}
+        if(velocity.magnitude<speed/1000){velocity = Vector2.zero;}
+        if (Mathf.Abs(velocity.x)>Mathf.Abs(velocity.y)){velocity.y=0;}
+        if (Mathf.Abs(velocity.y)>Mathf.Abs(velocity.x)){velocity.x=0;}
 
 
         if (velocity.magnitude>0) {
