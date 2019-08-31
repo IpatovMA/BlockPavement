@@ -7,6 +7,7 @@ public class PlayerControl : MonoBehaviour
     public float speed;
     private Vector2 velocity;
     private Transform RotationSkin;
+     private float preVelocity=0;
     void Start()
     {
         // RotationSkin = GetComponentInChildren<BoxCollider2D>().gameObject.transform;
@@ -19,6 +20,16 @@ public class PlayerControl : MonoBehaviour
         if(velocity.magnitude<speed/1000){velocity = Vector2.zero;}
         if (Mathf.Abs(velocity.x)>Mathf.Abs(velocity.y)){velocity.y=0;}
         if (Mathf.Abs(velocity.y)>Mathf.Abs(velocity.x)){velocity.x=0;}
+
+        if(preVelocity!=0&&velocity.magnitude==0){
+            // GetComponentInChildren<Animator>().SetBool("isHited",true);
+            GetComponentInChildren<Animator>().SetTrigger("hited");
+
+        }
+        // else{
+        //     GetComponentInChildren<Animator>().SetBool("isHited",false);
+        // }
+        preVelocity= velocity.magnitude;
 
 
         if (velocity.magnitude>0) {
@@ -66,4 +77,14 @@ public class PlayerControl : MonoBehaviour
         RotationSkin.Rotate(90*rotate);
 
     }
+
+    // void OnCollisionEnter2D(Collision2D coll){
+                    
+    //                 Debug.Log(coll.collider.gameObject.tag);
+    //                if(coll.collider.gameObject.tag == "border"){
+    //         GetComponentInChildren<Animator>().SetTrigger("hited");
+
+    //         Debug.Log("Hit");
+    //     }
+    // }
 }

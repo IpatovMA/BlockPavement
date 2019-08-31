@@ -24,7 +24,7 @@ public class LevelManager : MonoBehaviour
             Levels[lvlNum].SetActive(true);
             player = Levels[lvlNum].GetComponentInChildren<PlayerControl>().gameObject;
             player.SetActive(false);
-
+            StartPage.SetActive(true);
         // MenuCam.GetComponent<CameraFollow>().target = Levels[lvlNum].transform;
     }
 
