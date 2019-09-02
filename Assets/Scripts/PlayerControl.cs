@@ -5,9 +5,14 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     public float speed;
+    public float velocitySmoothFactor;
     private Vector2 velocity;
+    private float currenFactor=1;
+    private float allDistance=0;
+    private Vector2 viewDir =Vector2.zero;
     private Transform RotationSkin;
      private float preVelocity=0;
+
     void Start()
     {
         // RotationSkin = GetComponentInChildren<BoxCollider2D>().gameObject.transform;
@@ -18,49 +23,59 @@ public class PlayerControl : MonoBehaviour
     {   
         velocity = GetComponent<Rigidbody2D>().velocity;
         if(velocity.magnitude<speed/1000){velocity = Vector2.zero;}
+        else{
+             ChangeFactor(GetDistance(viewDir));
+        }
         if (Mathf.Abs(velocity.x)>Mathf.Abs(velocity.y)){velocity.y=0;}
         if (Mathf.Abs(velocity.y)>Mathf.Abs(velocity.x)){velocity.x=0;}
 
         if(preVelocity!=0&&velocity.magnitude==0){
-            // GetComponentInChildren<Animator>().SetBool("isHited",true);
             GetComponentInChildren<Animator>().SetTrigger("hited");
-
         }
-        // else{
-        //     GetComponentInChildren<Animator>().SetBool("isHited",false);
-        // }
         preVelocity= velocity.magnitude;
 
+        //  viewDir = velocity.normalized;
+
+        
+        // Debug.Log(currenFactor);
 
         if (velocity.magnitude>0) {
             SwipeControl.ResetFp();
             // SwipeControl.BlockSwipeInput();
+                    UpdateVelocity(viewDir);
         GetComponent<Rigidbody2D>().velocity = velocity;
             return;
         }
         
 
         if (Input.GetKeyDown ("w")||SwipeControl.GetUpSwipe())
-        {velocity = Vector2.up*speed;
+        {
+            viewDir = Vector2.up;
             RotationSkin.eulerAngles= Vector3.forward*90;
 
         }
         if (Input.GetKeyDown ("s")||SwipeControl.GetDownSwipe())
-        {velocity = Vector2.down*speed;
+        {
+            viewDir = Vector2.down;
             RotationSkin.eulerAngles= Vector3.forward*(-90);
-                    // Debug.Log("down");
         }
         if (Input.GetKeyDown ("a")||SwipeControl.GetLeftSwipe())
-        {velocity = Vector2.left*speed;
+        {
+            viewDir = Vector2.left;
             RotationSkin.eulerAngles= Vector3.forward*180;
         }
         if (Input.GetKeyDown ("d")||SwipeControl.GetRightSwipe())
-        {velocity = Vector2.right*speed;
+        {
+            viewDir = Vector2.right;
             RotationSkin.eulerAngles= Vector3.zero;
+            
         }
-            // SwipeControl.ResetFp();
-        GetComponent<Rigidbody2D>().velocity = velocity;
-        // PlayerRotation(velocity);
+        
+        if(velocity.normalized!= viewDir){
+                    SetVelocity(viewDir);
+        }        
+
+
     }
 
     void PlayerRotation(Vector2 velocity){
@@ -77,7 +92,52 @@ public class PlayerControl : MonoBehaviour
         RotationSkin.Rotate(90*rotate);
 
     }
+    
+    void SetVelocity(Vector2 dir){
+        allDistance = GetDistance(viewDir);
+        velocity = dir*speed*currenFactor;
+        GetComponent<Rigidbody2D>().velocity = velocity;
 
+    }
+    void UpdateVelocity(Vector2 dir){
+        velocity = dir*speed*currenFactor;
+    
+    }
+
+    float GetDistance(Vector2 dir){
+        Vector3 halfVector = new Vector3(0.5f,0.5f,0);
+        RaycastHit2D[] rays = Physics2D.RaycastAll(transform.position+halfVector, dir);
+        foreach (var ray in rays)
+        {
+                if (ray.collider != null&&ray.collider.tag == "border")
+            {   
+                // border= true;
+                Vector3 vect =((Vector3)ray.point - transform.position-halfVector);
+                // float distance = Mathf.Round( vect.magnitude-0.5f);
+                float distance = ( vect.magnitude-0.5f);
+
+                // Debug.DrawLine(transform.position+halfVector, ray.point,Color.red,2);
+                // Debug.Log(distance);
+                return distance;
+            }    
+        }
+    return 0;
+    }
+
+    void ChangeFactor(float dist){
+        if (Mathf.Abs(dist)<0.1) return;
+        if(dist > allDistance*0.5)
+        {currenFactor = velocitySmoothFactor + (1-velocitySmoothFactor)*2*(allDistance-dist)/allDistance;
+        // Debug.Log("fist "+allDistance+"  "+dist );
+        }
+        else {
+            currenFactor = velocitySmoothFactor + (1-velocitySmoothFactor)*2*dist/allDistance;
+        // Debug.Log("snd "+allDistance+"  "+dist );
+
+        }
+    }
+
+    
     // void OnCollisionEnter2D(Collision2D coll){
                     
     //                 Debug.Log(coll.collider.gameObject.tag);

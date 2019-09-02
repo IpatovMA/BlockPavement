@@ -251,6 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
+  velocitySmoothFactor: 0.6
 --- !u!50 &4880817144171856537
 Rigidbody2D:
   serializedVersion: 4
@@ -296,7 +297,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.98, y: 0.98}
+  m_Size: {x: 0.95, y: 0.95}
   m_EdgeRadius: 0
 --- !u!1001 &5588273907178889512
 PrefabInstance:
@@ -319,7 +320,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 493922, guid: 5afbef3d62635bc4387bf789cbd0a756, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.003000021
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 493922, guid: 5afbef3d62635bc4387bf789cbd0a756, type: 3}
       propertyPath: m_LocalPosition.z
