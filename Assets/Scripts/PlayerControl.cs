@@ -9,7 +9,7 @@ public class PlayerControl : MonoBehaviour
     private Vector2 velocity;
     private float currenFactor=1;
     private float allDistance=0;
-    private Vector2 viewDir =Vector2.zero;
+    private Vector2 viewDir =Vector2.left;
     private Transform RotationSkin;
      private float preVelocity=0;
 
@@ -22,7 +22,9 @@ public class PlayerControl : MonoBehaviour
     void FixedUpdate()
     {   
         velocity = GetComponent<Rigidbody2D>().velocity;
-        if(velocity.magnitude<speed/1000){velocity = Vector2.zero;}
+        if(velocity.magnitude<speed/1000||velocity.magnitude>speed*1.2f){
+            velocity = Vector2.zero;
+        }
         else{
              ChangeFactor(GetDistance(viewDir));
         }
@@ -30,6 +32,7 @@ public class PlayerControl : MonoBehaviour
         if (Mathf.Abs(velocity.y)>Mathf.Abs(velocity.x)){velocity.x=0;}
 
         if(preVelocity!=0&&velocity.magnitude==0){
+            // Invoke( "BlockPaverHelper",0.7f);
             GetComponentInChildren<Animator>().SetTrigger("hited");
         }
         preVelocity= velocity.magnitude;
@@ -125,7 +128,7 @@ public class PlayerControl : MonoBehaviour
     }
 
     void ChangeFactor(float dist){
-        if (Mathf.Abs(dist)<0.1) return;
+        if (Mathf.Abs(dist)<0.1||Mathf.Abs(allDistance)<0.1) return;
         if(dist > allDistance*0.5)
         {currenFactor = velocitySmoothFactor + (1-velocitySmoothFactor)*2*(allDistance-dist)/allDistance;
         // Debug.Log("fist "+allDistance+"  "+dist );
@@ -136,6 +139,24 @@ public class PlayerControl : MonoBehaviour
 
         }
     }
+
+    // void BlockPaverHelper(){
+    //     Vector3 halfVector = new Vector3(0.5f,0.5f,0);
+    //     RaycastHit2D[] rays = Physics2D.RaycastAll(transform.position+halfVector, -viewDir);
+    //     foreach (var ray in rays)
+    //     {
+    //                         Debug.DrawLine(transform.position+halfVector, ray.point,Color.red,2);
+
+    //             if (ray.collider != null&&ray.collider.tag == "paved"&&ray.collider.transform.position.z<0)
+    //         {   
+    //             ray.collider.transform.Translate(0,0,0.01f);
+    //             // Debug.DrawLine(transform.position+halfVector, ray.point,Color.red,2);
+    //             // Debug.Log(distance);
+                
+    //         }    
+    //     }
+
+    // }
 
     
     // void OnCollisionEnter2D(Collision2D coll){

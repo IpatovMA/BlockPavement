@@ -235,9 +235,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DoneBlockCount: 0
-  materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 2100000, guid: 8c5b1befab3f823419802edac31e39a6, type: 2}
+  Dust:
+  - {fileID: 1402901781068279948, guid: 59bce475a5680d34690aa6db274df43d, type: 3}
+  paverMaterial: {fileID: 2100000, guid: 8c5b1befab3f823419802edac31e39a6, type: 2}
 --- !u!114 &3740425223964545755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,7 +295,7 @@ BoxCollider2D:
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_AutoTiling: 1
   serializedVersion: 2
   m_Size: {x: 0.95, y: 0.95}
   m_EdgeRadius: 0

@@ -7,7 +7,8 @@ public class BlockPaver : MonoBehaviour
 
 
     public int DoneBlockCount=0;
-    public Material[] materials;
+    public GameObject[] Dust;
+    public Material paverMaterial;
     void Start()
     {
     }
@@ -20,7 +21,10 @@ public class BlockPaver : MonoBehaviour
     void OnTriggerEnter2D(Collider2D coll){
         if (coll.gameObject.tag == "clear"){
             coll.gameObject.tag =  "paved";
-            coll.gameObject.GetComponent<MeshRenderer>().material = materials[1];
+            coll.gameObject.GetComponent<MeshRenderer>().material = paverMaterial;
+            // Debug.Log(Dust[0].GetComponent<ParticleSystem>().startLifetime);
+            Destroy(Instantiate(Dust[0],coll.transform.position,Quaternion.identity),Dust[0].GetComponentInChildren<ParticleSystem>().startLifetime*2);
+            // Destroy(Instantiate(Dust[0],coll.transform.position,Quaternion.identity),Dust[0].GetComponent<ParticleSystem>().startLifetime*2);
             DoneBlockCount++;
             // Debug.Log(DoneBlockCount);
         }
