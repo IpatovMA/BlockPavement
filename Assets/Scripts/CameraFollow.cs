@@ -55,6 +55,7 @@ public class CameraFollow : MonoBehaviour
                 break;
                 case LevelManager.lvlState.Play:
                     transform.position = Vector3.Lerp(transform.position,CameraAlign.position, Time.deltaTime * zoomSpeed);
+                    // LerpDovodchik(transform.position,CameraAlign.position);
                     HeightChange(PlayCamHeight);
                     ScaleWithFactor(13);
                     transform.LookAt(target.position+floatPos);
@@ -85,7 +86,11 @@ public class CameraFollow : MonoBehaviour
 
            
     }
-
+    // void LerpDovodchik(Vector3 fp,Vector3 lp,float eps = 0.01f){
+    //     if(Mathf.Abs(fp.magnitude-lp.magnitude)<eps){
+    //         fp = lp;
+    //     }
+    // }
     void ScaleWithFactor(float factor){
         cam.fieldOfView = Mathf.Lerp(GetComponent<Camera>().fieldOfView, Stage.MapWidth*factor, Time.deltaTime * zoomSpeed); 
     }

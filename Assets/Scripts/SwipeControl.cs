@@ -12,7 +12,7 @@ public  class SwipeControl : MonoBehaviour
     private static bool UpSwipe=false;
     private static bool LeftSwipe=false;
     private static bool DownSwipe=false;
-    private static bool AllowSwipes = true;
+    public static bool AllowSwipes = true;
 
     void Start()
     {

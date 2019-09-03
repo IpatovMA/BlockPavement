@@ -9,7 +9,7 @@ public class PlayerControl : MonoBehaviour
     private Vector2 velocity;
     private float currenFactor=1;
     private float allDistance=0;
-    private Vector2 viewDir =Vector2.left;
+    private Vector2 viewDir =Vector2.zero;
     private Transform RotationSkin;
      private float preVelocity=0;
 
@@ -31,16 +31,12 @@ public class PlayerControl : MonoBehaviour
         if (Mathf.Abs(velocity.x)>Mathf.Abs(velocity.y)){velocity.y=0;}
         if (Mathf.Abs(velocity.y)>Mathf.Abs(velocity.x)){velocity.x=0;}
 
-        if(preVelocity!=0&&velocity.magnitude==0){
+        if(preVelocity!=0&&velocity.magnitude==0&&SwipeControl.AllowSwipes){
             // Invoke( "BlockPaverHelper",0.7f);
             GetComponentInChildren<Animator>().SetTrigger("hited");
         }
         preVelocity= velocity.magnitude;
 
-        //  viewDir = velocity.normalized;
-
-        
-        // Debug.Log(currenFactor);
 
         if (velocity.magnitude>0) {
             SwipeControl.ResetFp();
@@ -54,45 +50,48 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetKeyDown ("w")||SwipeControl.GetUpSwipe())
         {
             viewDir = Vector2.up;
-            RotationSkin.eulerAngles= Vector3.forward*90;
+            // RotationSkin.eulerAngles= Vector3.forward*90;
 
         }
         if (Input.GetKeyDown ("s")||SwipeControl.GetDownSwipe())
         {
             viewDir = Vector2.down;
-            RotationSkin.eulerAngles= Vector3.forward*(-90);
+            // RotationSkin.eulerAngles= Vector3.forward*(-90);
         }
         if (Input.GetKeyDown ("a")||SwipeControl.GetLeftSwipe())
         {
             viewDir = Vector2.left;
-            RotationSkin.eulerAngles= Vector3.forward*180;
+            // RotationSkin.eulerAngles= Vector3.forward*180;
         }
         if (Input.GetKeyDown ("d")||SwipeControl.GetRightSwipe())
         {
             viewDir = Vector2.right;
-            RotationSkin.eulerAngles= Vector3.zero;
+            // RotationSkin.eulerAngles= Vector3.zero;
             
         }
         
         if(velocity.normalized!= viewDir){
+                    RotationSkin.eulerAngles=GetEulerToAlign();
                     SetVelocity(viewDir);
         }        
 
 
     }
 
-    void PlayerRotation(Vector2 velocity){
-        Vector3 rotate = Vector3.zero;
-        switch (velocity.normalized.y){
-            case 1: rotate = Vector3.forward;
-                break;
-            case -1: rotate = Vector3.back;
-                break;
+    public Vector3 GetEulerToAlign(){
+        if (viewDir == Vector2.left){
+            return Vector3.forward*180;
         }
-        if (velocity.normalized.x == -1){
-            rotate = new Vector3(0,0,2);
+        if (viewDir == Vector2.up){
+            return Vector3.forward*90;
         }
-        RotationSkin.Rotate(90*rotate);
+        if (viewDir == Vector2.down){
+            return Vector3.forward*(-90);
+        }
+        // if (viewDir == Vector2.right){
+        //     return Vector3.zero;
+        // }
+        return Vector3.zero;
 
     }
     
@@ -139,6 +138,7 @@ public class PlayerControl : MonoBehaviour
 
         }
     }
+
 
     // void BlockPaverHelper(){
     //     Vector3 halfVector = new Vector3(0.5f,0.5f,0);
