@@ -14,11 +14,15 @@ public class LevelManager : MonoBehaviour
     public int lvlNum= 0;
     public static lvlState State;
      public GameObject player;
+     public Animator DarkScreen;
+     
     // public Camera MenuCam;
     
     void Start()
     {
         State = lvlState.Menu;
+
+
         // lvlNum = 0;
             Camera.main.GetComponent<CameraFollow>().target = Levels[lvlNum].GetComponentInChildren<LevelStageData>().gameObject.transform;
             Levels[lvlNum].SetActive(true);
@@ -28,11 +32,13 @@ public class LevelManager : MonoBehaviour
         // MenuCam.GetComponent<CameraFollow>().target = Levels[lvlNum].transform;
     }
 
+
     // Update is called once per frame
     void FixedUpdate()
     {   
         // Debug.Log(State+"  "+StartPage.activeSelf);
         if (State == lvlState.Menu&&!StartPage.activeSelf){
+            DarkScreen.SetTrigger("Appear");
                         StartPage.SetActive(true);
 
             Camera.main.GetComponent<CameraFollow>().target = Levels[lvlNum].GetComponentInChildren<LevelStageData>().gameObject.transform;
@@ -47,8 +53,15 @@ public class LevelManager : MonoBehaviour
             //}
         }
 
-        if(State == lvlState.Fin&&!FinPage.activeSelf){
-            FinPage.SetActive(true);
+        if(State == lvlState.Fin){
+           
+           if(!FinPage.activeSelf){
+                FinPage.SetActive(true);
+           }
+            // Debug.Log(DarkScreen.GetComponent<DarkScreenControl>().Dark);
+            if (DarkScreen.GetComponent<DarkScreenControl>().Dark){
+                ToNextLevel();
+            }
             // SceneManager.LoadScene("game");
         }
        
@@ -63,11 +76,20 @@ public class LevelManager : MonoBehaviour
         // MenuCam.gameObject.SetActive(false);
     }
     public void GetRewards(){
+            DarkScreen.SetTrigger("Disappear");
+            // ToNextLevel();
+
+    }
+
+
+
+    void ToNextLevel(){
             if(lvlNum==Levels.Length-1) SceneManager.LoadScene("game");
             State = lvlState.Menu; 
             Levels[lvlNum].SetActive(false);
             lvlNum++;   
             FinPage.SetActive(false);
+
 
     }
 }
