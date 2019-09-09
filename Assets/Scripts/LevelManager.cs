@@ -24,7 +24,7 @@ public class LevelManager : MonoBehaviour
 
 
         // lvlNum = 0;
-            Camera.main.GetComponent<CameraFollow>().target = Levels[lvlNum].GetComponentInChildren<LevelStageData>().gameObject.transform;
+            Camera.main.GetComponent<CameraFollow>().target = Levels[lvlNum].GetComponentInChildren<MapData>().gameObject.transform;
             Levels[lvlNum].SetActive(true);
             player = Levels[lvlNum].GetComponentInChildren<PlayerControl>().gameObject;
             player.SetActive(false);
@@ -41,7 +41,7 @@ public class LevelManager : MonoBehaviour
             DarkScreen.SetTrigger("Appear");
                         StartPage.SetActive(true);
 
-            Camera.main.GetComponent<CameraFollow>().target = Levels[lvlNum].GetComponentInChildren<LevelStageData>().gameObject.transform;
+            Camera.main.GetComponent<CameraFollow>().target = Levels[lvlNum].GetComponentInChildren<MapData>().gameObject.transform;
         //    if (Camera.main.GetComponent<CameraFollow>().target.position.x == Camera.main.transform.position.x){
                 // if (!player.activeSelf){
             Levels[lvlNum].SetActive(true);

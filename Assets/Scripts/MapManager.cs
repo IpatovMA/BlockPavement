@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class StageManager : MonoBehaviour
+public class MapManager : MonoBehaviour
 {
     public GameObject[] LevelStages;
     public GameObject player;
@@ -12,7 +12,7 @@ public class StageManager : MonoBehaviour
     private Camera cam;
     private CameraFollow camFollow;
     
-    private LevelStageData StageData;
+    private MapData StageData;
 
     private bool fin = false;
 
@@ -48,7 +48,7 @@ public class StageManager : MonoBehaviour
     }
     void UpdateStage(){
         camFollow.target = LevelStages[LevelStage].transform;
-        StageData = LevelStages[LevelStage].GetComponent<LevelStageData>();
+        StageData = LevelStages[LevelStage].GetComponent<MapData>();
         // camFollow.offset = StageData.MapWidth%2==1 ? 0.5f: 0f;
         
         LevelStages[LevelStage].SetActive(true);

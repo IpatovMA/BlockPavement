@@ -10,7 +10,7 @@ public class CameraFollow : MonoBehaviour
 
     private Camera cam;
     private Transform CameraAlign;
-    public LevelStageData Stage;
+    public MapData Stage;
     public float PlayCamHeight ;
     public float MenuCamHeight ;
 
@@ -39,7 +39,7 @@ public class CameraFollow : MonoBehaviour
          if (target == null) return;
             switch(LevelManager.State){
                 case LevelManager.lvlState.Menu:
-                        Stage = target.GetComponent<LevelStageData>();
+                        Stage = target.GetComponent<MapData>();
                         viewAngel = transform.eulerAngles.x;
                         loopCounter = 0;
                         if (Stage != null){  
@@ -86,11 +86,7 @@ public class CameraFollow : MonoBehaviour
 
            
     }
-    // void LerpDovodchik(Vector3 fp,Vector3 lp,float eps = 0.01f){
-    //     if(Mathf.Abs(fp.magnitude-lp.magnitude)<eps){
-    //         fp = lp;
-    //     }
-    // }
+
     void ScaleWithFactor(float factor){
         cam.fieldOfView = Mathf.Lerp(GetComponent<Camera>().fieldOfView, Stage.MapWidth*factor, Time.deltaTime * zoomSpeed); 
     }

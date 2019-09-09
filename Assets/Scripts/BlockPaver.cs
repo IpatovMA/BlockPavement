@@ -12,7 +12,7 @@ public class BlockPaver : MonoBehaviour
     private Transform Stage;
     void Start()
     {
-        Stage = GetComponentInParent<LevelStageData>().transform;
+        Stage = GetComponentInParent<MapData>().transform;
     }
 
     // Update is called once per frame
