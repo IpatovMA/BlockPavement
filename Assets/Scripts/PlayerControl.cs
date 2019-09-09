@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
-    public float speed;
-    public float velocitySmoothFactor;
+    public float speed=15;
+    public float velocitySmoothFactor=0.4f;
+    public long VibroMillis= 30;
     private Vector2 velocity;
     private float currenFactor=1;
     private float allDistance=0;
@@ -34,6 +35,7 @@ public class PlayerControl : MonoBehaviour
         if(preVelocity!=0&&velocity.magnitude==0&&SwipeControl.AllowSwipes){
             // Invoke( "BlockPaverHelper",0.7f);
             GetComponentInChildren<Animator>().SetTrigger("hited");
+            Vibration.Vibrate(VibroMillis);
         }
         preVelocity= velocity.magnitude;
 
