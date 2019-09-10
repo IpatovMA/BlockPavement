@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 
 public class MapData : MonoBehaviour
@@ -8,21 +10,61 @@ public class MapData : MonoBehaviour
     public int TotalBlockCount;
     public int MapWidth;
     public int MapHeight;
+    public GameObject Map;
     public Vector3 PlayerPos;
     public GameObject PlayerPrafab;
+
+    private GameObject MapPrefab;
+    public GameObject player;
+    private Camera cam;
+    private CameraFollow camFollow;
+
+    
+
+
 
 
     void Start()
     {   
- 
-        LoadMap();
-
-
+        cam = Camera.main;
+        camFollow = cam.GetComponent<CameraFollow>();
         
     }
+
+void Update()
+    {
+
+
+        if (LevelManager.State != LevelManager.lvlState.Play) return;
+
+        if(player.activeSelf==false){
+            player.SetActive(true);
+        }
+        if(TotalBlockCount==GetComponentInChildren<BlockPaver>().DoneBlockCount){
+            Destroy(player);
+            // UpdateMap();
+             if(LevelManager.State!= LevelManager.lvlState.Fin) {
+                LevelManager.State= LevelManager.lvlState.Fin;
+            }
+        } 
+
+        // if(fin&&Input.GetMouseButtonDown(0)){
+        //         SceneManager.LoadScene("game");
+        // }
+
+
+    }
+
+
+
+
+
     
     public void LoadMap(){
+        Debug.Log("Laod");
+        MapPrefab = Resources.Load("maps/map"+(LevelManager.lvlNum)) as GameObject;
 
+        Map = Instantiate(MapPrefab, Vector3.zero,Quaternion.identity,transform);
  
        TotalBlockCount=0;
         var clearBlocks = new List<Transform>();
@@ -31,7 +73,6 @@ public class MapData : MonoBehaviour
         foreach (var coll in colliders)
         {
            if(coll.gameObject.tag=="clear"){
-            //    TotalBlockCount++;
                clearBlocks.Add(coll.transform);
 
            } 
@@ -47,7 +88,7 @@ public class MapData : MonoBehaviour
                 if (ray.collider != null&&(ray.collider.tag == "border"||ray.collider.tag == "clear"))
             {   
                 MapWidth++;
-                Debug.DrawLine(new Vector3(0,0.5f,0), ray.point,Color.red,20);
+                // Debug.DrawLine(new Vector3(0,0.5f,0), ray.point,Color.red,20);
             }    
         }
            
@@ -61,9 +102,19 @@ public class MapData : MonoBehaviour
             }    
         }
 
+        GetComponentInChildren<SetOutlineBorder>().UpdateBorder(this);
+        camFollow.target = transform;
+
         PlayerPos = clearBlocks[Random.Range(0, TotalBlockCount)].position  - new Vector3(0.5f,0.5f,0);
 
-        Instantiate(PlayerPrafab,PlayerPos,Quaternion.identity);
+        player = Instantiate(PlayerPrafab,PlayerPos,Quaternion.identity,transform);
+        Debug.Log(player);
+        player.SetActive(false);
 
+    }
+
+    public void DestroyMap(){
+        Destroy(Map);
+        Resources.UnloadAsset(MapPrefab);
     }
 }

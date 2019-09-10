@@ -10,47 +10,34 @@ public class LevelManager : MonoBehaviour
     public GameObject StartPage;
     public GameObject FinPage;
 
-    public GameObject[] Levels;
-    public int lvlNum= 0;
+    // public GameObject[] Levels;
+    private MapData MapData;
+
+    static public int lvlNum= 0;
     public static lvlState State;
-     public GameObject player;
      public Animator DarkScreen;
      
-    // public Camera MenuCam;
     
     void Start()
     {
+        MapData = GetComponentInChildren<MapData>();
         State = lvlState.Menu;
-
-
-        // lvlNum = 0;
-            Camera.main.GetComponent<CameraFollow>().target = Levels[lvlNum].GetComponentInChildren<MapData>().gameObject.transform;
-            Levels[lvlNum].SetActive(true);
-            player = Levels[lvlNum].GetComponentInChildren<PlayerControl>().gameObject;
-            player.SetActive(false);
-            StartPage.SetActive(true);
-        // MenuCam.GetComponent<CameraFollow>().target = Levels[lvlNum].transform;
+        lvlNum= 1;
+        
+        
+        // StartPage.SetActive(true);
     }
 
 
-    // Update is called once per frame
     void FixedUpdate()
     {   
-        // Debug.Log(State+"  "+StartPage.activeSelf);
         if (State == lvlState.Menu&&!StartPage.activeSelf){
             DarkScreen.SetTrigger("Appear");
-                        StartPage.SetActive(true);
+            StartPage.SetActive(true);
 
-            Camera.main.GetComponent<CameraFollow>().target = Levels[lvlNum].GetComponentInChildren<MapData>().gameObject.transform;
-        //    if (Camera.main.GetComponent<CameraFollow>().target.position.x == Camera.main.transform.position.x){
-                // if (!player.activeSelf){
-            Levels[lvlNum].SetActive(true);
-                // }            
-            player = Levels[lvlNum].GetComponentInChildren<PlayerControl>().gameObject;
-            player.SetActive(false);
-            
-            // Debug.Log("fdsfdsf");
-            //}
+            MapData.LoadMap();
+
+
         }
 
         if(State == lvlState.Fin){
@@ -58,22 +45,23 @@ public class LevelManager : MonoBehaviour
            if(!FinPage.activeSelf){
                 FinPage.SetActive(true);
            }
-            // Debug.Log(DarkScreen.GetComponent<DarkScreenControl>().Dark);
             if (DarkScreen.GetComponent<DarkScreenControl>().Dark){
                 ToNextLevel();
             }
-            // SceneManager.LoadScene("game");
         }
        
     }
 
     public void Play(){
         State = lvlState.Play;
+        SwipeControl.ResetFp();
+        SwipeControl.BlockSwipeInput();
+        Invoke("AllowSwipeInput",0.6f);
         StartPage.SetActive(false);
-        player.SetActive(true);
 
-        // Camera.main.gameObject.SetActive(true);
-        // MenuCam.gameObject.SetActive(false);
+    }
+        void AllowSwipeInput(){
+        SwipeControl.AllowSwipeInput();
     }
     public void GetRewards(){
             DarkScreen.SetTrigger("Disappear");
@@ -84,9 +72,9 @@ public class LevelManager : MonoBehaviour
 
 
     void ToNextLevel(){
-            if(lvlNum==Levels.Length-1) SceneManager.LoadScene("game");
+            // if(lvlNum==Levels.Length-1) SceneManager.LoadScene("game");
+            MapData.DestroyMap();
             State = lvlState.Menu; 
-            Levels[lvlNum].SetActive(false);
             lvlNum++;   
             FinPage.SetActive(false);
 
