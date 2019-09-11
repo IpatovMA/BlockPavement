@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class MapData : MonoBehaviour
 {
+    public int RotateOn;
     public int TotalBlockCount;
     public int MapWidth;
     public int MapHeight;
@@ -19,6 +20,7 @@ public class MapData : MonoBehaviour
     private Camera cam;
     private CameraFollow camFollow;
 
+    
     
 
 
@@ -55,14 +57,10 @@ void Update()
 
     }
 
-
-
-
-
     
     public void LoadMap(){
         Debug.Log("Laod");
-        MapPrefab = Resources.Load("maps/map"+(LevelManager.lvlNum)) as GameObject;
+        MapPrefab = Resources.Load("maps/"+LevelManager.lvlNum) as GameObject;
 
         Map = Instantiate(MapPrefab, Vector3.zero,Quaternion.identity,transform);
  
@@ -102,13 +100,25 @@ void Update()
             }    
         }
 
+        // if (RotateOn%2==0){
+        //     int temp = MapHeight;
+        //     MapHeight = MapWidth;
+        //     MapWidth = temp;
+        // }
+
+
+
         GetComponentInChildren<SetOutlineBorder>().UpdateBorder(this);
         camFollow.target = transform;
+        transform.eulerAngles = new Vector3(0,0,90*RotateOn);
+        Map.transform.localPosition = new Vector3(-MapWidth/2.0f,-MapHeight/2.0f,0);
+        Map.transform.localEulerAngles = new Vector3(0,0,0);
+
+
 
         PlayerPos = clearBlocks[Random.Range(0, TotalBlockCount)].position  - new Vector3(0.5f,0.5f,0);
 
         player = Instantiate(PlayerPrafab,PlayerPos,Quaternion.identity,transform);
-        Debug.Log(player);
         player.SetActive(false);
 
     }

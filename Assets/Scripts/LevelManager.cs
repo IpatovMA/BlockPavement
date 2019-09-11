@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    public int TotalLevelNumber;
    public enum lvlState {Menu,Play,Fin};
     public GameObject StartPage;
     public GameObject FinPage;
@@ -24,8 +25,7 @@ public class LevelManager : MonoBehaviour
         State = lvlState.Menu;
         lvlNum= 1;
         
-        
-        // StartPage.SetActive(true);
+
     }
 
 
@@ -72,7 +72,15 @@ public class LevelManager : MonoBehaviour
 
 
     void ToNextLevel(){
-            // if(lvlNum==Levels.Length-1) SceneManager.LoadScene("game");
+            if(lvlNum==TotalLevelNumber) {
+                lvlNum=0;
+                MapData.RotateOn++;
+                
+                if(MapData.RotateOn==4){
+                    SceneManager.LoadScene("game");
+
+                }
+            }
             MapData.DestroyMap();
             State = lvlState.Menu; 
             lvlNum++;   

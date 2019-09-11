@@ -10,7 +10,7 @@ public class CameraFollow : MonoBehaviour
 
     private Camera cam;
     private Transform CameraAlign;
-    public MapData Stage;
+    public MapData MapData;
     public float PlayCamHeight ;
     public float MenuCamHeight ;
 
@@ -27,27 +27,30 @@ public class CameraFollow : MonoBehaviour
     private int loopCounter;
     private float currentLoopSpeed;
 
+
     // private bool RotateBool;// 
     void Start(){
         cam = GetComponent<Camera>();
         CameraAlign = transform.parent.transform;
         rotationStartRadius = 0.5f*loopRadius;
-
     }
     void FixedUpdate()
     {
          if (target == null) return;
             switch(LevelManager.State){
                 case LevelManager.lvlState.Menu:
-                        Stage = target.GetComponent<MapData>();
+                        MapData = target.GetComponent<MapData>();
                         viewAngel = transform.eulerAngles.x;
                         loopCounter = 0;
-                        if (Stage != null){  
-                            floatPos = new Vector3(Stage.MapWidth/2.0f,Stage.MapHeight/2.0f,0);
-                            transform.position =  new Vector3(0, -loopRadius, 0)+CameraAlign.position;
+                        if (MapData != null){  
+                            // floatPos = new Vector3(MapData.MapWidth/2.0f,MapData.MapHeight/2.0f,0);
+                            floatPos=Vector3.zero;
+                            // transform.position =  new Vector3(0, -loopRadius, 0)+CameraAlign.position;
+                            transform.localPosition =  new Vector3(0, -loopRadius, 0);
+
                             CameraAlign.position = target.position+floatPos+new Vector3(0,0,MenuCamHeight);
                             CameraAlign.eulerAngles = Vector3.zero;
-                            loopRadius = Stage.MapHeight>Stage.MapWidth ? Stage.MapHeight : Stage.MapWidth;
+                            loopRadius = MapData.MapHeight>MapData.MapWidth ? MapData.MapHeight : MapData.MapWidth;
                             rotationStartRadius = 0.5f*loopRadius;
                         }
                         ScaleWithFactor(16);
@@ -88,7 +91,8 @@ public class CameraFollow : MonoBehaviour
     }
 
     void ScaleWithFactor(float factor){
-        cam.fieldOfView = Mathf.Lerp(GetComponent<Camera>().fieldOfView, Stage.MapWidth*factor, Time.deltaTime * zoomSpeed); 
+        int size = MapData.RotateOn%2==0?MapData.MapWidth:MapData.MapHeight;
+        cam.fieldOfView = Mathf.Lerp(GetComponent<Camera>().fieldOfView, size*factor, Time.deltaTime * zoomSpeed); 
     }
     void HeightChange(float height){
         CameraAlign.position=Vector3.Lerp(CameraAlign.position,new Vector3(CameraAlign.position.x,CameraAlign.position.y,height), Time.deltaTime * zoomSpeed);

@@ -251,7 +251,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  velocitySmoothFactor: 0.6
+  velocitySmoothFactor: 0.4
+  VibroMillis: 30
 --- !u!50 &4880817144171856537
 Rigidbody2D:
   serializedVersion: 4

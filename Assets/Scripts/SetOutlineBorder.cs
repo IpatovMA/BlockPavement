@@ -7,6 +7,8 @@ public class SetOutlineBorder : MonoBehaviour
 
     public void UpdateBorder(MapData Data){
         transform.localScale = new Vector3(Data.MapWidth,Data.MapHeight,1);
+        transform.localPosition = new Vector3(-Data.MapWidth/2.0f,-Data.MapHeight/2.0f,0);
+
     }
 
 
