@@ -33,7 +33,7 @@ public  class SwipeControl : MonoBehaviour
     if (touch.phase == TouchPhase.Began)
     {
         // Debug.Log("бегин");
-        fp = touch.position; 
+        fp =  Camera.main.ScreenToWorldPoint( touch.position); 
         lp = touch.position;
     }
  

@@ -125,6 +125,6 @@ void Update()
 
     public void DestroyMap(){
         Destroy(Map);
-        Resources.UnloadAsset(MapPrefab);
+        Resources.UnloadUnusedAssets();
     }
 }
