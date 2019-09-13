@@ -32,27 +32,30 @@ public  class SwipeControl : MonoBehaviour
     touch = Input.GetTouch(0);  //проверяем первое касание
     if (touch.phase == TouchPhase.Began)
     {
-        // Debug.Log("бегин");
-        fp =  Camera.main.ScreenToWorldPoint( touch.position); 
-        lp = touch.position;
+        Debug.Log(Screen.dpi+"  "+Screen.currentResolution);
+
+        fp = PixToInch( touch.position); 
+        lp =  PixToInch(touch.position);
     }
  
     if (touch.phase == TouchPhase.Moved) 
     {
-        lp = touch.position;
+        lp =  PixToInch(touch.position);
     }
  
     if (touch.phase == TouchPhase.Ended) 
     {
-        fp = Camera.main.ScreenToWorldPoint( touch.position); 
-        lp =  Camera.main.ScreenToWorldPoint(touch.position);
+        fp = PixToInch( touch.position); 
+        lp =  PixToInch(touch.position);
     }
     
-    // Debug.Log(fp+"  "+lp);
+    Debug.Log(fp+"  "+lp);
+        // Debug.Log(Input.mousePosition+"  "+PixToInch(Input.mousePosition));
+
 
     if (Mathf.Abs(lp.x - fp.x) > dragDistance || Mathf.Abs(lp.y - fp.y) > dragDistance)
     {//это перемещение
-    // Debug.Log("Есть свайп");
+    Debug.Log("Есть свайп");
             //проверяем, перемещение было вертикальным или горизонтальным 
         if (Mathf.Abs(lp.x - fp.x) > Mathf.Abs(lp.y - fp.y))
             {   //Если горизонтальное движение больше, чем вертикальное движение ...
@@ -86,8 +89,8 @@ public  class SwipeControl : MonoBehaviour
     LeftSwipe=false;
     DownSwipe=false;
     }
-        fp = touch.position; 
-        lp = touch.position;
+        fp = PixToInch( touch.position); 
+        lp =  PixToInch(touch.position);
     }
     public static  bool GetRightSwipe(){
         return RightSwipe;
@@ -107,5 +110,9 @@ public  class SwipeControl : MonoBehaviour
     public static void AllowSwipeInput(){
         AllowSwipes = true;
     }
+     static Vector3 PixToInch(Vector3 Pos){
+        return Pos/Screen.dpi;
+    }
+
 }
 
