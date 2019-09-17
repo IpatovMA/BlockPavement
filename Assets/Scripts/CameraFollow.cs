@@ -53,14 +53,14 @@ public class CameraFollow : MonoBehaviour
                             loopRadius = MapData.MapHeight>MapData.MapWidth ? MapData.MapHeight : MapData.MapWidth;
                             rotationStartRadius = 0.5f*loopRadius;
                         }
-                        ScaleWithFactor(16);
+                        ScaleWithFactor(1);
                         transform.LookAt(target.position+floatPos);
                 break;
                 case LevelManager.lvlState.Play:
                     transform.position = Vector3.Lerp(transform.position,CameraAlign.position, Time.deltaTime * zoomSpeed);
                     // LerpDovodchik(transform.position,CameraAlign.position);
                     HeightChange(PlayCamHeight);
-                    ScaleWithFactor(13);
+                    ScaleWithFactor(0);
                     transform.LookAt(target.position+floatPos);
                 break;
                 case LevelManager.lvlState.Fin:
@@ -82,7 +82,7 @@ public class CameraFollow : MonoBehaviour
                         makeLoop(radius);
 
                     }
-                    ScaleWithFactor(16);
+                    ScaleWithFactor(1);
                 break;
 
             }
@@ -94,8 +94,10 @@ public class CameraFollow : MonoBehaviour
         // int size = MapData.RotateOn%2==0?MapData.MapWidth:MapData.MapHeight;
         // cam.fieldOfView = Mathf.Lerp(GetComponent<Camera>().fieldOfView, size*factor, Time.deltaTime * zoomSpeed); 
         int size = MapData.RotateOn%2==0?MapData.MapWidth:MapData.MapHeight;
-        Debug.Log(size/18f + "   "+  2*Mathf.Atan(size/18f) /Mathf.PI*180);
-        cam.fieldOfView = Mathf.Lerp(GetComponent<Camera>().fieldOfView, 4*Mathf.Atan(size/18f) /Mathf.PI*180, Time.deltaTime * zoomSpeed); 
+        // float distance = Mathf.Sqrt(Mathf.Pow(CameraAlign.transform.position.z,2)+Mathf.Pow(loopRadius,2));
+        float distance = -CameraAlign.transform.position.z + factor;
+        Debug.Log(Mathf.Pow(CameraAlign.transform.position.z,2) + "   "+ Mathf.Pow(transform.position.y,2)+"  "+Mathf.Sqrt(Mathf.Pow(CameraAlign.transform.position.z,2)+Mathf.Pow(transform.position.y,2)));
+        cam.fieldOfView = Mathf.Lerp(GetComponent<Camera>().fieldOfView,4*Mathf.Atan(size/2f/distance)/Mathf.PI*180, Time.deltaTime * zoomSpeed); 
     }
     void HeightChange(float height){
         CameraAlign.position=Vector3.Lerp(CameraAlign.position,new Vector3(CameraAlign.position.x,CameraAlign.position.y,height), Time.deltaTime * zoomSpeed);

@@ -264,7 +264,7 @@ MonoBehaviour:
   zoomSpeed: 3
   offset: 0
   MapData: {fileID: 0}
-  PlayCamHeight: -9
+  PlayCamHeight: -8
   MenuCamHeight: -6
   loopSpeed:
   - 200
@@ -1091,15 +1091,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 158861500}
     m_Modifications:
-    - target: {fileID: 8439808937454771023, guid: e8831f2190ca65541916878a78f28765,
+    - target: {fileID: 5173492301419403391, guid: e8831f2190ca65541916878a78f28765,
         type: 3}
-      propertyPath: m_Name
-      value: GetRewards
-      objectReference: {fileID: 0}
-    - target: {fileID: 8439808937454771023, guid: e8831f2190ca65541916878a78f28765,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      propertyPath: m_SizeDelta.x
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 8439808937454771020, guid: e8831f2190ca65541916878a78f28765,
         type: 3}
@@ -1216,15 +1211,20 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: GetRewards
       objectReference: {fileID: 0}
+    - target: {fileID: 8439808937454771023, guid: e8831f2190ca65541916878a78f28765,
+        type: 3}
+      propertyPath: m_Name
+      value: GetRewards
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439808937454771023, guid: e8831f2190ca65541916878a78f28765,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8439808938203992542, guid: e8831f2190ca65541916878a78f28765,
         type: 3}
       propertyPath: m_Text
       value: GET REWARDS
-      objectReference: {fileID: 0}
-    - target: {fileID: 5173492301419403391, guid: e8831f2190ca65541916878a78f28765,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 9131028207362119924, guid: e8831f2190ca65541916878a78f28765,
         type: 3}
@@ -1294,10 +1294,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 143328026}
     m_Modifications:
-    - target: {fileID: 8439808937454771023, guid: e8831f2190ca65541916878a78f28765,
+    - target: {fileID: 7476489942047085641, guid: e8831f2190ca65541916878a78f28765,
         type: 3}
-      propertyPath: m_Name
-      value: my city
+      propertyPath: m_Color.g
+      value: 0.5568628
+      objectReference: {fileID: 0}
+    - target: {fileID: 7476489942047085641, guid: e8831f2190ca65541916878a78f28765,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.80784315
       objectReference: {fileID: 0}
     - target: {fileID: 8439808937454771020, guid: e8831f2190ca65541916878a78f28765,
         type: 3}
@@ -1414,20 +1419,15 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8439808937454771023, guid: e8831f2190ca65541916878a78f28765,
+        type: 3}
+      propertyPath: m_Name
+      value: my city
+      objectReference: {fileID: 0}
     - target: {fileID: 8439808938203992542, guid: e8831f2190ca65541916878a78f28765,
         type: 3}
       propertyPath: m_Text
       value: MY CITY
-      objectReference: {fileID: 0}
-    - target: {fileID: 7476489942047085641, guid: e8831f2190ca65541916878a78f28765,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.5568628
-      objectReference: {fileID: 0}
-    - target: {fileID: 7476489942047085641, guid: e8831f2190ca65541916878a78f28765,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.80784315
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8831f2190ca65541916878a78f28765, type: 3}
@@ -1438,11 +1438,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 143328026}
     m_Modifications:
-    - target: {fileID: 8439808937454771023, guid: e8831f2190ca65541916878a78f28765,
-        type: 3}
-      propertyPath: m_Name
-      value: Play
-      objectReference: {fileID: 0}
     - target: {fileID: 8439808937454771020, guid: e8831f2190ca65541916878a78f28765,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1553,5 +1548,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2068757343}
+    - target: {fileID: 8439808937454771023, guid: e8831f2190ca65541916878a78f28765,
+        type: 3}
+      propertyPath: m_Name
+      value: Play
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8831f2190ca65541916878a78f28765, type: 3}
