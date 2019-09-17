@@ -237,7 +237,7 @@ MonoBehaviour:
   DoneBlockCount: 0
   Dust:
   - {fileID: 1402901781068279948, guid: 59bce475a5680d34690aa6db274df43d, type: 3}
-  paverMaterial: {fileID: 2100000, guid: f7efac6d6d7a343a19528a2733fd9759, type: 2}
+  paverMaterial: {fileID: 2100000, guid: 8c5b1befab3f823419802edac31e39a6, type: 2}
 --- !u!114 &3740425223964545755
 MonoBehaviour:
   m_ObjectHideFlags: 0
