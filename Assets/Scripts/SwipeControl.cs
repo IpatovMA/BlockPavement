@@ -19,8 +19,9 @@ public  class SwipeControl : MonoBehaviour
  
     }
 
-   void FixedUpdate(){
-    if (Input.touchCount == 0||!AllowSwipes) return;
+   void Update(){
+
+    if (Input.touchCount == 0||!AllowSwipes||LevelManager.State != LevelManager.lvlState.Play) return;
 
     if(RightSwipe||LeftSwipe||UpSwipe||DownSwipe){
     RightSwipe=false;

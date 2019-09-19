@@ -59,7 +59,7 @@ void Update()
 
     
     public void LoadMap(){
-        Debug.Log("Laod");
+        // Debug.Log("Laod");
         MapPrefab = Resources.Load("maps/"+LevelManager.lvlNum) as GameObject;
 
         Map = Instantiate(MapPrefab, Vector3.zero,Quaternion.identity,transform);
