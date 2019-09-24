@@ -1,11 +1,13 @@
-class LocalizationFileContent {
+using System;
+ [Serializable] public class LocalizationFileContent {
 		public LocalizationString[] Strings;
 
-	public class LocalizationString {
+	 [Serializable]public class LocalizationString {
+		 	public string Key;
 			public SingleLang[] Values;
 }
-public class SingleLang {
-	public string Lang;
-	public string Value;
+ [Serializable]public class SingleLang {
+public string Lang;
+public string Value;
 }
 	}

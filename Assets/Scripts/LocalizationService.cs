@@ -1,3 +1,7 @@
+using UnityEngine;
+using System.IO;
+
+
 public class LocalizationService
     {
         private static LocalizationService _instance;
@@ -17,21 +21,35 @@ public class LocalizationService
             }
         }
 
+        static LocalizationFileContent LocalizationData;
+        static string GameLang;
 
         public string GetString(string key)
         {
-            string i = "dfdf";
-         return i ;  
+            foreach (var str in LocalizationData.Strings)
+            {
+                if (str.Key == key){
+                    foreach (var val in str.Values)
+                    {
+                        if(val.Lang == GameLang){
+                            return val.Value;
+                        }
+                    }
+                }
+            }
+         return "error" ;  
         }
 
-        public string Load()
+        public void Load()
         {
-                        string i = "dfdf";
-         return i ;  
+            string json = File.ReadAllText("Assets/Localization/localization.json");
+            LocalizationData = JsonUtility.FromJson<LocalizationFileContent>(json);
+         
         }
 
         public void SetLang(string lang)
         {
+            GameLang = lang;
         }
     }
 

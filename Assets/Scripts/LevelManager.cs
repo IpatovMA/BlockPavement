@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 
 public class LevelManager : MonoBehaviour
@@ -10,6 +12,7 @@ public class LevelManager : MonoBehaviour
    public enum lvlState {Menu,Play,Fin};
     public GameObject StartPage;
     public GameObject FinPage;
+    public GameObject lvlShow;
 
     // public GameObject[] Levels;
     private MapData MapData;
@@ -17,13 +20,23 @@ public class LevelManager : MonoBehaviour
     static public int lvlNum= 0;
     public static lvlState State;
      public Animator DarkScreen;
+
+
      
-    
+    void Awake(){
+        LocalizationService.Instance.Load();
+        LocalizationService.Instance.SetLang("ru");
+    }
     void Start()
     {
+
+        // LocalizationService.Instance.Load();
+        // LocalizationService.Instance.SetLang("ru");
+
         MapData = GetComponentInChildren<MapData>();
         State = lvlState.Menu;
         lvlNum= 1;
+        ShowLvl();
         
 
     }
@@ -84,9 +97,21 @@ public class LevelManager : MonoBehaviour
             MapData.DestroyMap();
             State = lvlState.Menu; 
             lvlNum++;   
+            ShowLvl();
             FinPage.SetActive(false);
 
 
+    }
+
+    public void Revert(){
+        SceneManager.LoadScene("game");
+    }
+    void ShowLvl(){
+        string str = lvlShow.GetComponentInChildren<Text>().text;
+        string sep = " #";
+        int i = str.IndexOf(sep);
+        if (i!=-1) str = str.Substring(0, i);
+        lvlShow.GetComponentInChildren<Text>().text = str+" #"+lvlNum;
     }
 }
 
