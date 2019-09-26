@@ -1,0 +1,33 @@
+{"Strings":
+    [
+    {   "Key":"Play",
+        "Values":[
+        {"Lang":"ru","Value":"ИГРАТЬ"},
+        {"Lang":"en","Value":"PLAY"}
+            ]
+    },
+    {   "Key":"MyCity",
+        "Values":[
+        {"Lang":"ru","Value":"МОЙ ГОРОД"},
+        {"Lang":"en","Value":"MY CITY"}
+            ]
+    },
+    {   "Key":"GetRewards",
+        "Values":[
+        {"Lang":"ru","Value":"ПОЛУЧИТЬ"},
+        {"Lang":"en","Value":"GET REWARDS"}
+            ]
+    },
+    {   "Key":"lvl",
+        "Values":[
+        {"Lang":"ru","Value":"Уровень"},
+        {"Lang":"en","Value":"Level"}
+            ]
+    }
+    ],
+"Format":[
+    {"Lang":"default","Font":"Arial","Style":0},
+    {"Lang":"en","Font":"BOD_R","Style":1}
+    
+]
+}

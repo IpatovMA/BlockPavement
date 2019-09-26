@@ -19,13 +19,7 @@ public class MapData : MonoBehaviour
     public GameObject player;
     private Camera cam;
     private CameraFollow camFollow;
-
-    
-    
-
-
-
-
+    float high = -0.0002f;
     void Start()
     {   
         cam = Camera.main;
@@ -80,23 +74,23 @@ void Update()
         MapWidth=-1;
         MapHeight=-1;
 
-        RaycastHit2D[] WidthRays = Physics2D.RaycastAll(new Vector3(0,0.5f,0), Vector2.right);
+        RaycastHit2D[] WidthRays = Physics2D.RaycastAll(new Vector3(0,0.5f,high), Vector2.right);
         foreach (var ray in WidthRays)
         {
                 if (ray.collider != null&&(ray.collider.tag == "border"||ray.collider.tag == "clear"))
             {   
                 MapWidth++;
-                // Debug.DrawLine(new Vector3(0,0.5f,0), ray.point,Color.red,20);
+                Debug.DrawLine(new Vector3(0,0.5f,0), ray.point,Color.red,20);
             }    
         }
            
-        RaycastHit2D[] HeightRays = Physics2D.RaycastAll(new Vector3(0.5f,0,0), Vector2.up);
+        RaycastHit2D[] HeightRays = Physics2D.RaycastAll(new Vector3(0.5f,0,high), Vector2.up);
         foreach (var ray in HeightRays)
         {
                 if (ray.collider != null&&(ray.collider.tag == "border"||ray.collider.tag == "clear"))
             {   
                 MapHeight++;
-                // Debug.DrawLine(new Vector3(0.5f,0,0), ray.point,Color.red,20);
+                Debug.DrawLine(new Vector3(0.5f,0,0), ray.point,Color.red,20);
             }    
         }
 

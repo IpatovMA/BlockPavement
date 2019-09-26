@@ -29,6 +29,7 @@ public class BlockPaver : MonoBehaviour
             // Destroy(Instantiate(Dust[0],coll.transform.position,Quaternion.identity),Dust[0].GetComponent<ParticleSystem>().startLifetime*2);
             // coll.transform.Translate(0,0,-0.001f);
             DoneBlockCount++;
+            // Destroy(coll.gameObject);
             
             // Debug.Log(DoneBlockCount);
         }
