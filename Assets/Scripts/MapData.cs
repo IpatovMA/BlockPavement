@@ -19,7 +19,7 @@ public class MapData : MonoBehaviour
     public GameObject player;
     private Camera cam;
     private CameraFollow camFollow;
-    float high = -0.0002f;
+    float high = -0.0000f;
     void Start()
     {   
         cam = Camera.main;
@@ -81,6 +81,7 @@ void Update()
             {   
                 MapWidth++;
                 Debug.DrawLine(new Vector3(0,0.5f,0), ray.point,Color.red,20);
+                // Destroy(ray.collider.gameObject);
             }    
         }
            
@@ -91,6 +92,8 @@ void Update()
             {   
                 MapHeight++;
                 Debug.DrawLine(new Vector3(0.5f,0,0), ray.point,Color.red,20);
+                            // Destroy(ray.collider.gameObject);
+
             }    
         }
 
