@@ -22,14 +22,14 @@ public class BlockPaver : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D coll){
         if (coll.gameObject.tag == "clear"){
-            coll.gameObject.tag =  "paved";
-            coll.gameObject.GetComponent<MeshRenderer>().material = paverMaterial;
+            // coll.gameObject.tag =  "paved";
+            // coll.gameObject.GetComponent<MeshRenderer>().material = paverMaterial;
             // Debug.Log(Dust[0].GetComponent<ParticleSystem>().startLifetime);
             Destroy(Instantiate(Dust[0],coll.transform.position,Quaternion.Euler(GetComponent<PlayerControl>().GetEulerToAlign()),Stage),Dust[0].GetComponentInChildren<ParticleSystem>().startLifetime);
             // Destroy(Instantiate(Dust[0],coll.transform.position,Quaternion.identity),Dust[0].GetComponent<ParticleSystem>().startLifetime*2);
             // coll.transform.Translate(0,0,-0.001f);
             DoneBlockCount++;
-            
+            Destroy(coll.gameObject);
             // Debug.Log(DoneBlockCount);
         }
 
