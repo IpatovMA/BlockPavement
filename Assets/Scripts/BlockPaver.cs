@@ -8,7 +8,7 @@ public class BlockPaver : MonoBehaviour
 
     public int DoneBlockCount=0;
     public GameObject[] Dust;
-    public Material paverMaterial;
+    // public Material paverMaterial;
     private Transform Stage;
     void Start()
     {

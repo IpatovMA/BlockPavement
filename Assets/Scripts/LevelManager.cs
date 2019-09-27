@@ -25,7 +25,7 @@ public class LevelManager : MonoBehaviour
      
     void Awake(){
         LocalizationService.Instance.Load();
-        LocalizationService.Instance.SetLang("ru");
+        LocalizationService.Instance.SetLang("en");
     }
     void Start()
     {
