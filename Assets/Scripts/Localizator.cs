@@ -10,7 +10,7 @@ public class Localizator : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
       Text txt = GetComponentInChildren<Text>();
     LocalizationService.Instance.SetFormat(txt);

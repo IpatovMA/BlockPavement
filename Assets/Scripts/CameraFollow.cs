@@ -96,8 +96,9 @@ public class CameraFollow : MonoBehaviour
         int size = MapData.RotateOn%2==0?MapData.MapWidth:MapData.MapHeight;
         // float distance = Mathf.Sqrt(Mathf.Pow(CameraAlign.transform.position.z,2)+Mathf.Pow(loopRadius,2));
         float distance = -CameraAlign.transform.position.z + factor;
+        Debug.Log("size: "+size+"  dist: "+distance);
         // Debug.Log(Mathf.Pow(CameraAlign.transform.position.z,2) + "   "+ Mathf.Pow(transform.position.y,2)+"  "+Mathf.Sqrt(Mathf.Pow(CameraAlign.transform.position.z,2)+Mathf.Pow(transform.position.y,2)));
-        cam.fieldOfView = Mathf.Lerp(GetComponent<Camera>().fieldOfView,4*Mathf.Atan(size/2f/distance)/Mathf.PI*180, Time.deltaTime * zoomSpeed); 
+        cam.fieldOfView = Mathf.Lerp(cam.fieldOfView,4*Mathf.Atan(size/2f/distance)/Mathf.PI*180, Time.deltaTime * zoomSpeed); 
     }
     void HeightChange(float height){
         CameraAlign.position=Vector3.Lerp(CameraAlign.position,new Vector3(CameraAlign.position.x,CameraAlign.position.y,height), Time.deltaTime * zoomSpeed);

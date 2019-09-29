@@ -14,14 +14,18 @@ public class MapData : MonoBehaviour
     public GameObject Map;
     public Vector3 PlayerPos;
     public GameObject PlayerPrafab;
+    
 
     private GameObject MapPrefab;
     public GameObject player;
     private Camera cam;
     private CameraFollow camFollow;
     float high = -0.0000f;
+    public int mapNum;
+
     void Start()
     {   
+        mapNum = 1;
         cam = Camera.main;
         camFollow = cam.GetComponent<CameraFollow>();
         
@@ -54,7 +58,7 @@ void Update()
     
     public void LoadMap(){
         // Debug.Log("Laod");
-        MapPrefab = Resources.Load("maps/"+LevelManager.lvlNum) as GameObject;
+        MapPrefab = Resources.Load("maps/"+mapNum) as GameObject;
 
         Map = Instantiate(MapPrefab, Vector3.zero,Quaternion.identity,transform);
  
@@ -121,7 +125,18 @@ void Update()
     }
 
     public void DestroyMap(){
+
         Destroy(Map);
         Resources.UnloadUnusedAssets();
+        if(mapNum==GetComponentInParent<LevelManager>().TotalMapsNumber) {
+                mapNum=0;
+                RotateOn++;
+                
+                if(RotateOn==4){
+                    SceneManager.LoadScene("game");
+
+                }
+            }
+        mapNum++;
     }
 }

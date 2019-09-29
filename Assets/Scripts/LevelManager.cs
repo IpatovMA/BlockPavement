@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
-    public int TotalLevelNumber;
+    public int TotalMapsNumber;
    public enum lvlState {Menu,Play,Fin};
     public GameObject StartPage;
     public GameObject FinPage;
@@ -26,6 +26,8 @@ public class LevelManager : MonoBehaviour
     void Awake(){
         LocalizationService.Instance.Load();
         LocalizationService.Instance.SetLang("en");
+                lvlShow.SetActive(true);
+
     }
     void Start()
     {
@@ -36,7 +38,8 @@ public class LevelManager : MonoBehaviour
         MapData = GetComponentInChildren<MapData>();
         State = lvlState.Menu;
         lvlNum= 1;
-        ShowLvl();
+            lvlShow.SetActive(false);
+
         
 
     }
@@ -71,7 +74,8 @@ public class LevelManager : MonoBehaviour
         SwipeControl.BlockSwipeInput();
         Invoke("AllowSwipeInput",0.6f);
         StartPage.SetActive(false);
-
+                ShowLvl();
+        lvlShow.SetActive(true);
     }
         void AllowSwipeInput(){
         SwipeControl.AllowSwipeInput();
@@ -81,23 +85,15 @@ public class LevelManager : MonoBehaviour
             // ToNextLevel();
 
     }
-
+    
 
 
     void ToNextLevel(){
-            if(lvlNum==TotalLevelNumber) {
-                lvlNum=0;
-                MapData.RotateOn++;
-                
-                if(MapData.RotateOn==4){
-                    SceneManager.LoadScene("game");
-
-                }
-            }
             MapData.DestroyMap();
             State = lvlState.Menu; 
             lvlNum++;   
             ShowLvl();
+            lvlShow.SetActive(false);
             FinPage.SetActive(false);
 
 
@@ -112,6 +108,8 @@ public class LevelManager : MonoBehaviour
         int i = str.IndexOf(sep);
         if (i!=-1) str = str.Substring(0, i);
         lvlShow.GetComponentInChildren<Text>().text = str+" #"+lvlNum;
+                // Debug.Log(lvlShow.GetComponentInChildren<Text>().text);
+
     }
 }
 

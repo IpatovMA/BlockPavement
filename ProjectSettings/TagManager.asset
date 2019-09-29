@@ -18,7 +18,7 @@ TagManager:
   - 
   - 
   - ornament
-  - asphalt
+  - particle
   - 
   - 
   - 
@@ -44,4 +44,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: ornament
+    uniqueID: 1357550309
+    locked: 0
+  - name: particle
+    uniqueID: 3449864217
     locked: 0
