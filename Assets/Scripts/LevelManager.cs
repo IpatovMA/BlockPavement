@@ -83,6 +83,7 @@ public class LevelManager : MonoBehaviour
     public void GetRewards(){
             DarkScreen.SetTrigger("Disappear");
             // ToNextLevel();
+            
 
     }
     
