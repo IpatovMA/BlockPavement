@@ -370,7 +370,7 @@ Camera:
   m_BackGroundColor: {r: 0.5630292, g: 0.78300005, b: 0.547317, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
-  m_FOVAxisMode: 0
+  m_FOVAxisMode: 1
   m_SensorSize: {x: 12.52, y: 7.41}
   m_LensShift: {x: 0, y: 0}
   m_FocalLength: 10
@@ -1283,7 +1283,8 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 1e-45, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: -6.3384464e+29, y: 1.7592186e+13, z: -1.7014118e+38,
+    w: 2.5243547e-29}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1670,7 +1671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fbabfd44d033834ba59837e425284f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TotalMapsNumber: 2
+  TotalMapsNumber: 10
   StartPage: {fileID: 143328025}
   FinPage: {fileID: 158861499}
   lvlShow: {fileID: 1023361857}
