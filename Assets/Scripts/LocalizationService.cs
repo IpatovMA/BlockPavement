@@ -67,7 +67,7 @@ public class LocalizationService
         public void Load()
         {   
             
-            TextAsset JsonData=(TextAsset)Resources.Load("Localization/localization"); 
+            TextAsset JsonData=(TextAsset)Resources.Load("Configs/localization"); 
             string json=JsonData.text;
             LocalizationData = JsonUtility.FromJson<LocalizationFileContent>(json);
             // Debug.Log(JsonUtility.ToJson(LocalizationData));

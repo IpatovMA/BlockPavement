@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f68577af9c3decc43ae6dae64917a146, type: 3}
+  m_Name: CustomUnit
+  m_EditorClassIdentifier: 
+  Key: Dust
+  Models:
+  - {fileID: 1402901781068279948, guid: 59bce475a5680d34690aa6db274df43d, type: 3}
+  - {fileID: 9059233563051699508, guid: 6b9307b3aa9748a4db678ff72dad4461, type: 3}
