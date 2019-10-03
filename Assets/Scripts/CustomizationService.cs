@@ -1,10 +1,10 @@
-﻿using System;
+﻿using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CustomizationService : MonoBehaviour
 {
-    
+           public CustomUnit[] Units;
     
     public struct CurrentModel
     {
@@ -12,13 +12,18 @@ public class CustomizationService : MonoBehaviour
         public GameObject Model;
         public int Num;
     }
-   public CustomUnit[] Units;
+
    public List<CurrentModel> CurrentModels= new List<CurrentModel>();
 //    public CurrentModel[] CurrentModels;
 
 
     public CustomizationFile UnitsData;
-    void Awake(){
+
+    void Start(){
+        Units = Resources.LoadAll("CustomUnits",typeof(CustomUnit)).Cast<CustomUnit>().ToArray();
+        // UnityEngine.Object[] Uits =  Resources.LoadAll("CustomUnits");
+        // Debug.Log((CustomUnit)Uits[0].Key);
+        // Units = (CustomUnit[]) Uits;
         // UnitsData = new CustomizationFile();
         // CustomizationFile.UnitInfo mod1 = new CustomizationFile.UnitInfo();
         // CustomizationFile.UnitInfo mod2 = new CustomizationFile.UnitInfo();
