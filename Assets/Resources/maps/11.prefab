@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2651242976830201712}
   m_Layer: 0
-  m_Name: 1
+  m_Name: 11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -693,11 +693,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2651242976830201712}
     m_Modifications:
-    - target: {fileID: 4441394946377588575, guid: 1d3c5b673a9b865499d23ce744d75eb4,
-        type: 3}
-      propertyPath: m_Name
-      value: small house
-      objectReference: {fileID: 0}
     - target: {fileID: 193735534015064, guid: 1d3c5b673a9b865499d23ce744d75eb4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2
@@ -741,6 +736,11 @@ PrefabInstance:
     - target: {fileID: 193735534015064, guid: 1d3c5b673a9b865499d23ce744d75eb4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4441394946377588575, guid: 1d3c5b673a9b865499d23ce744d75eb4,
+        type: 3}
+      propertyPath: m_Name
+      value: small house
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d3c5b673a9b865499d23ce744d75eb4, type: 3}

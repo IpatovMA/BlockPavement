@@ -1162,7 +1162,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 9
   m_Type: 1
-  m_Color: {r: 0.9980513, g: 1, b: 0.8726415, a: 1}
+  m_Color: {r: 1, g: 1, b: 0.944, a: 1}
   m_Intensity: 1.2
   m_Range: 10
   m_SpotAngle: 30
@@ -1332,7 +1332,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 9
   m_Type: 1
-  m_Color: {r: 0.9980513, g: 1, b: 0.8726415, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 0.4
   m_Range: 10
   m_SpotAngle: 30
@@ -1438,7 +1438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fbabfd44d033834ba59837e425284f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TotalMapsNumber: 10
+  TotalMapsNumber: 40
   StartPage: {fileID: 143328025}
   FinPage: {fileID: 158861499}
   lvlShow: {fileID: 1023361857}
@@ -1925,7 +1925,7 @@ PrefabInstance:
     - target: {fileID: 5398162826964524128, guid: 82d29495eb7eb2c40bd9620a6f231ce5,
         type: 3}
       propertyPath: m_Name
-      value: "\u043A\u0443\u0431"
+      value: Cube
       objectReference: {fileID: 0}
     - target: {fileID: 5398162826964524128, guid: 82d29495eb7eb2c40bd9620a6f231ce5,
         type: 3}

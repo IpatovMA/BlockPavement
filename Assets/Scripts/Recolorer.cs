@@ -6,11 +6,12 @@ using UnityEngine;
 public class Recolorer : MonoBehaviour
 {
     public string Name;
-    public int PalettesNumber;
+    public int PalettesNumber = 3;
     int PaletteNum;
 
     void Start()
     {
+        Name = transform.name;
         PaletteNum = Random.Range(1,PalettesNumber+1);
         
         Renderer[] Renderers = GetComponentsInChildren<Renderer>();
