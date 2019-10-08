@@ -11,11 +11,16 @@ public class Recolorer : MonoBehaviour
 
     void Start()
     {
-        Name = transform.name;
         int numSep = transform.name.LastIndexOf('_')+1;
         int spaceSep = transform.name.IndexOf(' ');
-        Debug.Log(transform.name.Substring(numSep,spaceSep-numSep));
+        if(spaceSep == -1){
+        PalettesNumber = int.Parse(transform.name.Substring(numSep));
+        Name = transform.name;
+
+        }else{
         PalettesNumber = int.Parse(transform.name.Substring(numSep,spaceSep-numSep));
+        Name = transform.name.Substring(0,spaceSep);
+        }
         PaletteNum = Random.Range(1,PalettesNumber+1);
         
         Renderer[] Renderers = GetComponentsInChildren<Renderer>();
@@ -24,6 +29,9 @@ public class Recolorer : MonoBehaviour
         {
             foreach (var mat in rend.materials)
             {
+                if(mat.name =="No Name (Instance)"){
+                    mat.color = Color.gray;
+                    continue;}
                 string path = "Models/"+Name+"/"+PaletteNum+"/"+mat.name;
                 
                         string sep = " (Instance)";
