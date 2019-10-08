@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 // using UnityEngine.CoreModule;
@@ -12,9 +12,10 @@ public class Recolorer : MonoBehaviour
     void Start()
     {
         Name = transform.name;
-        int numSep = transform.name.LastIndexOf('_');
-
-        PalettesNumber = int.Parse(transform.name.Substring(numSep+1));
+        int numSep = transform.name.LastIndexOf('_')+1;
+        int spaceSep = transform.name.IndexOf(' ');
+        Debug.Log(transform.name.Substring(numSep,spaceSep-numSep));
+        PalettesNumber = int.Parse(transform.name.Substring(numSep,spaceSep-numSep));
         PaletteNum = Random.Range(1,PalettesNumber+1);
         
         Renderer[] Renderers = GetComponentsInChildren<Renderer>();
