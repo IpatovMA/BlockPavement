@@ -6,12 +6,15 @@ using UnityEngine;
 public class Recolorer : MonoBehaviour
 {
     public string Name;
-    public int PalettesNumber = 3;
+    public int PalettesNumber ;
     int PaletteNum;
 
     void Start()
     {
         Name = transform.name;
+        int numSep = transform.name.LastIndexOf('_');
+
+        PalettesNumber = int.Parse(transform.name.Substring(numSep+1));
         PaletteNum = Random.Range(1,PalettesNumber+1);
         
         Renderer[] Renderers = GetComponentsInChildren<Renderer>();
@@ -20,7 +23,8 @@ public class Recolorer : MonoBehaviour
         {
             foreach (var mat in rend.materials)
             {
-                string path = "Models/"+Name+"/Тех"+PaletteNum+"/"+mat.name;
+                string path = "Models/"+Name+"/"+PaletteNum+"/"+mat.name;
+                
                         string sep = " (Instance)";
                         int i = path.IndexOf(sep);
                         if (i!=-1) path = path.Substring(0, i);
@@ -40,9 +44,29 @@ public class Recolorer : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
+
+
+    // Transform[] spawnPoints;
+
+    // Transform[] ChooseSet (int numRequired) {
+    //     Transform[] result = new Transform[numRequired];
+
+    //     int numToChoose = numRequired;
+
+    //     for (int numLeft = spawnPoints.Length; numLeft > 0; numLeft--) {
+
+    //         float prob = (float)numToChoose/(float)numLeft;
+
+    //         if (Random.value <= prob) {
+    //             numToChoose--;
+    //             result[numToChoose] = spawnPoints[numLeft - 1];
+
+    //             if (numToChoose == 0) {
+    //                 break;
+    //             }
+    //         }
+    //     }
+    //     return result;
+    // }
