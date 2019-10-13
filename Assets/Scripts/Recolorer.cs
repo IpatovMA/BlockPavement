@@ -44,7 +44,11 @@ public class Recolorer : MonoBehaviour
                 Debug.Log(tex);
                 mat.mainTexture = tex;
                 mat.shader = Shader.Find("Diffuse");
-                 mat.color = Color.white;
+                 mat.color = new Color (1.2f,1.2f,1.2f,1);
+                 
+                //  Color colour = mat.GetColor("_EmissionColor");
+                //   colour *= 4.0f; // 4X brighter
+                //    mat.SetColor("_EmissionColor", colour);
                 // mat.SetTexture("_MainTex", Resources.Load("Models/"+Name+"/Tex"+PaletteNum+"/"+mat.name) as Texture2D);
             }
         }
