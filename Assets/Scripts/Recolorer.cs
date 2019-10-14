@@ -7,6 +7,7 @@ public class Recolorer : MonoBehaviour
 {
     public string Name;
     public int PalettesNumber ;
+    public float bright= 1.4f;
     int PaletteNum;
 
     void Start()
@@ -44,7 +45,7 @@ public class Recolorer : MonoBehaviour
                 Debug.Log(tex);
                 mat.mainTexture = tex;
                 mat.shader = Shader.Find("Diffuse");
-                 mat.color = new Color (1.2f,1.2f,1.2f,1);
+                 mat.color = new Color (bright,bright,bright,1);
                  
                 //  Color colour = mat.GetColor("_EmissionColor");
                 //   colour *= 4.0f; // 4X brighter
