@@ -105,10 +105,10 @@ public class LevelManager : MonoBehaviour
     }
     void ShowLvl(){
         string str = lvlShow.GetComponentInChildren<Text>().text;
-        string sep = " #";
+        string sep = " ";
         int i = str.IndexOf(sep);
         if (i!=-1) str = str.Substring(0, i);
-        lvlShow.GetComponentInChildren<Text>().text = str+" #"+lvlNum;
+        lvlShow.GetComponentInChildren<Text>().text = str+" "+lvlNum;
                 // Debug.Log(lvlShow.GetComponentInChildren<Text>().text);
 
     }

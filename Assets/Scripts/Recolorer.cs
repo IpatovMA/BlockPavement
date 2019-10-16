@@ -12,6 +12,9 @@ public class Recolorer : MonoBehaviour
 
     void Start()
     {
+        // Color defaultGray = new Color();
+        // ColorUtility.TryParseHtmlString("#969696",out defaultGray);
+
         int numSep = transform.name.LastIndexOf('_')+1;
         int spaceSep = transform.name.IndexOf(' ');
         if(spaceSep == -1){
@@ -30,22 +33,28 @@ public class Recolorer : MonoBehaviour
         {
             foreach (var mat in rend.materials)
             {
+                // Debug.Log(ColorUtility.ToHtmlStringRGB(mat.color) == "969696");
+                if(ColorUtility.ToHtmlStringRGB(mat.color) == "969696") {mat.color = new Color (bright,bright,bright,1);}
+                mat.shader = Shader.Find("Diffuse");
+                
                 if(mat.name =="No Name (Instance)"){
                     mat.color = Color.gray;
                     continue;}
+
                 string path = "Models/"+Name+"/"+PaletteNum+"/"+mat.name;
                 
                         string sep = " (Instance)";
                         int i = path.IndexOf(sep);
                         if (i!=-1) path = path.Substring(0, i);
-                         Debug.Log(path);
+                        //  Debug.Log(path);
                 var tex = Resources.Load(path) as Texture;
                 // Assets/Resources/Models/Cube/Тех1/center.jpg
                 // Debug.Log("Models/"+Name+"/Tex"+PaletteNum+"/"+mat.name);\
-                Debug.Log(tex);
+                // Debug.Log(tex);
+                    if(tex == null){continue;}
+
                 mat.mainTexture = tex;
-                mat.shader = Shader.Find("Diffuse");
-                 mat.color = new Color (bright,bright,bright,1);
+
                  
                 //  Color colour = mat.GetColor("_EmissionColor");
                 //   colour *= 4.0f; // 4X brighter
