@@ -63,7 +63,7 @@ public class Recolorer : MonoBehaviour
             }
         }
 
-        Debug.Log("recolored");
+        // Debug.Log("recolored");
         // GetComponentsInChildren<Renderer>().materials 
 
     }

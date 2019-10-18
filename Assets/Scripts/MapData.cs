@@ -21,11 +21,13 @@ public class MapData : MonoBehaviour
     private Camera cam;
     private CameraFollow camFollow;
     float high = -0.0000f;
-    public int mapNum;
+    public static int mapNum;
 
     void Start()
     {   
-        mapNum = 1;
+        if( SaveLoad.savedGame.map!=0)
+           { mapNum = SaveLoad.savedGame.map;}
+        else {mapNum = 1;}
         cam = Camera.main;
         camFollow = cam.GetComponent<CameraFollow>();
         

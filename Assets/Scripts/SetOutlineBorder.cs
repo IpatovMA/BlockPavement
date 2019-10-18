@@ -39,7 +39,7 @@ public class SetOutlineBorder : MonoBehaviour
             uzor.transform.localPosition = new Vector3(Data.MapWidth/2.0f,Data.MapHeight/2.0f,uzor.transform.localPosition.z);
         
         ColorUtility.TryParseHtmlString(OrnamentData.Ornaments[currentPalette].BackColor, out tempColor);
-        Debug.Log(( GetComponentInChildren<MeshRenderer>().gameObject.name));
+        // Debug.Log(( GetComponentInChildren<MeshRenderer>().gameObject.name));
         GetComponentInChildren<MeshRenderer>().material.color = tempColor;
 
         transform.localPosition = new Vector3(-Data.MapWidth/2.0f,-Data.MapHeight/2.0f,0);

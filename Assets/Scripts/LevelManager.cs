@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.IO;
 
 
 
@@ -26,20 +27,21 @@ public class LevelManager : MonoBehaviour
     void Awake(){
         LocalizationService.Instance.Load();
         LocalizationService.Instance.SetLang("en");
-                lvlShow.SetActive(true);
+                // lvlShow.SetActive(true);
 
     }
     void Start()
     {
-
-        // LocalizationService.Instance.Load();
-        // LocalizationService.Instance.SetLang("ru");
-
+        SaveLoad.Load();
         MapData = GetComponentInChildren<MapData>();
         State = lvlState.Menu;
-        lvlNum= 1;
-            lvlShow.SetActive(false);
+        if( SaveLoad.savedGame.lvl!=0)
+           {lvlNum= SaveLoad.savedGame.lvl;}
+        else {lvlNum = 1;}
 
+            // lvlShow.SetActive(false);
+
+        ShowLvl();
         
 
     }
@@ -60,6 +62,7 @@ public class LevelManager : MonoBehaviour
            
            if(!FinPage.activeSelf){
                 FinPage.SetActive(true);
+                SaveLoad.Save();
            }
             if (DarkScreen.GetComponent<DarkScreenControl>().Dark){
                 ToNextLevel();
@@ -74,8 +77,8 @@ public class LevelManager : MonoBehaviour
         SwipeControl.BlockSwipeInput();
         Invoke("AllowSwipeInput",0.6f);
         StartPage.SetActive(false);
-                ShowLvl();
-        lvlShow.SetActive(true);
+                // ShowLvl();
+        // lvlShow.SetActive(true);
     }
         void AllowSwipeInput(){
         SwipeControl.AllowSwipeInput();
@@ -94,13 +97,15 @@ public class LevelManager : MonoBehaviour
             State = lvlState.Menu; 
             lvlNum++;   
             ShowLvl();
-            lvlShow.SetActive(false);
+            // lvlShow.SetActive(false);
             FinPage.SetActive(false);
 
 
     }
 
     public void Revert(){
+        SaveLoad.savedGame = new GameData();
+        File.Delete(Application.persistentDataPath + "/savedGame.gd");
         SceneManager.LoadScene("game");
     }
     void ShowLvl(){
