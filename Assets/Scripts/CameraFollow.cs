@@ -33,6 +33,7 @@ public class CameraFollow : MonoBehaviour
         cam = GetComponent<Camera>();
         CameraAlign = transform.parent.transform;
         rotationStartRadius = 0.5f*loopRadius;
+        
     }
     void FixedUpdate()
     {

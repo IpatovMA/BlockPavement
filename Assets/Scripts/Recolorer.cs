@@ -7,7 +7,7 @@ public class Recolorer : MonoBehaviour
 {
     public string Name;
     public int PalettesNumber ;
-    public float bright= 1.4f;
+    public float bright= 1.2f;
     int PaletteNum;
 
     void Start()
@@ -35,12 +35,13 @@ public class Recolorer : MonoBehaviour
             {
                 // Debug.Log(ColorUtility.ToHtmlStringRGB(mat.color) == "969696");
                 if(ColorUtility.ToHtmlStringRGB(mat.color) == "969696") {mat.color = new Color (bright,bright,bright,1);}
-                mat.shader = Shader.Find("Diffuse");
+                
                 
                 if(mat.name =="No Name (Instance)"){
+                    mat.shader = Shader.Find("Diffuse");
                     mat.color = Color.gray;
                     continue;}
-
+                mat.shader = Shader.Find("Wrapped Diffuse");
                 string path = "Models/"+Name+"/"+PaletteNum+"/"+mat.name;
                 
                         string sep = " (Instance)";
