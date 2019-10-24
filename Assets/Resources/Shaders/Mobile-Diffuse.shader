@@ -42,7 +42,7 @@ Shader "Mobile/qqq" {
 
         void surf (Input IN, inout SurfaceOutput o) 
                 {
-                        int rnd = 
+                        
                                 float4 tex;
                                 if(IN.color.x>0.51) tex = tex2D (_Tex6, IN.uv_MainTex);
                                 else 

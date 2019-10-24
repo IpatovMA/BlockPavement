@@ -8,11 +8,11 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Stylize_Grass_diffuse
-  m_Shader: {fileID: 7, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: f55690d15d1884641a6189766d8cb8d8, type: 3}
   m_ShaderKeywords: _SPECGLOSSMAP
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 1
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
@@ -20,7 +20,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: b272fa9f67bc2264a8dad2ab221b1bd0, type: 3}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Detail:
+        m_Texture: {fileID: 2800000, guid: b9058cc6c34da8842b6d9eadd07fc5a2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -40,11 +44,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: b900361e13e6eaa44963cb851faf3ed3, type: 3}
-        m_Scale: {x: 100, y: 100}
+        m_Texture: {fileID: 2800000, guid: 990ad1693401c2a46a5981f83f5232ab, type: 3}
+        m_Scale: {x: 200, y: 200}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Noise:
+        m_Texture: {fileID: 2800000, guid: 24daf9a884894f440a9575cc164e7415, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -52,7 +60,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
-        m_Texture: {fileID: 2800000, guid: e72c12bf32534c0498c954c844a7abb6, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -60,27 +68,27 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Tex1:
-        m_Texture: {fileID: 2800000, guid: 4e895ab6ab8ed1e4fb7bbbfbc5fdeefe, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 2800000, guid: ffc5c320972fa184ba99cb1e017db0b4, type: 3}
+        m_Scale: {x: 69, y: 69}
         m_Offset: {x: 0, y: 0}
     - _Tex2:
-        m_Texture: {fileID: 2800000, guid: 9c30e67ea9c92764b9b7c6b648102ac8, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 2800000, guid: d2a26c8060b1c0f47ab02e094536df00, type: 3}
+        m_Scale: {x: 69, y: 69}
         m_Offset: {x: 0, y: 0}
     - _Tex3:
-        m_Texture: {fileID: 2800000, guid: 3536713f0a5213d41bba551c48eaa66a, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 2800000, guid: 81fb3ce7bb1c1fe4da45f0175182f1a5, type: 3}
+        m_Scale: {x: 69, y: 69}
         m_Offset: {x: 0, y: 0}
     - _Tex4:
-        m_Texture: {fileID: 2800000, guid: 687dcbf255620254fb32220bcb0ea765, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 2800000, guid: 5b8428f024443834292d198217c805a6, type: 3}
+        m_Scale: {x: 69, y: 69}
         m_Offset: {x: 0, y: 0}
     - _Tex5:
-        m_Texture: {fileID: 2800000, guid: 9647f20c272a43940bbf291b801328ac, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 2800000, guid: 75b41f21859d0a244a3c023c457ec8e1, type: 3}
+        m_Scale: {x: 69, y: 69}
         m_Offset: {x: 0, y: 0}
     - _Tex6:
-        m_Texture: {fileID: 2800000, guid: 90589a54e47e6f34e9a75daf72af6f9f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 09cacd89a38025c46b44d05d607d4bd0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
