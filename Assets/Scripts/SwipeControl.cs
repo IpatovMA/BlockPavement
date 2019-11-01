@@ -33,7 +33,7 @@ public  class SwipeControl : MonoBehaviour
     touch = Input.GetTouch(0);  //проверяем первое касание
     if (touch.phase == TouchPhase.Began)
     {
-        Debug.Log(Screen.dpi+"  "+Screen.currentResolution);
+        // Debug.Log(Screen.dpi+"  "+Screen.currentResolution);
 
         fp = PixToInch( touch.position); 
         lp =  PixToInch(touch.position);

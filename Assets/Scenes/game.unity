@@ -492,6 +492,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4232537401503873414, guid: 1804979ddc8f4384d8f01ca8f96a9c4d,
         type: 3}
+      propertyPath: BorderPrefabs.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4232537401503873414, guid: 1804979ddc8f4384d8f01ca8f96a9c4d,
+        type: 3}
       propertyPath: QuadAround
       value: 
       objectReference: {fileID: 0}
@@ -510,6 +515,42 @@ PrefabInstance:
       propertyPath: scaleUzor
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4232537401503873414, guid: 1804979ddc8f4384d8f01ca8f96a9c4d,
+        type: 3}
+      propertyPath: BorderPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 7734145829304823888, guid: 73892a76b3831b249a40932e793daf61,
+        type: 3}
+    - target: {fileID: 4232537401503873414, guid: 1804979ddc8f4384d8f01ca8f96a9c4d,
+        type: 3}
+      propertyPath: BorderPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 7734145829304823888, guid: 15eb80616281dc246aa875fee5b4ef17,
+        type: 3}
+    - target: {fileID: 4232537401503873414, guid: 1804979ddc8f4384d8f01ca8f96a9c4d,
+        type: 3}
+      propertyPath: BorderPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 555863849469368994, guid: 6c87a618012bf8c4cae101536a951a05,
+        type: 3}
+    - target: {fileID: 4232537401503873414, guid: 1804979ddc8f4384d8f01ca8f96a9c4d,
+        type: 3}
+      propertyPath: BorderPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 555863849469368994, guid: c4da7f260bd9f9b40b7310d57b28fb4c,
+        type: 3}
+    - target: {fileID: 4232537401503873414, guid: 1804979ddc8f4384d8f01ca8f96a9c4d,
+        type: 3}
+      propertyPath: BorderPrefabs.Array.data[4]
+      value: 
+      objectReference: {fileID: 555863849469368994, guid: e66191ea2b69b4d428478be3a0a8a687,
+        type: 3}
+    - target: {fileID: 4232537401503873414, guid: 1804979ddc8f4384d8f01ca8f96a9c4d,
+        type: 3}
+      propertyPath: BorderPrefabs.Array.data[5]
+      value: 
+      objectReference: {fileID: 555863849469368994, guid: cdfaa67ef9363e7469fc99166a22f3a5,
+        type: 3}
     - target: {fileID: 3422192833332351892, guid: 1804979ddc8f4384d8f01ca8f96a9c4d,
         type: 3}
       propertyPath: m_IsActive

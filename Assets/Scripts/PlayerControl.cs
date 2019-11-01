@@ -7,6 +7,7 @@ public class PlayerControl : MonoBehaviour
     public float speed=15;
     public float velocitySmoothFactor=0.4f;
     public long VibroMillis= 30;
+
     private Vector2 velocity;
     private float currenFactor=1;
     private float allDistance=0;
@@ -129,16 +130,18 @@ public class PlayerControl : MonoBehaviour
     }
 
     void ChangeFactor(float dist){
+      
         if (Mathf.Abs(dist)<0.1||Mathf.Abs(allDistance)<0.1) return;
-        if(dist > allDistance*0.5)
-        {currenFactor = velocitySmoothFactor + (1-velocitySmoothFactor)*2*(allDistance-dist)/allDistance;
+        if(dist < allDistance*0.5f)
+        {currenFactor = velocitySmoothFactor + (1- velocitySmoothFactor)*dist/(0.5f*allDistance);
         // Debug.Log("fist "+allDistance+"  "+dist );
         }
-        else {
-            currenFactor = velocitySmoothFactor + (1-velocitySmoothFactor)*2*dist/allDistance;
+        else  if(dist >allDistance*0.7f){
+            currenFactor = velocitySmoothFactor + (1- velocitySmoothFactor)*(dist-0.7f*allDistance)/(allDistance*0.3f);
         // Debug.Log("snd "+allDistance+"  "+dist );
 
         }
+
     }
 
 
