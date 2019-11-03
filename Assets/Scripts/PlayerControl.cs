@@ -9,11 +9,12 @@ public class PlayerControl : MonoBehaviour
     public long VibroMillis= 30;
 
     private Vector2 velocity;
-    private float currenFactor=1;
+    public float currenFactor=1;
     private float allDistance=0;
     private Vector2 viewDir =Vector2.zero;
     private Transform RotationSkin;
      private float preVelocity=0;
+     private Vector2 preViewDir = Vector2.zero;
 
     void Start()
     {
@@ -24,18 +25,20 @@ public class PlayerControl : MonoBehaviour
     void FixedUpdate()
     {   
         velocity = GetComponent<Rigidbody2D>().velocity;
-        if(velocity.magnitude<speed/1000||velocity.magnitude>speed*1.2f){
+        if(velocity.magnitude<speed/1000||velocity.magnitude>speed*2f){
             velocity = Vector2.zero;
         }
         else{
              ChangeFactor(GetDistance(viewDir));
+            //  Debug.Log("fac");
         }
         if (Mathf.Abs(velocity.x)>Mathf.Abs(velocity.y)){velocity.y=0;}
         if (Mathf.Abs(velocity.y)>Mathf.Abs(velocity.x)){velocity.x=0;}
 
         if(preVelocity!=0&&velocity.magnitude==0&&SwipeControl.AllowSwipes){
             // Invoke( "BlockPaverHelper",0.7f);
-            GetComponentInChildren<Animator>().SetTrigger("hited");
+            RotationSkin.Find("playerscaler").GetComponent<Animator>().SetTrigger("hited");
+            //  Debug.Log(RotationSkin.Find("playerscaler").GetComponent<Animator>().gameObject.name);
             Vibration.Vibrate(VibroMillis);
         }
         preVelocity= velocity.magnitude;
@@ -49,6 +52,7 @@ public class PlayerControl : MonoBehaviour
             return;
         }
         
+        preViewDir = viewDir;
 
         if (Input.GetKeyDown ("w")||SwipeControl.GetUpSwipe())
         {
@@ -72,28 +76,45 @@ public class PlayerControl : MonoBehaviour
             // RotationSkin.eulerAngles= Vector3.zero;
             
         }
-        
+            RotationAnim();
+
         if(velocity.normalized!= viewDir){
                     RotationSkin.eulerAngles=GetEulerToAlign();
+                    // Debug.Log(RotationSkin.eulerAngles+"  "+GetEulerToAlign());
+                    // Debug.DrawRay(RotationSkin.position,viewDir*10,Color.red,10);
                     SetVelocity(viewDir);
         }        
 
 
     }
 
+    void RotationAnim(){
+        Debug.Log(Vector3.Angle(preViewDir,viewDir));
+        // switch ()
+        // {
+        //     case 90
+        //     default:
+        // }
+    }
+
     public Vector3 GetEulerToAlign(){
+        
         if (viewDir == Vector2.left){
+            RotationSkin.GetComponent<Animator>().SetTrigger("turnBack");
             return Vector3.forward*180;
         }
         if (viewDir == Vector2.up){
+            RotationSkin.GetComponent<Animator>().SetTrigger("turnLeft");
             return Vector3.forward*90;
         }
         if (viewDir == Vector2.down){
+            RotationSkin.GetComponent<Animator>().SetTrigger("turnRight");
             return Vector3.forward*(-90);
         }
         // if (viewDir == Vector2.right){
         //     return Vector3.zero;
         // }
+                // Debug.Log("Eul11");
         return Vector3.zero;
 
     }
@@ -132,13 +153,13 @@ public class PlayerControl : MonoBehaviour
     void ChangeFactor(float dist){
       
         if (Mathf.Abs(dist)<0.1||Mathf.Abs(allDistance)<0.1) return;
-        if(dist < allDistance*0.5f)
-        {currenFactor = velocitySmoothFactor + (1- velocitySmoothFactor)*dist/(0.5f*allDistance);
-        // Debug.Log("fist "+allDistance+"  "+dist );
+        
+
+        if(dist > allDistance*0.5f)
+        {currenFactor = Mathf.Lerp(velocitySmoothFactor,1,(allDistance-dist)/(0.5f*allDistance));
         }
-        else  if(dist >allDistance*0.7f){
-            currenFactor = velocitySmoothFactor + (1- velocitySmoothFactor)*(dist-0.7f*allDistance)/(allDistance*0.3f);
-        // Debug.Log("snd "+allDistance+"  "+dist );
+        else  if(dist <allDistance*0.3f){
+            currenFactor = Mathf.Lerp(velocitySmoothFactor,1,dist/(allDistance*0.3f));
 
         }
 

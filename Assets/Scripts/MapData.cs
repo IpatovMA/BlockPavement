@@ -86,7 +86,7 @@ void Update()
                 if (ray.collider != null&&(ray.collider.tag == "border"||ray.collider.tag == "clear"))
             {   
                 MapWidth++;
-                Debug.DrawLine(new Vector3(0,0.5f,0), ray.point,Color.red,20);
+                // Debug.DrawLine(new Vector3(0,0.5f,0), ray.point,Color.red,20);
                 // Destroy(ray.collider.gameObject);
             }    
         }
@@ -97,7 +97,7 @@ void Update()
                 if (ray.collider != null&&(ray.collider.tag == "border"||ray.collider.tag == "clear"))
             {   
                 MapHeight++;
-                Debug.DrawLine(new Vector3(0.5f,0,0), ray.point,Color.red,20);
+                // Debug.DrawLine(new Vector3(0.5f,0,0), ray.point,Color.red,20);
                             // Destroy(ray.collider.gameObject);
 
             }    
@@ -117,11 +117,26 @@ void Update()
         Map.transform.localPosition = new Vector3(-MapWidth/2.0f,-MapHeight/2.0f,0);
         Map.transform.localEulerAngles = new Vector3(0,0,0);
 
+        int rotateRnd = Random.Range(0,4);
 
+        int[] rotateAngs = new int[4] {0,90,180,270};
+        Vector3 rotateFix;
+        switch (rotateRnd){
+            case 1: rotateFix = new Vector3(1,0,0);
+            break;
+            case 2: rotateFix = new Vector3(1,1,0);
+            break;
+            case 3: rotateFix = new Vector3(0,1,0);
+            break;
+            default: rotateFix = new Vector3(0,0,0);
+            break;
+        }
 
-        PlayerPos = clearBlocks[Random.Range(0, TotalBlockCount)].position  - new Vector3(0.5f,0.5f,0);
+        PlayerPos = clearBlocks[Random.Range(0, TotalBlockCount)].position  - new Vector3(0.5f,0.5f,0) +rotateFix;
+        
+            
 
-        player = Instantiate(PlayerPrafab,PlayerPos,Quaternion.identity,transform);
+        player = Instantiate(PlayerPrafab,PlayerPos,Quaternion.Euler(0,0,rotateAngs[rotateRnd]),transform);
         player.SetActive(false);
 
     }
