@@ -22,6 +22,8 @@ public class MapData : MonoBehaviour
     private CameraFollow camFollow;
     float high = -0.0000f;
     public static int mapNum;
+    public bool customMap= false;
+    public int setMapNum;
 
     void Start()
     {   
@@ -59,7 +61,7 @@ void Update()
 
     
     public void LoadMap(){
-        // Debug.Log("Laod");
+        if (customMap){ mapNum = setMapNum;}
         MapPrefab = Resources.Load("maps/"+mapNum) as GameObject;
 
         Map = Instantiate(MapPrefab, Vector3.zero,Quaternion.identity,transform);
@@ -103,7 +105,7 @@ void Update()
             }    
         }
 
-        // if (RotateOn%2==0){
+        // if (RotateOn%2!=0){
         //     int temp = MapHeight;
         //     MapHeight = MapWidth;
         //     MapWidth = temp;

@@ -30,15 +30,12 @@ public class PlayerControl : MonoBehaviour
         }
         else{
              ChangeFactor(GetDistance(viewDir));
-            //  Debug.Log("fac");
+
         }
         if (Mathf.Abs(velocity.x)>Mathf.Abs(velocity.y)){velocity.y=0;}
         if (Mathf.Abs(velocity.y)>Mathf.Abs(velocity.x)){velocity.x=0;}
-
         if(preVelocity!=0&&velocity.magnitude==0&&SwipeControl.AllowSwipes){
-            // Invoke( "BlockPaverHelper",0.7f);
             RotationSkin.Find("playerscaler").GetComponent<Animator>().SetTrigger("hited");
-            //  Debug.Log(RotationSkin.Find("playerscaler").GetComponent<Animator>().gameObject.name);
             Vibration.Vibrate(VibroMillis);
         }
         preVelocity= velocity.magnitude;
@@ -76,7 +73,7 @@ public class PlayerControl : MonoBehaviour
             // RotationSkin.eulerAngles= Vector3.zero;
             
         }
-            RotationAnim();
+    
 
         if(velocity.normalized!= viewDir){
                     RotationSkin.eulerAngles=GetEulerToAlign();
@@ -88,14 +85,6 @@ public class PlayerControl : MonoBehaviour
 
     }
 
-    void RotationAnim(){
-        Debug.Log(Vector3.Angle(preViewDir,viewDir));
-        // switch ()
-        // {
-        //     case 90
-        //     default:
-        // }
-    }
 
     public Vector3 GetEulerToAlign(){
         

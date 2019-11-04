@@ -12,23 +12,23 @@ public class CameraFollow : MonoBehaviour
     private Transform CameraAlign;
     public MapData MapData;
     public float PlayCamHeight ;
-    public float MenuCamHeight ;
-
+    public float DefaultMenuCamHeight ;
+    public float zoomToLvl=1;
     public float[] loopSpeed;
     public float changeLoopSpeedFactor;
-    public float loopRadius;
-    public float rotationStartRadius;
-    public float viewAngel;
-    public int fastLoopNum = 2;
+    private  float loopRadius = 1;
+    private float rotationStartRadius;
+    private float viewAngel;
+    public int fastLoopNum ;
     private Vector3 floatPos;
     // public Vector3[] MenuCamPos = new Vector3[2];
-    private bool aligned=false;
     private float radius;
     private int loopCounter;
     private float currentLoopSpeed;
+    [SerializeField] private float MenuCamHeight ;
 
+    [SerializeField] private float highFac ;
 
-    // private bool RotateBool;// 
     void Start(){
         cam = GetComponent<Camera>();
         CameraAlign = transform.parent.transform;
@@ -53,15 +53,18 @@ public class CameraFollow : MonoBehaviour
                             CameraAlign.eulerAngles = Vector3.zero;
                             loopRadius = MapData.MapHeight>MapData.MapWidth ? MapData.MapHeight : MapData.MapWidth;
                             rotationStartRadius = 0.5f*loopRadius;
+                                if(loopRadius>9){
+                                MenuCamHeight = DefaultMenuCamHeight-(loopRadius-9)*highFac;
+                                }
                         }
-                        ScaleWithFactor(0);
+                        ScaleWithFactor(0.8f);
                         transform.LookAt(target.position+floatPos);
                 break;
                 case LevelManager.lvlState.Play:
                     transform.position = Vector3.Lerp(transform.position,CameraAlign.position, Time.deltaTime * zoomSpeed);
                     // LerpDovodchik(transform.position,CameraAlign.position);
                     HeightChange(PlayCamHeight);
-                    ScaleWithFactor(0.2f);
+                    ScaleWithFactor(1);
                     transform.LookAt(target.position+floatPos);
                 break;
                 case LevelManager.lvlState.Fin:
@@ -83,7 +86,7 @@ public class CameraFollow : MonoBehaviour
                         makeLoop(radius);
 
                     }
-                    ScaleWithFactor(0);
+                    ScaleWithFactor(0.8f);
                 break;
 
             }
@@ -99,8 +102,8 @@ public class CameraFollow : MonoBehaviour
         float distance = -CameraAlign.transform.position.z ;
         // Debug.Log("size: "+4*Mathf.Atan(size/2f/distance)/Mathf.PI*180+"  dist: ");
         // Debug.Log(Mathf.Pow(CameraAlign.transform.position.z,2) + "   "+ Mathf.Pow(transform.position.y,2)+"  "+Mathf.Sqrt(Mathf.Pow(CameraAlign.transform.position.z,2)+Mathf.Pow(transform.position.y,2)));
-        float height = size*(1/cam.aspect+factor);
-        cam.fieldOfView = Mathf.Lerp(cam.fieldOfView,2*Mathf.Atan(height/2f/distance)/Mathf.PI*180, Time.deltaTime * zoomSpeed); 
+        float height = size*(1/cam.aspect+0.1f);
+        cam.fieldOfView = Mathf.Lerp(cam.fieldOfView,2*Mathf.Atan(height/2f/distance)/Mathf.PI*180*factor, Time.deltaTime * zoomSpeed); 
         
         // float fov = (-0.505f *Mathf.Pow(size,2) +15.7128f* size +1.0559f);
         // cam.fieldOfView = Mathf.Lerp(cam.fieldOfView,fov, Time.deltaTime * zoomSpeed); 

@@ -7,5 +7,9 @@ public class PlayerLanded : MonoBehaviour
 
     public void Laning(){
         GetComponentInParent<BoxCollider2D>().enabled = true;
+
+    }
+    public void ReadyToGo(){
+                SwipeControl.AllowSwipeInput();
     }
 }

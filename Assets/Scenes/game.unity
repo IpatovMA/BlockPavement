@@ -266,7 +266,7 @@ Transform:
   m_GameObject: {fileID: 141762344}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0.05}
-  m_LocalScale: {x: 6.9, y: 1, z: 6.9}
+  m_LocalScale: {x: 15, y: 1, z: 15}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
@@ -288,7 +288,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &258943752
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -344,7 +344,7 @@ Transform:
   m_GameObject: {fileID: 258943751}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: -0, z: 0.1}
-  m_LocalScale: {x: 100, y: 0.00000001, z: 100}
+  m_LocalScale: {x: 200, y: 0.00000001, z: 200}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -401,19 +401,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  zoomSpeed: 3
+  zoomSpeed: 5
   offset: 0
   MapData: {fileID: 0}
   PlayCamHeight: -8
-  MenuCamHeight: -6
+  DefaultMenuCamHeight: -10
+  zoomToLvl: 1
   loopSpeed:
-  - 140
+  - 100
   - 20
   changeLoopSpeedFactor: 1
-  loopRadius: 8
-  rotationStartRadius: 3
-  viewAngel: 0
   fastLoopNum: 1
+  MenuCamHeight: 0
+  highFac: 0
 --- !u!81 &423449659
 AudioListener:
   m_ObjectHideFlags: 0
@@ -7021,7 +7021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d558e96676322794a975c9df1b62d15e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RotateOn: 0
+  RotateOn: 3
   TotalBlockCount: 0
   MapWidth: -1
   MapHeight: -1
@@ -7030,6 +7030,8 @@ MonoBehaviour:
   PlayerPrafab: {fileID: 6643434007430155177, guid: a05cd4e6d59572b4aa4121b3058722c7,
     type: 3}
   player: {fileID: 0}
+  customMap: 1
+  setMapNum: 16
 --- !u!1001 &2099249818
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -75,14 +75,14 @@ public class LevelManager : MonoBehaviour
         State = lvlState.Play;
         SwipeControl.ResetFp();
         SwipeControl.BlockSwipeInput();
-        Invoke("AllowSwipeInput",0.6f);
+        // Invoke("AllowSwipeInput",0.6f); //задержка через анимаейшен эвент
         StartPage.SetActive(false);
                 // ShowLvl();
         // lvlShow.SetActive(true);
     }
-        void AllowSwipeInput(){
-        SwipeControl.AllowSwipeInput();
-    }
+    //     void AllowSwipeInput(){
+    //     SwipeControl.AllowSwipeInput();
+    // }
     public void GetRewards(){
             DarkScreen.SetTrigger("Disappear");
             // ToNextLevel();
