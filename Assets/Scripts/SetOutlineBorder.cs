@@ -50,20 +50,11 @@ public class SetOutlineBorder : MonoBehaviour
             ColorUtility.TryParseHtmlString(OrnamentData.Ornaments[currentPalette].UzorColor, out tempColor);
             uzor.material.color = tempColor;
             uzor.material.mainTextureScale = new Vector2(Data.MapWidth*scaleUzor,Data.MapHeight*scaleUzor);
-            // uzor.transform.localPosition = new Vector3(Data.MapWidth/2.0f,Data.MapHeight/2.0f,uzor.transform.localPosition.z);
         
         ColorUtility.TryParseHtmlString(OrnamentData.Ornaments[currentPalette].BackColor, out tempColor);
-        // Debug.Log(( GetComponentInChildren<MeshRenderer>().gameObject.name));
         scaler.Find("back").GetComponent<MeshRenderer>().material.color = tempColor;
 
              
-       
-        Debug.Log(Data.MapWidth + "  "  +Data.MapHeight);
-        // if (Data.RotateOn%2!=0){
-        // border.position = new Vector3(-Data.MapHeight/2.0f,Data.MapWidth/2.0f,0);
-        // } else{
-        // border.position = new Vector3(-Data.MapWidth/2.0f,-Data.MapHeight/2.0f,0);
-        // }
 
    SetBorderBlocks(Data);
 
@@ -72,11 +63,7 @@ public class SetOutlineBorder : MonoBehaviour
     void SetBorderBlocks(MapData Data){
         int Width = Data.MapWidth;
         int Height = Data.MapHeight;
-        // if (Data.RotateOn%2!=0){
-        //  Width = Data.MapHeight;
-        //  Height = Data.MapWidth;
-        //  border.eulerAngles = new Vector3(0,0,90*Data.RotateOn);
-        // }
+
         BorderBlocks[0].transform.localPosition = new Vector3(0,1,0);
             BorderBlocks[0].transform.localScale = new Vector3(1,Height-2,1);
             BorderBlocks[0].GetComponentInChildren<MeshRenderer>().material.mainTextureScale = new Vector2(1,Height-2);

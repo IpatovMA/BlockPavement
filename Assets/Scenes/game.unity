@@ -413,7 +413,6 @@ MonoBehaviour:
   changeLoopSpeedFactor: 1
   fastLoopNum: 1
   MenuCamHeight: 0
-  highFac: 0
 --- !u!81 &423449659
 AudioListener:
   m_ObjectHideFlags: 0
@@ -7021,7 +7020,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d558e96676322794a975c9df1b62d15e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RotateOn: 3
+  RotateOn: 0
   TotalBlockCount: 0
   MapWidth: -1
   MapHeight: -1
@@ -7030,7 +7029,7 @@ MonoBehaviour:
   PlayerPrafab: {fileID: 6643434007430155177, guid: a05cd4e6d59572b4aa4121b3058722c7,
     type: 3}
   player: {fileID: 0}
-  customMap: 1
+  customMap: 0
   setMapNum: 16
 --- !u!1001 &2099249818
 PrefabInstance:

@@ -27,7 +27,6 @@ public class CameraFollow : MonoBehaviour
     private float currentLoopSpeed;
     [SerializeField] private float MenuCamHeight ;
 
-    [SerializeField] private float highFac ;
 
     void Start(){
         cam = GetComponent<Camera>();
@@ -44,18 +43,19 @@ public class CameraFollow : MonoBehaviour
                         viewAngel = transform.eulerAngles.x;
                         loopCounter = 0;
                         if (MapData != null){  
-                            // floatPos = new Vector3(MapData.MapWidth/2.0f,MapData.MapHeight/2.0f,0);
+                            
+                            loopRadius = MapData.MapHeight>MapData.MapWidth ? MapData.MapHeight : MapData.MapWidth;
+                            rotationStartRadius = 0.5f*loopRadius;
+                                if(loopRadius>9){
+                                MenuCamHeight = DefaultMenuCamHeight-(loopRadius-9);
+                                }else{MenuCamHeight = DefaultMenuCamHeight;}
+
                             floatPos=Vector3.zero;
-                            // transform.position =  new Vector3(0, -loopRadius, 0)+CameraAlign.position;
                             transform.localPosition =  new Vector3(0, -loopRadius, 0);
 
                             CameraAlign.position = target.position+floatPos+new Vector3(0,0,MenuCamHeight);
                             CameraAlign.eulerAngles = Vector3.zero;
-                            loopRadius = MapData.MapHeight>MapData.MapWidth ? MapData.MapHeight : MapData.MapWidth;
-                            rotationStartRadius = 0.5f*loopRadius;
-                                if(loopRadius>9){
-                                MenuCamHeight = DefaultMenuCamHeight-(loopRadius-9)*highFac;
-                                }
+                                
                         }
                         ScaleWithFactor(0.8f);
                         transform.LookAt(target.position+floatPos);
