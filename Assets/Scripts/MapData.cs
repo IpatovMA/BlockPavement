@@ -44,7 +44,7 @@ void Update()
         if(player.activeSelf==false){
             player.SetActive(true);
         }
-        if(TotalBlockCount==GetComponentInChildren<BlockPaver>().DoneBlockCount){
+        if(TotalBlockCount==GetComponentInChildren<PlayerControl>().DoneBlockCount){
             Destroy(player);
             // UpdateMap();
              if(LevelManager.State!= LevelManager.lvlState.Fin) {

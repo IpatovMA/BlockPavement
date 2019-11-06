@@ -7,6 +7,10 @@ public class PlayerControl : MonoBehaviour
     public float speed=15;
     public float velocitySmoothFactor=0.4f;
     public long VibroMillis= 30;
+        public int DoneBlockCount=0;
+    public GameObject GroundParticles;
+    public GameObject CarParticles;
+
 
     private Vector2 velocity;
     public float currenFactor=1;
@@ -15,11 +19,14 @@ public class PlayerControl : MonoBehaviour
     private Transform RotationSkin;
      private float preVelocity=0;
      private Vector2 preViewDir = Vector2.zero;
+    //  private ParticleSystem ps;
 
     void Start()
     {
         // RotationSkin = GetComponentInChildren<BoxCollider2D>().gameObject.transform;
         RotationSkin = transform.Find("playeralign");
+        //   ps = CarParticles.transform.Find("FX_DirtSplatter").GetComponent<ParticleSystem>();
+
     }
 
     void FixedUpdate()
@@ -36,6 +43,13 @@ public class PlayerControl : MonoBehaviour
         if (Mathf.Abs(velocity.y)>Mathf.Abs(velocity.x)){velocity.x=0;}
         if(preVelocity!=0&&velocity.magnitude==0&&SwipeControl.AllowSwipes){
             RotationSkin.Find("playerscaler").GetComponent<Animator>().SetTrigger("hited");
+            // ps.loop=false;
+            var ps = CarParticles.transform.Find("FX_DirtSplatter").GetComponent<ParticleSystem>().emission;
+            ps.enabled =false;
+
+            // CarParticles.transform.Find("FX_DirtSplatter").GetComponent<ParticleSystem>().enableEmission = false;
+            // CarParticles.transform.Find("FX_DirtSplatter").GetComponent<ParticleSystem>().Stop();
+
             Vibration.Vibrate(VibroMillis);
         }
         preVelocity= velocity.magnitude;
@@ -154,33 +168,23 @@ public class PlayerControl : MonoBehaviour
 
     }
 
+    void OnTriggerEnter2D(Collider2D coll){
+        if (coll.gameObject.tag == "clear"){
+            if((DoneBlockCount>=1)){
+            var ps = CarParticles.transform.Find("FX_DirtSplatter").GetComponent<ParticleSystem>().emission;
+            ps.enabled =true;
+            CarParticles.transform.Find("FX_DirtSplatter").GetComponent<ParticleSystem>().Play();
+//!CarParticles.transform.Find("FX_DirtSplatter").GetComponent<ParticleSystem>().isPlaying&&
 
-    // void BlockPaverHelper(){
-    //     Vector3 halfVector = new Vector3(0.5f,0.5f,0);
-    //     RaycastHit2D[] rays = Physics2D.RaycastAll(transform.position+halfVector, -viewDir);
-    //     foreach (var ray in rays)
-    //     {
-    //                         Debug.DrawLine(transform.position+halfVector, ray.point,Color.red,2);
+}
 
-    //             if (ray.collider != null&&ray.collider.tag == "paved"&&ray.collider.transform.position.z<0)
-    //         {   
-    //             ray.collider.transform.Translate(0,0,0.01f);
-    //             // Debug.DrawLine(transform.position+halfVector, ray.point,Color.red,2);
-    //             // Debug.Log(distance);
-                
-    //         }    
-    //     }
+        // Destroy(Instantiate(GroundParticles,coll.transform.position,Quaternion.Euler(GetEulerToAlign()),GetComponentInParent<MapData>().transform),0.7f);
+            // GetComponentInChildren<ParticleSystem>().
+            DoneBlockCount++;
+            Destroy(coll.gameObject);
+            // Debug.Log(DoneBlockCount);
+        }
 
-    // }
+    }
 
-    
-    // void OnCollisionEnter2D(Collision2D coll){
-                    
-    //                 Debug.Log(coll.collider.gameObject.tag);
-    //                if(coll.collider.gameObject.tag == "border"){
-    //         GetComponentInChildren<Animator>().SetTrigger("hited");
-
-    //         Debug.Log("Hit");
-    //     }
-    // }
 }

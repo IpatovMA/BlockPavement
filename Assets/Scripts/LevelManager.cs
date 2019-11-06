@@ -15,7 +15,7 @@ public class LevelManager : MonoBehaviour
     public GameObject FinPage;
     public GameObject lvlShow;
 
-    // public GameObject[] Levels;
+  
     private MapData MapData;
 
     static public int lvlNum= 0;

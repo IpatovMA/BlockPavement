@@ -12,7 +12,7 @@ public class Localizator : MonoBehaviour
     void Start()
     {
       Text txt = GetComponentInChildren<Text>();
-    LocalizationService.Instance.SetFormat(txt);
+    // LocalizationService.Instance.SetFormat(txt);
 		txt.text = LocalizationService.Instance.GetString(Key);
     }
 
