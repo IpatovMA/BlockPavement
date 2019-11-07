@@ -5,17 +5,7 @@ using UnityEngine;
 public class DarkScreenControl : MonoBehaviour
 {
     public bool Dark;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void AllDark(int i){
         if(i == 1){
             Dark = true;

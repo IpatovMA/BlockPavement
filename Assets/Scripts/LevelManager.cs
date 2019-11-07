@@ -50,7 +50,7 @@ public class LevelManager : MonoBehaviour
     void FixedUpdate()
     {   
         if (State == lvlState.Menu&&!StartPage.activeSelf){
-            DarkScreen.SetTrigger("Appear");
+            // DarkScreen.SetTrigger("Appear");
             StartPage.SetActive(true);
 
             MapData.LoadMap();

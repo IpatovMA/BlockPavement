@@ -14,7 +14,8 @@ public class MapData : MonoBehaviour
     public GameObject Map;
     public Vector3 PlayerPos;
     public GameObject PlayerPrafab;
-    
+
+    [SerializeField] private int lvlPart;
 
     private GameObject MapPrefab;
     public GameObject player;
@@ -24,6 +25,7 @@ public class MapData : MonoBehaviour
     public static int mapNum;
     public bool customMap= false;
     public int setMapNum;
+    private Animator DS;
 
     void Start()
     {   
@@ -32,25 +34,46 @@ public class MapData : MonoBehaviour
         else {mapNum = 1;}
         cam = Camera.main;
         camFollow = cam.GetComponent<CameraFollow>();
-        
+        lvlPart = 1;
+        DS = GetComponentInParent<LevelManager>().DarkScreen;
     }
 
 void Update()
     {
-
+        // Debug.Log(DS.GetComponent<DarkScreenControl>().Dark);
 
         if (LevelManager.State != LevelManager.lvlState.Play) return;
 
+                if(DS.GetComponent<DarkScreenControl>().Dark&&player==null){
+                DestroyMap();
+                }
+                if(Map==null){
+                LoadMap();
+                player.SetActive(false);
+                lvlPart++;
+                }
+
+        if(player==null) return;
         if(player.activeSelf==false){
             player.SetActive(true);
         }
         if(TotalBlockCount==GetComponentInChildren<PlayerControl>().DoneBlockCount){
+
             Destroy(player);
-            // UpdateMap();
-             if(LevelManager.State!= LevelManager.lvlState.Fin) {
+             if((LevelManager.State!= LevelManager.lvlState.Fin)&&(lvlPart==3)) {
                 LevelManager.State= LevelManager.lvlState.Fin;
+                lvlPart=1;
+                Debug.Log("fin");
+            } else{
+            DS.SetTrigger("Disappear");
+
             }
+
+
         } 
+                    //  Debug.Log(DS.GetComponent<DarkScreenControl>().Dark);
+                        
+
 
         // if(fin&&Input.GetMouseButtonDown(0)){
         //         SceneManager.LoadScene("game");
@@ -88,7 +111,7 @@ void Update()
                 if (ray.collider != null&&(ray.collider.tag == "border"||ray.collider.tag == "clear"))
             {   
                 MapWidth++;
-                // Debug.DrawLine(new Vector3(0,0.5f,0), ray.point,Color.red,20);
+                Debug.DrawLine(new Vector3(0,0.5f,0), ray.point,Color.red,20);
                 // Destroy(ray.collider.gameObject);
             }    
         }
@@ -99,18 +122,12 @@ void Update()
                 if (ray.collider != null&&(ray.collider.tag == "border"||ray.collider.tag == "clear"))
             {   
                 MapHeight++;
-                // Debug.DrawLine(new Vector3(0.5f,0,0), ray.point,Color.red,20);
+                Debug.DrawLine(new Vector3(0.5f,0,0), ray.point,Color.red,20);
                             // Destroy(ray.collider.gameObject);
 
             }    
         }
-
-        // if (RotateOn%2!=0){
-        //     int temp = MapHeight;
-        //     MapHeight = MapWidth;
-        //     MapWidth = temp;
-        // }
-
+                        Debug.Log("Load");
 
 
         GetComponentInChildren<SetOutlineBorder>().UpdateBorder(this);
@@ -141,11 +158,14 @@ void Update()
         player = Instantiate(PlayerPrafab,PlayerPos,Quaternion.Euler(0,0,rotateAngs[rotateRnd]),transform);
         player.SetActive(false);
 
+        DS.SetTrigger("Appear");
     }
 
     public void DestroyMap(){
 
-        Destroy(Map);
+        Destroy(Map,0);
+                    Debug.Log("Dest");
+
         Resources.UnloadUnusedAssets();
         if(mapNum==GetComponentInParent<LevelManager>().TotalMapsNumber) {
                 mapNum=0;
