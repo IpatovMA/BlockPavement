@@ -6365,7 +6365,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 3e-45, z: 3e-45, w: 6e-45}
+  m_BoundingSphereOverride: {x: 10, y: 7, z: -11, w: 5}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -7048,6 +7048,7 @@ MonoBehaviour:
   PlayerPos: {x: 0, y: 0, z: 0}
   PlayerPrafab: {fileID: 6643434007430155177, guid: a05cd4e6d59572b4aa4121b3058722c7,
     type: 3}
+  lvlPart: 0
   player: {fileID: 0}
   customMap: 0
   setMapNum: 16
@@ -7199,6 +7200,12 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8439808937454771026, guid: e8831f2190ca65541916878a78f28765,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e8601dbbf66e82f439cda85bce709110,
+        type: 3}
     - target: {fileID: 7476489942047085641, guid: e8831f2190ca65541916878a78f28765,
         type: 3}
       propertyPath: m_Color.g
@@ -7209,12 +7216,6 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0.80784315
       objectReference: {fileID: 0}
-    - target: {fileID: 8439808937454771026, guid: e8831f2190ca65541916878a78f28765,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: e8601dbbf66e82f439cda85bce709110,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8831f2190ca65541916878a78f28765, type: 3}
 --- !u!1001 &381948905446511503

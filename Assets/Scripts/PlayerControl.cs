@@ -178,7 +178,7 @@ public class PlayerControl : MonoBehaviour
 
 }
 
-        // Destroy(Instantiate(GroundParticles,coll.transform.position,Quaternion.Euler(GetEulerToAlign()),GetComponentInParent<MapData>().transform),0.7f);
+        Destroy(Instantiate(GroundParticles,coll.transform.position,Quaternion.Euler(GetEulerToAlign()),GetComponentInParent<MapData>().transform),0.7f);
             // GetComponentInChildren<ParticleSystem>().
             DoneBlockCount++;
             Destroy(coll.gameObject);
