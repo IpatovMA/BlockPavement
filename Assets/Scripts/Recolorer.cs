@@ -36,6 +36,9 @@ public class Recolorer : MonoBehaviour
                 // Debug.Log(ColorUtility.ToHtmlStringRGB(mat.color) == "969696");
                 if(ColorUtility.ToHtmlStringRGB(mat.color) == "969696") {mat.color = new Color (bright,bright,bright,1);}
                 
+                if(mat.name =="Gazon (Instance)"){
+                    mat.shader = Shader.Find("Diffuse");
+                    continue;}
                 
                 if(mat.name =="No Name (Instance)"){
                     mat.shader = Shader.Find("Diffuse");

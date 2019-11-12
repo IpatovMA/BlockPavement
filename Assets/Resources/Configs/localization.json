@@ -14,8 +14,8 @@
     },
     {   "Key":"GetRewards",
         "Values":[
-        {"Lang":"ru","Value":"ПОЛУЧИТЬ"},
-        {"Lang":"en","Value":"GET REWARDS"}
+        {"Lang":"ru","Value":"СЛЕДУЮЩИЙ УРОВЕНЬ"},
+        {"Lang":"en","Value":"NEXT LEVEL"}
             ]
     },
     {   "Key":"lvl",

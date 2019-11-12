@@ -63,12 +63,18 @@ public class LevelManager : MonoBehaviour
            if(!FinPage.activeSelf){
                 FinPage.SetActive(true);
                 SaveLoad.Save();
+                Invoke("OnLvlCompleted",0.5f);
            }
             if (DarkScreen.GetComponent<DarkScreenControl>().Dark){
                 ToNextLevel();
             }
         }
        
+    }
+
+    void OnLvlCompleted(){
+                    Vibration.Vibrate(1000);
+
     }
 
     public void Play(){

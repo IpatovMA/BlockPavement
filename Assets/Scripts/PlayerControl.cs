@@ -31,6 +31,8 @@ public class PlayerControl : MonoBehaviour
 
     void FixedUpdate()
     {   
+                // Debug.Log(RotationSkin.position);
+
         velocity = GetComponent<Rigidbody2D>().velocity;
         if(velocity.magnitude<speed/1000||velocity.magnitude>speed*2f){
             velocity = Vector2.zero;
@@ -103,15 +105,12 @@ public class PlayerControl : MonoBehaviour
     public Vector3 GetEulerToAlign(){
         
         if (viewDir == Vector2.left){
-            RotationSkin.GetComponent<Animator>().SetTrigger("turnBack");
             return Vector3.forward*180;
         }
         if (viewDir == Vector2.up){
-            RotationSkin.GetComponent<Animator>().SetTrigger("turnLeft");
             return Vector3.forward*90;
         }
         if (viewDir == Vector2.down){
-            RotationSkin.GetComponent<Animator>().SetTrigger("turnRight");
             return Vector3.forward*(-90);
         }
         // if (viewDir == Vector2.right){

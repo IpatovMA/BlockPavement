@@ -41,7 +41,6 @@ public class MapData : MonoBehaviour
 
 void Update()
     {
-        Debug.Log(mapNum);
 
         if (LevelManager.State != LevelManager.lvlState.Play) return;
 
@@ -61,26 +60,21 @@ void Update()
             player.SetActive(true);
         }
         if(TotalBlockCount==GetComponentInChildren<PlayerControl>().DoneBlockCount){
-
+                    SwipeControl.BlockSwipeInput();
             Destroy(player);
              if((LevelManager.State!= LevelManager.lvlState.Fin)&&(lvlPart==3)) {
                 LevelManager.State= LevelManager.lvlState.Fin;
                 lvlPart=1;
-                Debug.Log("fin");
+            
             } else{
+
             DS.SetTrigger("Disappear");
 
             }
 
 
         } 
-                    //  Debug.Log(DS.GetComponent<DarkScreenControl>().Dark);
-                        
 
-
-        // if(fin&&Input.GetMouseButtonDown(0)){
-        //         SceneManager.LoadScene("game");
-        // }
 
 
     }
