@@ -26,6 +26,7 @@ public class MapData : MonoBehaviour
     public bool customMap= false;
     public int setMapNum;
     private Animator DS;
+    private Transform rt;
 
     void Start()
     {   
@@ -40,11 +41,11 @@ public class MapData : MonoBehaviour
 
 void Update()
     {
-        // Debug.Log(DS.GetComponent<DarkScreenControl>().Dark);
+        Debug.Log(mapNum);
 
         if (LevelManager.State != LevelManager.lvlState.Play) return;
 
-                if(DS.GetComponent<DarkScreenControl>().Dark&&player==null){
+                if(DS.GetComponent<DarkScreenControl>().Dark&&Map!=null&&player==null){
                 DestroyMap();
                 }
                 if(Map==null){
@@ -54,6 +55,8 @@ void Update()
                 }
 
         if(player==null) return;
+                      rt = player.transform.Find("playeralign");
+
         if(player.activeSelf==false){
             player.SetActive(true);
         }
@@ -137,7 +140,7 @@ void Update()
         Map.transform.localEulerAngles = new Vector3(0,0,0);
 
         int rotateRnd = Random.Range(0,4);
-
+// rotateRnd =0;
         int[] rotateAngs = new int[4] {0,90,180,270};
         Vector3 rotateFix;
         switch (rotateRnd){
@@ -150,7 +153,6 @@ void Update()
             default: rotateFix = new Vector3(0,0,0);
             break;
         }
-
         PlayerPos = clearBlocks[Random.Range(0, TotalBlockCount)].position  - new Vector3(0.5f,0.5f,0) +rotateFix;
         
             
