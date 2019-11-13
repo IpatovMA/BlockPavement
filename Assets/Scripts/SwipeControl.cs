@@ -20,6 +20,7 @@ public  class SwipeControl : MonoBehaviour
     }
 
    void Update(){
+    //    Debug.Log(AllowSwipes);
 
     if (Input.touchCount == 0||!AllowSwipes||LevelManager.State != LevelManager.lvlState.Play) return;
 

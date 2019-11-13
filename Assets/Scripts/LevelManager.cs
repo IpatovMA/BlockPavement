@@ -73,8 +73,9 @@ public class LevelManager : MonoBehaviour
     }
 
     void OnLvlCompleted(){
-                    Vibration.Vibrate(1000);
-
+        Vibration.Vibrate(1000);
+        var ps = Camera.main.transform.parent.GetComponentInChildren<ParticleSystem>();
+        ps.Play();
     }
 
     public void Play(){

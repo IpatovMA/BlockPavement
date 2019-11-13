@@ -19,20 +19,28 @@ public class PlayerControl : MonoBehaviour
     private Transform RotationSkin;
      private float preVelocity=0;
      private Vector2 preViewDir = Vector2.zero;
+     private Vector3 startEuler;
+
     //  private ParticleSystem ps;
 
     void Start()
     {
-        // RotationSkin = GetComponentInChildren<BoxCollider2D>().gameObject.transform;
         RotationSkin = transform.Find("playeralign");
+        startEuler = transform.localEulerAngles;
         //   ps = CarParticles.transform.Find("FX_DirtSplatter").GetComponent<ParticleSystem>();
 
     }
 
     void FixedUpdate()
     {   
-                // Debug.Log(RotationSkin.position);
+             if (!IsInGame()){
+                var map = GetComponentInParent<MapData>();
 
+                    map.player = Instantiate(map.PlayerPrafab,map.PlayerPos,Quaternion.Euler(startEuler),map.transform);
+                   if (DoneBlockCount!=0) map.player.GetComponent<PlayerControl>().DoneBlockCount = DoneBlockCount;
+                 Destroy(this.gameObject);
+                
+             }
         velocity = GetComponent<Rigidbody2D>().velocity;
         if(velocity.magnitude<speed/1000||velocity.magnitude>speed*2f){
             velocity = Vector2.zero;
@@ -184,6 +192,18 @@ public class PlayerControl : MonoBehaviour
             // Debug.Log(DoneBlockCount);
         }
 
+    }
+
+    bool IsInGame(){
+        int h = GetComponentInParent<MapData>().MapHeight;
+        int w = GetComponentInParent<MapData>().MapWidth;
+        float x = transform.position.x;
+        float y = transform.position.y;
+
+            if((x<-w/2f-1) || (x>w/2f+1) || (y<-h/2f-1) || (y>h/2f+1) ){
+                return false;
+            }
+        return true ;
     }
 
 }

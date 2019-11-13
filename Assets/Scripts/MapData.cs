@@ -152,6 +152,7 @@ void Update()
             
 
         player = Instantiate(PlayerPrafab,PlayerPos,Quaternion.Euler(0,0,rotateAngs[rotateRnd]),transform);
+        // player.GetComponent<PlayerControl>().startPos = PlayerPos
         player.SetActive(false);
 
         DS.SetTrigger("Appear");
