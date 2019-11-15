@@ -35,7 +35,7 @@ public class PlayerControl : MonoBehaviour
     {   
              if (!IsInGame()){
                 var map = GetComponentInParent<MapData>();
-
+                    SwipeControl.BlockSwipeInput();
                     map.player = Instantiate(map.PlayerPrafab,map.PlayerPos,Quaternion.Euler(startEuler),map.transform);
                    if (DoneBlockCount!=0) map.player.GetComponent<PlayerControl>().DoneBlockCount = DoneBlockCount;
                  Destroy(this.gameObject);
@@ -195,8 +195,9 @@ public class PlayerControl : MonoBehaviour
     }
 
     bool IsInGame(){
-        int h = GetComponentInParent<MapData>().MapHeight;
-        int w = GetComponentInParent<MapData>().MapWidth;
+        var map = GetComponentInParent<MapData>();
+        int h = MapData.RotateOn%2==0? map.MapHeight: map.MapWidth;
+        int w = MapData.RotateOn%2!=0? map.MapHeight: map.MapWidth;
         float x = transform.position.x;
         float y = transform.position.y;
 

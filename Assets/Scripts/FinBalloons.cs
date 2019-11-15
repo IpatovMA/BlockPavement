@@ -15,7 +15,7 @@ public class FinBalloons : MonoBehaviour
 
     void Update()
     {
-        transform.localPosition = new Vector3(cam.localPosition.x,cam.localPosition.y,cam.localPosition.z+5);
+        transform.localPosition = new Vector3(cam.localPosition.x,cam.localPosition.y,cam.localPosition.z+7);
         transform.localEulerAngles= cam.localEulerAngles;
         float fov = cam.gameObject.GetComponent<Camera>().fieldOfView;
         main.startSizeMultiplier = fov/70f;

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class MapData : MonoBehaviour
 {
-    public int RotateOn;
+    public static int RotateOn;
     public int TotalBlockCount;
     public int MapWidth;
     public int MapHeight;
@@ -25,22 +25,30 @@ public class MapData : MonoBehaviour
     public static int mapNum;
     public bool customMap= false;
     public int setMapNum;
+    public int setRotateOn;
     private Animator DS;
     private Transform rt;
+    [SerializeField] TextAsset DustColorsTxt;
+    public Color DustColor;
 
     void Start()
     {   
         if( SaveLoad.savedGame.map!=0)
-           { mapNum = SaveLoad.savedGame.map;}
-        else {mapNum = 1;}
+           { mapNum = SaveLoad.savedGame.map;
+            RotateOn = SaveLoad.savedGame.rotateOn;
+           }
+        else {mapNum = 1;
+                RotateOn=0;}
         cam = Camera.main;
         camFollow = cam.GetComponent<CameraFollow>();
         lvlPart = 1;
         DS = GetComponentInParent<LevelManager>().DarkScreen;
+        
     }
 
 void Update()
     {
+        Debug.Log(mapNum);
 
         if (LevelManager.State != LevelManager.lvlState.Play) return;
 
@@ -81,7 +89,9 @@ void Update()
 
     
     public void LoadMap(){
-        if (customMap){ mapNum = setMapNum;}
+        if (customMap){
+            RotateOn = setRotateOn;
+             mapNum = setMapNum;}
         MapPrefab = Resources.Load("maps/"+mapNum) as GameObject;
 
         Map = Instantiate(MapPrefab, Vector3.zero,Quaternion.identity,transform);
@@ -108,7 +118,7 @@ void Update()
                 if (ray.collider != null&&(ray.collider.tag == "border"||ray.collider.tag == "clear"))
             {   
                 MapWidth++;
-                Debug.DrawLine(new Vector3(0,0.5f,0), ray.point,Color.red,20);
+                // Debug.DrawLine(new Vector3(0,0.5f,0), ray.point,Color.red,20);
                 // Destroy(ray.collider.gameObject);
             }    
         }
@@ -119,7 +129,7 @@ void Update()
                 if (ray.collider != null&&(ray.collider.tag == "border"||ray.collider.tag == "clear"))
             {   
                 MapHeight++;
-                Debug.DrawLine(new Vector3(0.5f,0,0), ray.point,Color.red,20);
+                // Debug.DrawLine(new Vector3(0.5f,0,0), ray.point,Color.red,20);
                             // Destroy(ray.collider.gameObject);
 
             }    
@@ -156,6 +166,7 @@ void Update()
         player.SetActive(false);
 
         DS.SetTrigger("Appear");
+        SetDustColor();
     }
 
     public void DestroyMap(){
@@ -164,7 +175,7 @@ void Update()
                     Debug.Log("Dest");
 
         Resources.UnloadUnusedAssets();
-        if(mapNum==GetComponentInParent<LevelManager>().TotalMapsNumber) {
+        if(mapNum==LevelManager.TotalMapsNumber) {
                 mapNum=0;
                 RotateOn++;
                 
@@ -173,6 +184,22 @@ void Update()
 
                 }
             }
-        mapNum++;
+             if(LevelManager.TotalMapsNumber<= mapNum ){
+                        mapNum = 1;
+                } else{ mapNum++;}
     }
+
+    void SetDustColor() {
+
+        int count = DustColorsTxt.text.Split('#').Length;
+        int ColorNum = UnityEngine.Random.Range(1,count);
+        string ColorStr = "#"+DustColorsTxt.text.Split('#')[ColorNum].Substring(0,6);
+        bool i = ColorUtility.TryParseHtmlString(ColorStr, out DustColor);
+        // char[] sep = new char[]{'/','n'};
+        //  string ColorStr = DustColorsTxt.text.Split(sep);
+
+
+        //  Debug.Log (i+"___" +ColorStr+"__" +ColorNum);
+    }
+
 }

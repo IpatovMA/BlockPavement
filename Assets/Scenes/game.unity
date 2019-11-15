@@ -6403,7 +6403,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 3
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -11722,7 +11722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fbabfd44d033834ba59837e425284f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TotalMapsNumber: 30
+  AllMaps: 30
   StartPage: {fileID: 511915571}
   FinPage: {fileID: 834097889}
   lvlShow: {fileID: 1023361857}
@@ -12054,7 +12054,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d558e96676322794a975c9df1b62d15e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RotateOn: 0
   TotalBlockCount: 0
   MapWidth: -1
   MapHeight: -1
@@ -12065,7 +12064,10 @@ MonoBehaviour:
   lvlPart: 0
   player: {fileID: 0}
   customMap: 0
-  setMapNum: 0
+  setMapNum: 10
+  setRotateOn: 1
+  DustColorsTxt: {fileID: 4900000, guid: 2fd32bab7e3158647a49c338138bb39d, type: 3}
+  DustColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1001 &2099249818
 PrefabInstance:
   m_ObjectHideFlags: 0

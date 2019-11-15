@@ -9,7 +9,8 @@ using System.IO;
 
 public class LevelManager : MonoBehaviour
 {
-    public int TotalMapsNumber;
+    public static int TotalMapsNumber;
+    [SerializeField] int AllMaps;
    public enum lvlState {Menu,Play,Fin};
     public GameObject StartPage;
     public GameObject FinPage;
@@ -21,7 +22,7 @@ public class LevelManager : MonoBehaviour
     static public int lvlNum= 0;
     public static lvlState State;
      public Animator DarkScreen;
-
+    ParticleSystem Balloons;
 
      
     void Awake(){
@@ -32,6 +33,7 @@ public class LevelManager : MonoBehaviour
     }
     void Start()
     {
+        TotalMapsNumber = AllMaps;
         SaveLoad.Load();
         MapData = GetComponentInChildren<MapData>();
         State = lvlState.Menu;
@@ -42,7 +44,7 @@ public class LevelManager : MonoBehaviour
             // lvlShow.SetActive(false);
 
         ShowLvl();
-        
+        Balloons = Camera.main.transform.parent.GetComponentInChildren<ParticleSystem>();
 
     }
 
@@ -74,8 +76,8 @@ public class LevelManager : MonoBehaviour
 
     void OnLvlCompleted(){
         Vibration.Vibrate(1000);
-        var ps = Camera.main.transform.parent.GetComponentInChildren<ParticleSystem>();
-        ps.Play();
+        
+        Balloons.Play();
     }
 
     public void Play(){
@@ -100,12 +102,14 @@ public class LevelManager : MonoBehaviour
 
 
     void ToNextLevel(){
+            Balloons.Clear();
             MapData.DestroyMap();
             State = lvlState.Menu; 
             lvlNum++;   
             ShowLvl();
             // lvlShow.SetActive(false);
             FinPage.SetActive(false);
+    
 
 
     }
