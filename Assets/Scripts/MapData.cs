@@ -1,4 +1,4 @@
-﻿
+﻿using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -48,7 +48,6 @@ public class MapData : MonoBehaviour
 
 void Update()
     {
-        Debug.Log(mapNum);
 
         if (LevelManager.State != LevelManager.lvlState.Play) return;
 
@@ -69,6 +68,7 @@ void Update()
         }
         if(TotalBlockCount==GetComponentInChildren<PlayerControl>().DoneBlockCount){
                     SwipeControl.BlockSwipeInput();
+            GetComponentInParent<LevelManager>().ProgressBar.transform.Find("Fill").GetComponent<Image>().fillAmount = 1;
             Destroy(player);
              if((LevelManager.State!= LevelManager.lvlState.Fin)&&(lvlPart==3)) {
                 LevelManager.State= LevelManager.lvlState.Fin;
@@ -167,6 +167,8 @@ void Update()
 
         DS.SetTrigger("Appear");
         SetDustColor();
+            GetComponentInParent<LevelManager>().ProgressBar.transform.Find("Fill").GetComponent<Image>().fillAmount = 0;
+
     }
 
     public void DestroyMap(){

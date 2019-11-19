@@ -19,14 +19,14 @@ public class PlayerControl : MonoBehaviour
     private Transform RotationSkin;
      private float preVelocity=0;
      private Vector2 preViewDir = Vector2.zero;
-     private Vector3 startEuler;
+    private Vector3 startEuler;
 
     //  private ParticleSystem ps;
 
     void Start()
     {
         RotationSkin = transform.Find("playeralign");
-        startEuler = transform.localEulerAngles;
+        startEuler = transform.eulerAngles;
         //   ps = CarParticles.transform.Find("FX_DirtSplatter").GetComponent<ParticleSystem>();
 
     }
@@ -201,7 +201,7 @@ public class PlayerControl : MonoBehaviour
         float x = transform.position.x;
         float y = transform.position.y;
 
-            if((x<-w/2f-1) || (x>w/2f+1) || (y<-h/2f-1) || (y>h/2f+1) ){
+            if((x<-w/2f-0.5) || (x>w/2f+0.5) || (y<-h/2f-0.5) || (y>h/2f+0.5) ){
                 return false;
             }
         return true ;

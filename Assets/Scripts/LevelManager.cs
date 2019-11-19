@@ -14,6 +14,7 @@ public class LevelManager : MonoBehaviour
    public enum lvlState {Menu,Play,Fin};
     public GameObject StartPage;
     public GameObject FinPage;
+    public GameObject ProgressBar;
     public GameObject lvlShow;
 
   
@@ -59,10 +60,14 @@ public class LevelManager : MonoBehaviour
 
 
         }
+        if(State == lvlState.Play&&ProgressBar.activeSelf){
+            SetProgress();
+        }
 
         if(State == lvlState.Fin){
            
            if(!FinPage.activeSelf){
+               ProgressBar.SetActive(false);
                 FinPage.SetActive(true);
                 SaveLoad.Save();
                 Invoke("OnLvlCompleted",0.5f);
@@ -84,10 +89,8 @@ public class LevelManager : MonoBehaviour
         State = lvlState.Play;
         SwipeControl.ResetFp();
         SwipeControl.BlockSwipeInput();
-        // Invoke("AllowSwipeInput",0.6f); //задержка через анимаейшен эвент
         StartPage.SetActive(false);
-                // ShowLvl();
-        // lvlShow.SetActive(true);
+        ProgressBar.SetActive(true);
     }
     //     void AllowSwipeInput(){
     //     SwipeControl.AllowSwipeInput();
@@ -102,6 +105,7 @@ public class LevelManager : MonoBehaviour
 
 
     void ToNextLevel(){
+            Balloons.Stop();
             Balloons.Clear();
             MapData.DestroyMap();
             State = lvlState.Menu; 
@@ -128,5 +132,16 @@ public class LevelManager : MonoBehaviour
                 // Debug.Log(lvlShow.GetComponentInChildren<Text>().text);
 
     }
+
+    public void SetProgress(){
+        if( GetComponentInChildren<PlayerControl>()==null) return;
+        int done = GetComponentInChildren<PlayerControl>().DoneBlockCount;
+        int total = MapData.TotalBlockCount;
+        float fill = ProgressBar.transform.Find("Fill").GetComponent<Image>().fillAmount;
+        float newFill =Mathf.Lerp(fill,(float)done/total,Time.fixedDeltaTime*10);
+        ProgressBar.transform.Find("Fill").GetComponent<Image>().fillAmount = newFill;
+        // Debug.Log((float)done/total+"  " +done+" ");
+    }
+
 }
 
