@@ -100,9 +100,13 @@ public class CameraFollow : MonoBehaviour
         int size = MapData.RotateOn%2==0?MapData.MapWidth:MapData.MapHeight;
         // float distance = Mathf.Sqrt(Mathf.Pow(CameraAlign.transform.position.z,2)+Mathf.Pow(loopRadius,2));
         float distance = -CameraAlign.transform.position.z ;
-        // Debug.Log("size: "+4*Mathf.Atan(size/2f/distance)/Mathf.PI*180+"  dist: ");
-        // Debug.Log(Mathf.Pow(CameraAlign.transform.position.z,2) + "   "+ Mathf.Pow(transform.position.y,2)+"  "+Mathf.Sqrt(Mathf.Pow(CameraAlign.transform.position.z,2)+Mathf.Pow(transform.position.y,2)));
-        float height = size*(1/cam.aspect+0.1f);
+        float MapAspect = (float)(MapData.RotateOn%2==0?MapData.MapWidth:MapData.MapHeight)/(MapData.RotateOn%2==0?MapData.MapHeight:MapData.MapWidth);
+        // Debug.Log(Camera.main.aspect+ "  "+ MapAspect);
+        float height = size*(1/cam.aspect+0.5f);
+            if (cam.aspect>MapAspect){
+            size = MapData.RotateOn%2==1?MapData.MapWidth:MapData.MapHeight;
+                height=size*1.2f;
+                            }
         cam.fieldOfView = Mathf.Lerp(cam.fieldOfView,2*Mathf.Atan(height/2f/distance)/Mathf.PI*180*factor, Time.deltaTime * zoomSpeed); 
         
         // float fov = (-0.505f *Mathf.Pow(size,2) +15.7128f* size +1.0559f);
@@ -126,6 +130,8 @@ public class CameraFollow : MonoBehaviour
     void SmoothlChangeSpeed(int i){
         currentLoopSpeed = Mathf.Lerp(currentLoopSpeed,loopSpeed[i],Time.deltaTime*changeLoopSpeedFactor);
     }
+
+
 
 
 }
