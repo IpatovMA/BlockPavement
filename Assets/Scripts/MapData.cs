@@ -143,7 +143,7 @@ void Update()
         Map.transform.localEulerAngles = new Vector3(0,0,0);
 
         int rotateRnd = Random.Range(0,4);
-// rotateRnd =0;
+rotateRnd =0;
         int[] rotateAngs = new int[4] {0,90,180,270};
         Vector3 rotateFix;
         switch (rotateRnd){

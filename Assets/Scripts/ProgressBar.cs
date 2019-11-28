@@ -31,7 +31,7 @@ public class ProgressBar : MonoBehaviour
     }
 
     void SetProgress(Image bar ){
-        if( Data.player==null) return;
+        if( Data.GetComponentInChildren<PlayerControl>()==null) return;
         int done = Data.GetComponentInChildren<PlayerControl>().DoneBlockCount;
         int total = Data.TotalBlockCount;
         if (done==total){

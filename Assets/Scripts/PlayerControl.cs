@@ -136,12 +136,14 @@ public class PlayerControl : MonoBehaviour
 
     }
     void UpdateVelocity(Vector2 dir){
-        velocity = dir*speed*currenFactor;
+        float setSpeed = Mathf.Lerp(speed/2,speed,allDistance/11);
+        velocity = dir*setSpeed*currenFactor;
     
     }
 
     float GetDistance(Vector2 dir){
         Vector3 halfVector = new Vector3(0.5f,0.5f,0);
+        // halfVector = Vector3.zero;
         RaycastHit2D[] rays = Physics2D.RaycastAll(transform.position+halfVector, dir);
         foreach (var ray in rays)
         {
@@ -150,11 +152,12 @@ public class PlayerControl : MonoBehaviour
                 // border= true;
                 Vector3 vect =((Vector3)ray.point - transform.position-halfVector);
                 // float distance = Mathf.Round( vect.magnitude-0.5f);
+                
                 float distance = ( vect.magnitude-0.5f);
 
-                // Debug.DrawLine(transform.position+halfVector, ray.point,Color.red,2);
-                // Debug.Log(distance);
-                return distance;
+                Debug.DrawLine(transform.position+halfVector, ray.point,Color.red,2);
+                Debug.Log( (distance>=0?distance:0) + "  " + allDistance );
+                return distance>=0?distance:0;
             }    
         }
     return 0;
@@ -164,6 +167,7 @@ public class PlayerControl : MonoBehaviour
       
         if (Mathf.Abs(dist)<0.1||Mathf.Abs(allDistance)<0.1) return;
         
+        if (dist == 0||dist==allDistance){currenFactor = velocitySmoothFactor;return;}
 
         if(dist > allDistance*0.5f)
         {currenFactor = Mathf.Lerp(velocitySmoothFactor,1,(allDistance-dist)/(0.5f*allDistance));
