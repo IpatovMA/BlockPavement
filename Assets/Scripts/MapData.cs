@@ -15,7 +15,7 @@ public class MapData : MonoBehaviour
     public Vector3 PlayerPos;
     public GameObject PlayerPrafab;
 
-    [SerializeField] private int lvlPart;
+    public int lvlPart;
 
     private GameObject MapPrefab;
     public GameObject player;
@@ -68,7 +68,6 @@ void Update()
         }
         if(TotalBlockCount==GetComponentInChildren<PlayerControl>().DoneBlockCount){
                     SwipeControl.BlockSwipeInput();
-            GetComponentInParent<LevelManager>().ProgressBar.transform.Find("Fill").GetComponent<Image>().fillAmount = 1;
             Destroy(player);
              if((LevelManager.State!= LevelManager.lvlState.Fin)&&(lvlPart==3)) {
                 LevelManager.State= LevelManager.lvlState.Fin;
@@ -167,7 +166,6 @@ void Update()
 
         DS.SetTrigger("Appear");
         SetDustColor();
-            GetComponentInParent<LevelManager>().ProgressBar.transform.Find("Fill").GetComponent<Image>().fillAmount = 0;
 
     }
 
