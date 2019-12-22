@@ -1,10 +1,10 @@
 {"Ornaments":
     [
-        {"UzorColor":"#f69797","BackColor":"#9e4139" },
-        {"UzorColor":"#7bcafa","BackColor":"#44486a" },
-        {"UzorColor":"#b7a0c7","BackColor":"#2d5835" },
-        {"UzorColor":"#59744b","BackColor":"#dab958" },
-        {"UzorColor":"#331050","BackColor":"#c93c0b" },
-        {"UzorColor":"#4a403d","BackColor":"#b0a496" }
+        {"UzorColor":"#cc9682","BackColor":"#deb8ab" },
+        {"UzorColor":"#5858a3","BackColor":"#6767ab" },
+        {"UzorColor":"#b0a496","BackColor":"#cfc181" },
+        {"UzorColor":"#b0443e","BackColor":"#bf5950" },
+        {"UzorColor":"#227a37","BackColor":"#5f9e6e" },
+        {"UzorColor":"#b59645","BackColor":"#d9b453" }
     ]
 }

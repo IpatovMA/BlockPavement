@@ -66,20 +66,34 @@ public class SetOutlineBorder : MonoBehaviour
 
         BorderBlocks[0].transform.localPosition = new Vector3(0,1,0);
             BorderBlocks[0].transform.localScale = new Vector3(1,Height-2,1);
+            // ResizeBorderTex(BorderBlocks[0],Height);
             BorderBlocks[0].GetComponentInChildren<MeshRenderer>().material.mainTextureScale = new Vector2(1,Height-2);
-        BorderBlocks[1].transform.localPosition = new Vector3(Width+0.1f,1,0);
-            BorderBlocks[1].transform.localScale = new Vector3(1,Height-2,1);
+        BorderBlocks[1].transform.localPosition = new Vector3(Width,1,0);
+            BorderBlocks[1].transform.localScale = new Vector3(-1,Height-2,1);
+            // ResizeBorderTex(BorderBlocks[1],Height);
+
             BorderBlocks[1].GetComponentInChildren<MeshRenderer>().material.mainTextureScale = new Vector2(1,Height-2);
         BorderBlocks[2].transform.localPosition = new Vector3(1,0,0);
             BorderBlocks[2].transform.localScale = new Vector3(Width-2,1,1);
+            // ResizeBorderTex(BorderBlocks[2],Width);
+
             BorderBlocks[2].GetComponentInChildren<MeshRenderer>().material.mainTextureScale = new Vector2(1,Width-2);
-        BorderBlocks[3].transform.localPosition = new Vector3(1,Height+0.1f,0);
-            BorderBlocks[3].transform.localScale = new Vector3(Width-2,1,1);
+        BorderBlocks[3].transform.localPosition = new Vector3(1,Height,0);
+            BorderBlocks[3].transform.localScale = new Vector3(Width-2,-1,1);
+            // ResizeBorderTex(BorderBlocks[3],Width);
+
             BorderBlocks[3].GetComponentInChildren<MeshRenderer>().material.mainTextureScale = new Vector2(1,Width-2);
         BorderBlocks[4].transform.localPosition = new Vector3(0,0,0);
         BorderBlocks[5].transform.localPosition = new Vector3(0,Height,0);
         BorderBlocks[6].transform.localPosition = new Vector3(Width,Height,0);
         BorderBlocks[7].transform.localPosition = new Vector3(Width,0,0);
         border.localPosition = new Vector3(-Width/2.0f,-Height/2.0f,0);
+    }
+
+    void ResizeBorderTex(GameObject border,float size){
+        foreach (var rend in border.GetComponentsInChildren<MeshRenderer>())
+        {
+            rend.material.mainTextureScale = new Vector2(1,size-2);
+        }
     }
 }

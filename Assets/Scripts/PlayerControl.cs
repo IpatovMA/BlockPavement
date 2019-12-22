@@ -155,8 +155,8 @@ public class PlayerControl : MonoBehaviour
                 
                 float distance = ( vect.magnitude-0.5f);
 
-                Debug.DrawLine(transform.position+halfVector, ray.point,Color.red,2);
-                Debug.Log( (distance>=0?distance:0) + "  " + allDistance );
+                // Debug.DrawLine(transform.position+halfVector, ray.point,Color.red,2);
+                // Debug.Log( (distance>=0?distance:0) + "  " + allDistance );
                 return distance>=0?distance:0;
             }    
         }
@@ -167,7 +167,7 @@ public class PlayerControl : MonoBehaviour
       
         if (Mathf.Abs(dist)<0.1||Mathf.Abs(allDistance)<0.1) return;
         
-        if (dist == 0||dist==allDistance){currenFactor = velocitySmoothFactor;return;}
+        // if (dist == 0||dist==allDistance){currenFactor = velocitySmoothFactor;return;}
 
         if(dist > allDistance*0.5f)
         {currenFactor = Mathf.Lerp(velocitySmoothFactor,1,(allDistance-dist)/(0.5f*allDistance));

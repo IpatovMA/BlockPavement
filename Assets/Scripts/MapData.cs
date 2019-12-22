@@ -15,21 +15,26 @@ public class MapData : MonoBehaviour
     public Vector3 PlayerPos;
     public GameObject PlayerPrafab;
 
-    public int lvlPart;
 
     private GameObject MapPrefab;
     public GameObject player;
+
+    [Space]
+    public int lvlPart;
     private Camera cam;
     private CameraFollow camFollow;
     float high = -0.0000f;
     public static int mapNum;
-    public bool customMap= false;
-    public int setMapNum;
-    public int setRotateOn;
+   
     private Animator DS;
     private Transform rt;
+      [Space]
     [SerializeField] TextAsset DustColorsTxt;
     public Color DustColor;
+    [Space]
+     public bool customMap= false;
+    public int setMapNum;
+    public int setRotateOn;
 
     void Start()
     {   
@@ -141,6 +146,8 @@ void Update()
         transform.eulerAngles = new Vector3(0,0,90*RotateOn);
         Map.transform.localPosition = new Vector3(-MapWidth/2.0f,-MapHeight/2.0f,0);
         Map.transform.localEulerAngles = new Vector3(0,0,0);
+
+        // GetComponent<SetInsideBorders>().Set();
 
         int rotateRnd = Random.Range(0,4);
 rotateRnd =0;

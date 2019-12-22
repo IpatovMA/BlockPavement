@@ -7,14 +7,30 @@ public class Recolorer : MonoBehaviour
 {
     public string Name;
     public int PalettesNumber ;
-    public float bright= 1.2f;
     int PaletteNum;
+    [SerializeField]bool WrappedDiffuse  = true;  
+    [SerializeField]bool CustomBright  = false;  
+    [SerializeField] float Brightness= 1;
+    [Space]
+     [SerializeField]bool UpdateColor = false;
 
     void Start()
     {
-        // Color defaultGray = new Color();
-        // ColorUtility.TryParseHtmlString("#969696",out defaultGray);
+       Recolor();
 
+    }
+    
+    void Update(){
+        if (UpdateColor){
+            Recolor();
+             UpdateColor= false;
+        }
+    }
+
+
+    void Recolor(){
+        // Debug.Log("qq");
+        float bright = CustomBright?Brightness:LevelManager.TotalBrightness;
         int numSep = transform.name.LastIndexOf('_')+1;
         int spaceSep = transform.name.IndexOf(' ');
         if(spaceSep == -1){
@@ -33,68 +49,35 @@ public class Recolorer : MonoBehaviour
         {
             foreach (var mat in rend.materials)
             {
-                // Debug.Log(ColorUtility.ToHtmlStringRGB(mat.color) == "969696");
-                if(ColorUtility.ToHtmlStringRGB(mat.color) == "969696") {mat.color = new Color (bright,bright,bright,1);}
+
+                if(ColorUtility.ToHtmlStringRGB(mat.color) == "969696"||UpdateColor) {mat.color = new Color (bright,bright,bright,1);} //+0.36f
                 
                 if(mat.name =="Gazon (Instance)"||mat.name =="bor (Instance)"||mat.name =="borc (Instance)"){
                     mat.shader = Shader.Find("Diffuse");
                     continue;}
                 
-                if(mat.name =="No Name (Instance)"){
+                if(mat.name =="No Name (Instance)"||mat.name =="Material #2 (Instance)"){
                     mat.shader = Shader.Find("Diffuse");
                     mat.color = Color.gray;
                     continue;}
-                mat.shader = Shader.Find("Wrapped Diffuse");
+                if(WrappedDiffuse)
+                        mat.shader = Shader.Find("Wrapped Diffuse");
+                    else mat.shader = Shader.Find("Diffuse");
                 string path = "Models/"+Name+"/"+PaletteNum+"/"+mat.name;
                 
                         string sep = " (Instance)";
                         int i = path.IndexOf(sep);
                         if (i!=-1) path = path.Substring(0, i);
-                        //  Debug.Log(path);
                 var tex = Resources.Load(path) as Texture;
-                // Assets/Resources/Models/Cube/Тех1/center.jpg
-                // Debug.Log("Models/"+Name+"/Tex"+PaletteNum+"/"+mat.name);\
-                // Debug.Log(tex);
                     if(tex == null){continue;}
 
                 mat.mainTexture = tex;
 
                  
-                //  Color colour = mat.GetColor("_EmissionColor");
-                //   colour *= 4.0f; // 4X brighter
-                //    mat.SetColor("_EmissionColor", colour);
-                // mat.SetTexture("_MainTex", Resources.Load("Models/"+Name+"/Tex"+PaletteNum+"/"+mat.name) as Texture2D);
             }
         }
 
-        // Debug.Log("recolored");
-        // GetComponentsInChildren<Renderer>().materials 
-
     }
-
 
 }
 
-
-    // Transform[] spawnPoints;
-
-    // Transform[] ChooseSet (int numRequired) {
-    //     Transform[] result = new Transform[numRequired];
-
-    //     int numToChoose = numRequired;
-
-    //     for (int numLeft = spawnPoints.Length; numLeft > 0; numLeft--) {
-
-    //         float prob = (float)numToChoose/(float)numLeft;
-
-    //         if (Random.value <= prob) {
-    //             numToChoose--;
-    //             result[numToChoose] = spawnPoints[numLeft - 1];
-
-    //             if (numToChoose == 0) {
-    //                 break;
-    //             }
-    //         }
-    //     }
-    //     return result;
-    // }

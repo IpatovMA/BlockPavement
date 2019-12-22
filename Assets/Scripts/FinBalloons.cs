@@ -15,6 +15,8 @@ public class FinBalloons : MonoBehaviour
 
     void Update()
     {
+        if (!GetComponent<ParticleSystem>().isEmitting) return;
+
         transform.localPosition = new Vector3(cam.localPosition.x,cam.localPosition.y,cam.localPosition.z+7);
         transform.localEulerAngles= cam.localEulerAngles;
         float fov = cam.gameObject.GetComponent<Camera>().fieldOfView;

@@ -22,6 +22,10 @@ public class LevelManager : MonoBehaviour
      public Animator DarkScreen;
     ParticleSystem Balloons;
 
+    
+    public static float TotalBrightness;
+    [Space][SerializeField]float ModelsBright;
+
      
     void Awake(){
         LocalizationService.Instance.Load();
@@ -31,6 +35,7 @@ public class LevelManager : MonoBehaviour
     }
     void Start()
     {
+        TotalBrightness = ModelsBright;
         TotalMapsNumber = AllMaps;
         SaveLoad.Load();
         MapData = GetComponentInChildren<MapData>();
@@ -48,6 +53,11 @@ public class LevelManager : MonoBehaviour
 
     void FixedUpdate()
     {   
+        if(TotalBrightness != ModelsBright){
+            TotalBrightness = ModelsBright;
+        }
+
+
         if (State == lvlState.Menu&&!StartPage.activeSelf){
             // DarkScreen.SetTrigger("Appear");
             StartPage.SetActive(true);
