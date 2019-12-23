@@ -1638,7 +1638,7 @@ PrefabInstance:
     - target: {fileID: 6227701665924672718, guid: c1fe7658a0661dd4382c3e1f99c8dbbd,
         type: 3}
       propertyPath: m_Name
-      value: Tower_House_3
+      value: High_House_4 (small)
       objectReference: {fileID: 0}
     - target: {fileID: 6932839124472340189, guid: c1fe7658a0661dd4382c3e1f99c8dbbd,
         type: 3}
@@ -5238,7 +5238,7 @@ PrefabInstance:
     - target: {fileID: 8899285208768226385, guid: 8eca63445b45af94982a9237c919c3a8,
         type: 3}
       propertyPath: m_Name
-      value: Skyscraper_2 (small) (3)
+      value: Mini_Market_2 (3)
       objectReference: {fileID: 0}
     - target: {fileID: 5610294810617468482, guid: 8eca63445b45af94982a9237c919c3a8,
         type: 3}
@@ -7263,7 +7263,7 @@ PrefabInstance:
     - target: {fileID: 8899285208768226385, guid: 8eca63445b45af94982a9237c919c3a8,
         type: 3}
       propertyPath: m_Name
-      value: Skyscraper_2 (small)
+      value: Mini_Market_2
       objectReference: {fileID: 0}
     - target: {fileID: 5610294810617468482, guid: 8eca63445b45af94982a9237c919c3a8,
         type: 3}

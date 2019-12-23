@@ -142,6 +142,9 @@ void Update()
 
 
         GetComponentInChildren<SetOutlineBorder>().UpdateBorder(this);
+                
+        GetComponentInChildren<BushMaker>().UpdateBushes(this);
+
         camFollow.target = transform;
         transform.eulerAngles = new Vector3(0,0,90*RotateOn);
         Map.transform.localPosition = new Vector3(-MapWidth/2.0f,-MapHeight/2.0f,0);

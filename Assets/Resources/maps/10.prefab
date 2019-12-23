@@ -729,7 +729,7 @@ PrefabInstance:
     - target: {fileID: 3629623074003890980, guid: 81eca359f13d092498ed646c7cfb7743,
         type: 3}
       propertyPath: m_Name
-      value: High_Tower_2 (1)
+      value: Big_Home_4 (small) (1)
       objectReference: {fileID: 0}
     - target: {fileID: 289456522290184503, guid: 81eca359f13d092498ed646c7cfb7743,
         type: 3}

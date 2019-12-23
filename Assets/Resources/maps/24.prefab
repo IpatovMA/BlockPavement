@@ -1782,7 +1782,7 @@ PrefabInstance:
     - target: {fileID: 8899285208768226385, guid: 8eca63445b45af94982a9237c919c3a8,
         type: 3}
       propertyPath: m_Name
-      value: Skyscraper_2 (small)
+      value: Mini_Market_2
       objectReference: {fileID: 0}
     - target: {fileID: 5610294810617468482, guid: 8eca63445b45af94982a9237c919c3a8,
         type: 3}

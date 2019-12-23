@@ -34,6 +34,7 @@ public class SetOutlineBorder : MonoBehaviour
     }
 
     public void UpdateBorder(MapData Data){
+        
         scaler.localScale = new Vector3(Data.MapWidth,Data.MapHeight,1);
         // transform.Find("collider").localPosition = new Vector3(-Data.MapWidth/2.0f,-Data.MapHeight/2.0f,0);
 
@@ -54,7 +55,6 @@ public class SetOutlineBorder : MonoBehaviour
         ColorUtility.TryParseHtmlString(OrnamentData.Ornaments[currentPalette].BackColor, out tempColor);
         scaler.Find("back").GetComponent<MeshRenderer>().material.color = tempColor;
 
-             
 
    SetBorderBlocks(Data);
 

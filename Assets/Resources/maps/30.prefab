@@ -4842,7 +4842,7 @@ PrefabInstance:
     - target: {fileID: 6227701665924672718, guid: c1fe7658a0661dd4382c3e1f99c8dbbd,
         type: 3}
       propertyPath: m_Name
-      value: Tower_House_3
+      value: High_House_4 (small)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1fe7658a0661dd4382c3e1f99c8dbbd, type: 3}
@@ -5692,7 +5692,7 @@ PrefabInstance:
     - target: {fileID: 3629623074003890980, guid: 81eca359f13d092498ed646c7cfb7743,
         type: 3}
       propertyPath: m_Name
-      value: High_Tower_2
+      value: Big_Home_4 (small)
       objectReference: {fileID: 0}
     - target: {fileID: 289456522290184503, guid: 81eca359f13d092498ed646c7cfb7743,
         type: 3}

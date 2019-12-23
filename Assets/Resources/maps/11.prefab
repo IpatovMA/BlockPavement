@@ -143,7 +143,7 @@ PrefabInstance:
     - target: {fileID: 8899285208768226385, guid: 890483fa2bfa6474aaf9dd123d2068ee,
         type: 3}
       propertyPath: m_Name
-      value: Skyscraper_2 (1)
+      value: Super_Market_2 (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 890483fa2bfa6474aaf9dd123d2068ee, type: 3}
