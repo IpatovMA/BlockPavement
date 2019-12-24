@@ -102,10 +102,10 @@ public class CameraFollow : MonoBehaviour
         float distance = -CameraAlign.transform.position.z ;
         float MapAspect = (float)(MapData.RotateOn%2==0?MapData.MapWidth:MapData.MapHeight)/(MapData.RotateOn%2==0?MapData.MapHeight:MapData.MapWidth);
         // Debug.Log(Camera.main.aspect+ "  "+ MapAspect);
-        float height = size*(1/cam.aspect+0.5f);
+        float height = size*(1/cam.aspect)+4f;
             if (cam.aspect>MapAspect){
             size = MapData.RotateOn%2==1?MapData.MapWidth:MapData.MapHeight;
-                height=size*1.2f;
+                height=size +4;
                             }
         cam.fieldOfView = Mathf.Lerp(cam.fieldOfView,2*Mathf.Atan(height/2f/distance)/Mathf.PI*180*factor, Time.deltaTime * zoomSpeed); 
         

@@ -14,9 +14,10 @@ public class BushMaker : MonoBehaviour
        float m = width; // толщина забора
        float c = factor; // скос
   var s = new SimpleMeshBuilder();
-    float h = MapData.RotateOn%2 == 0 ? Data.MapHeight:Data.MapWidth ; h+=0.2f;
-    float w = MapData.RotateOn%2 == 1 ? Data.MapHeight:Data.MapWidth ; w+=0.2f;
-  
+    float h =  Data.MapHeight+0.2f;
+    float w =Data.MapWidth+0.2f;
+//   transform.eulerAngles = new Vector3(0,0,MapData.RotateOn%2 == 0?0:90);
+  Debug.Log(MapData.RotateOn);
   // внутрення стенка
      s.AddRectSurface(  new Vector3(-w/2f, -h/2f, 0),new Vector3(-w/2f, -h/2f,-t), new Vector3(-w/2f, 0, -t*c), new Vector3(-w/2f,0, 0));
 
