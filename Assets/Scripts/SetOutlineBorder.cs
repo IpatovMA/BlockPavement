@@ -40,7 +40,7 @@ public class SetOutlineBorder : MonoBehaviour
 
         currentUzor = Random.Range(1,uzorNum+1);
         currentPalette = Random.Range(0,palettesNum);
-
+            // Debug.Log( "pal "+currentPalette);
         MeshRenderer uzor = scaler.Find("uzor").GetComponent<MeshRenderer>();
             
             string path = "Ornament/Ornament"+currentUzor;
@@ -48,13 +48,17 @@ public class SetOutlineBorder : MonoBehaviour
             uzor.material.mainTexture = tex;
 
             Color tempColor = new Color();
+            Color fixColor = new Color(0.0625f,0.03125f,-0.16015625f,0);
+            Color lightColor = Color.white - GetComponentInParent<LevelManager>().Light.color;
+            float lightIntens = GetComponentInParent<LevelManager>().Light.intensity;
+
             ColorUtility.TryParseHtmlString(OrnamentData.Ornaments[currentPalette].UzorColor, out tempColor);
-            uzor.material.color = tempColor;
+            uzor.material.color = tempColor ;
             uzor.material.mainTextureScale = new Vector2(Data.MapWidth*scaleUzor,Data.MapHeight*scaleUzor);
         
         ColorUtility.TryParseHtmlString(OrnamentData.Ornaments[currentPalette].BackColor, out tempColor);
         scaler.Find("back").GetComponent<MeshRenderer>().material.color = tempColor;
-
+// (tempColor- lightColor)/lightIntens
 
    SetBorderBlocks(Data);
 

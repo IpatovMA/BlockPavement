@@ -8,7 +8,8 @@ public class GameData {
     public int money;
     public int lvl;
     public int map;
-
+    public int GColor;
+    public int GGradStg;
     public int rotateOn;
  
     public GameData () {
@@ -16,6 +17,8 @@ public class GameData {
         map = 0;
         money = 0;
         rotateOn =0;
+        GColor =0;
+        GGradStg = 0;
     }
          
     public static GameData current(){
@@ -23,10 +26,11 @@ public class GameData {
          gd.lvl =SaveLvl();
         gd.map = SaveMap();
         gd.rotateOn = MapData.RotateOn;
-        // lvl = LevelManager.lvlNum;
-        // map = MapData.mapNum;
+      
         gd.money = 0;
-        
+        gd.GColor = GrassColorer.GrassColorNum;
+        gd.GGradStg = GrassColorer.GradStage;
+
         return gd;
     }
     static int SaveLvl(){

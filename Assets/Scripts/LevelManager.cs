@@ -20,6 +20,8 @@ public class LevelManager : MonoBehaviour
     static public int lvlNum= 0;
     public static lvlState State;
      public Animator DarkScreen;
+     public Light Light;
+     public GrassColorer Grass;
     ParticleSystem Balloons;
 
     
@@ -44,7 +46,12 @@ public class LevelManager : MonoBehaviour
            {lvlNum= SaveLoad.savedGame.lvl;}
         else {lvlNum = 1;}
 
-            // lvlShow.SetActive(false);
+//градиент травы
+            if( SaveLoad.savedGame.GColor!=0)
+            {GrassColorer.GrassColorNum = SaveLoad.savedGame.GColor;
+            GrassColorer.GradStage = SaveLoad.savedGame.GGradStg;}
+        else {GrassColorer.GrassColorNum=0;
+            GrassColorer.GradStage=0;} 
 
         Balloons = Camera.main.transform.parent.GetComponentInChildren<ParticleSystem>();
 

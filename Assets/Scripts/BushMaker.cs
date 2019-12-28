@@ -16,8 +16,7 @@ public class BushMaker : MonoBehaviour
   var s = new SimpleMeshBuilder();
     float h =  Data.MapHeight+0.2f;
     float w =Data.MapWidth+0.2f;
-//   transform.eulerAngles = new Vector3(0,0,MapData.RotateOn%2 == 0?0:90);
-  Debug.Log(MapData.RotateOn);
+
   // внутрення стенка
      s.AddRectSurface(  new Vector3(-w/2f, -h/2f, 0),new Vector3(-w/2f, -h/2f,-t), new Vector3(-w/2f, 0, -t*c), new Vector3(-w/2f,0, 0));
 

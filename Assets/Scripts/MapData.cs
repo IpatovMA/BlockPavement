@@ -144,6 +144,7 @@ void Update()
         GetComponentInChildren<SetOutlineBorder>().UpdateBorder(this);
                 
         GetComponentInChildren<BushMaker>().UpdateBushes(this);
+        GetComponentInParent<LevelManager>().Grass.UpdateGrass();
 
         camFollow.target = transform;
         transform.eulerAngles = new Vector3(0,0,90*RotateOn);
