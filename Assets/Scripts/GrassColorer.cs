@@ -10,6 +10,7 @@ public class GrassColorer : MonoBehaviour
     public Color[] Colors;
     public int StepsNum;
      Color deltaColor;
+    
     void Start()
     {
        
@@ -21,15 +22,23 @@ public class GrassColorer : MonoBehaviour
     public void UpdateGrass()
     {
        Debug.Log(GrassColorNum+"   "+GradStage);
-        if (GrassColorNum>StepsNum){
+
+      
+        if (GrassColorNum==StepsNum ){
         //    NextColor();
                     // deltaColor = (Colors[1]-Colors[0])/StepsNum;
-                    GrassColorNum=0;
-
+                    // GrassColorNum=0;
+                    GradStage =1;
+        }
+        if(GrassColorNum==-1){
+            GradStage =0;
+            GrassColorNum=1;
         }
 
         GetComponent<MeshRenderer>().material.color = Colors[0]+deltaColor*GrassColorNum;
-         GrassColorNum++;
+         if(GradStage == 0){
+         GrassColorNum++;}
+         else { GrassColorNum--;}
 
     }
 
