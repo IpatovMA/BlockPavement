@@ -11,6 +11,7 @@ public class GameData {
     public int GColor;
     public int GGradStg;
     public int rotateOn;
+    public bool vibroEnabled;
  
     public GameData () {
         lvl = 0;
@@ -19,6 +20,7 @@ public class GameData {
         rotateOn =0;
         GColor =0;
         GGradStg = 0;
+        vibroEnabled = true;
     }
          
     public static GameData current(){

@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
+    //создаём событие, активирующееся всякий раз, когда очищается клетка
+    public static Action<Transform> onSquareCleared;
     public float speed=15;
     public float velocitySmoothFactor=0.4f;
     public long VibroMillis= 30;
@@ -192,6 +194,9 @@ public class PlayerControl : MonoBehaviour
         Destroy(Instantiate(GroundParticles,coll.transform.position,Quaternion.Euler(GetEulerToAlign()),GetComponentInParent<MapData>().transform),0.7f);
             // GetComponentInChildren<ParticleSystem>().
             DoneBlockCount++;
+
+            //активируем событие с проверкой на null. вызываются все методы, подписанные на событие
+            onSquareCleared?.Invoke(coll.transform.parent);
             Destroy(coll.gameObject);
             // Debug.Log(DoneBlockCount);
         }

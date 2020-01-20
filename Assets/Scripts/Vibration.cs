@@ -16,6 +16,7 @@ public static class Vibration
 
     public static void Vibrate()
     {
+        if(!SaveLoad.savedGame.vibroEnabled) return;
         if (isAndroid())
             vibrator.Call("vibrate");
         else
@@ -25,6 +26,7 @@ public static class Vibration
 
     public static void Vibrate(long milliseconds)
     {
+        if(!SaveLoad.savedGame.vibroEnabled) return;
         if (isAndroid())
             vibrator.Call("vibrate", milliseconds);
         else
@@ -33,6 +35,7 @@ public static class Vibration
 
     public static void Vibrate(long[] pattern, int repeat)
     {
+        if(!SaveLoad.savedGame.vibroEnabled) return;
         if (isAndroid())
             vibrator.Call("vibrate", pattern, repeat);
         else

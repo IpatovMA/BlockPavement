@@ -73,6 +73,8 @@ namespace GameAnalyticsSDK
 
         public void Awake()
         {
+            //Инициализовал
+            Initialize();
             if (!Application.isPlaying)
             {
                 return;

@@ -1,4 +1,5 @@
 ﻿using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -35,9 +36,18 @@ public class MapData : MonoBehaviour
      public bool customMap= false;
     public int setMapNum;
     public int setRotateOn;
+    [Space] [SerializeField] GameObject baloonsPrefab;
+    [SerializeField] int creatableCellsFactor = 2;
+    [SerializeField] int maxBaloonsNumber = 25;
+    [SerializeField] float baloonRateFactor = 3;
+    [SerializeField] List<Color> baloonColors=new List<Color>();
+    List<ParticleSystem> baloonsList = new List<ParticleSystem>();
+    List<Transform> baloonParentsList = new List<Transform>();
 
     void Start()
     {   
+        //подписка на событие.
+        PlayerControl.onSquareCleared+=CreateBaloons;
         if( SaveLoad.savedGame.map!=0)
            { mapNum = SaveLoad.savedGame.map;
             RotateOn = SaveLoad.savedGame.rotateOn;
@@ -74,6 +84,7 @@ void Update()
         if(TotalBlockCount==GetComponentInChildren<PlayerControl>().DoneBlockCount){
                     SwipeControl.BlockSwipeInput();
             Destroy(player);
+                StartBaloons();
              if((LevelManager.State!= LevelManager.lvlState.Fin)&&(lvlPart==3)) {
                 LevelManager.State= LevelManager.lvlState.Fin;
                 lvlPart=1;
@@ -89,6 +100,63 @@ void Update()
 
 
 
+    }
+
+    void CreateBaloons(Transform p)
+    {
+        if(lvlPart==3)
+        {
+            baloonParentsList.Add(p);
+            // baloonsList.Add(Instantiate(baloonsPrefab,p).GetComponent<ParticleSystem>());
+        }
+    }
+
+    public void StartBaloons()
+    {
+        StartCoroutine(BaloonGenerator(baloonRateFactor));
+        // for(int i=0;i<baloonsList.Count;i++)
+        // {
+        //     if(i%baloonRateFactor==0) baloonsList[i].Play();
+        // }
+    }
+
+    IEnumerator BaloonGenerator(float rate)
+    {
+        int baloonsCounter = 0;
+        List<int> indexes = new List<int>();
+        for(int i = 0;i<baloonParentsList.Count;i++)
+        {
+            indexes.Add(i);
+        }
+        while(indexes.Count>0)
+        {
+            int randomIndex = indexes[Random.Range(0,indexes.Count)];
+            if(randomIndex % creatableCellsFactor == 0)
+            {
+                Color randColor = baloonColors[Random.Range(0,baloonColors.Count)];
+                foreach(MeshRenderer mr in
+                    Instantiate(baloonsPrefab,baloonParentsList[randomIndex])
+                    .GetComponentsInChildren<MeshRenderer>())
+                    {
+                        mr.material.color=randColor;
+                    };
+            }
+            indexes.Remove(randomIndex);
+            baloonsCounter ++;
+            if(baloonsCounter >= maxBaloonsNumber) yield break;
+            yield return new WaitForSeconds(1f/rate);
+        }
+    }
+
+    public void RecreateBaloons()
+    {
+        for(int i=0;i<baloonsList.Count;i++)
+        {
+            ParticleSystem newPS = Instantiate(baloonsPrefab,baloonsList[i].transform.parent)
+                .GetComponent<ParticleSystem>();
+            Destroy(baloonsList[i].gameObject);
+            baloonsList[i]=newPS;
+        }
     }
 
     
@@ -181,6 +249,8 @@ rotateRnd =0;
     }
 
     public void DestroyMap(){
+
+        if(baloonParentsList.Count > 0) baloonParentsList = new List<Transform>();
 
         Destroy(Map,0);
                     Debug.Log("Dest");

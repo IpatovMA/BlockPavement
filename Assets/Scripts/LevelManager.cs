@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.IO;
+using GameAnalyticsSDK;
 
 
 
@@ -22,7 +23,7 @@ public class LevelManager : MonoBehaviour
      public Animator DarkScreen;
      public Light Light;
      public GrassColorer Grass;
-    ParticleSystem Balloons;
+    // ParticleSystem Balloons;
 
     
     public static float TotalBrightness;
@@ -53,7 +54,7 @@ public class LevelManager : MonoBehaviour
         else {GrassColorer.GrassColorNum=0;
             GrassColorer.GradStage=0;} 
 
-        Balloons = Camera.main.transform.parent.GetComponentInChildren<ParticleSystem>();
+        // Balloons = Camera.main.transform.parent.GetComponentInChildren<ParticleSystem>();
 
     }
 
@@ -71,6 +72,9 @@ public class LevelManager : MonoBehaviour
 
             MapData.LoadMap();
 
+            //Не забываем записать прогрессию
+            GameAnalytics.NewProgressionEvent(GAProgressionStatus.Start, $"level {lvlNum}");
+
 
         }
 
@@ -79,7 +83,10 @@ public class LevelManager : MonoBehaviour
            
            if(!FinPage.activeSelf){
                 FinPage.SetActive(true);
-                SaveLoad.Save();
+
+            SaveLoad.savedGame.lvl = lvlNum + 1;
+            SaveLoad.savedGame.map = MapData.mapNum + 1;
+            SaveLoad.Save();
                 Invoke("OnLvlCompleted",0.5f);
            }
             if (DarkScreen.GetComponent<DarkScreenControl>().Dark){
@@ -92,7 +99,7 @@ public class LevelManager : MonoBehaviour
     void OnLvlCompleted(){
         Vibration.Vibrate(1000);
         
-        Balloons.Play();
+        // Balloons.Play();
     }
 
     public void Play(){
@@ -114,8 +121,11 @@ public class LevelManager : MonoBehaviour
 
 
     void ToNextLevel(){
-            Balloons.Stop();
-            Balloons.Clear();
+            // Balloons.Stop();
+            // Balloons.Clear();
+            
+            //Записываем прогрессию
+            GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, $"level {lvlNum}");
             MapData.DestroyMap();
             State = lvlState.Menu; 
             lvlNum++;   

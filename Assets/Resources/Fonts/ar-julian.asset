@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: ar-julian Material
   m_Shader: {fileID: 4800000, guid: bc1ede39bf3643ee8e493720e4259791, type: 3}
-  m_ShaderKeywords: GLOW_ON UNDERLAY_ON
+  m_ShaderKeywords: GLOW_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -54,7 +54,7 @@ Material:
     - _BumpOutline: 0
     - _ColorMask: 15
     - _Diffuse: 0.5
-    - _FaceDilate: 0.63
+    - _FaceDilate: -1
     - _FaceUVSpeedX: 0
     - _FaceUVSpeedY: 0
     - _GlowInner: 0.05
@@ -74,9 +74,9 @@ Material:
     - _OutlineWidth: 0
     - _PerspectiveFilter: 1
     - _Reflectivity: 10
-    - _ScaleRatioA: 0.45584047
+    - _ScaleRatioA: 0.8
     - _ScaleRatioB: 0.21000001
-    - _ScaleRatioC: 0.19600001
+    - _ScaleRatioC: 1.5
     - _ScaleX: 0.2
     - _ScaleY: 0.2
     - _ShaderFlags: 0
