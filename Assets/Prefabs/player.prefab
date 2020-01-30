@@ -283,7 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 152e66a7a878aeb4a92f371cdf51f784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 30
   velocitySmoothFactor: 0.6
   VibroMillis: 30
   DoneBlockCount: 0
@@ -310,7 +310,7 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: dcf0a07fc432be844989a6da53ad13b1, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &6450796485201246286
 BoxCollider2D:
@@ -430,16 +430,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3867914847222299288}
     m_Modifications:
-    - target: {fileID: 8936004797664030469, guid: c86b3015815786745b76cb69ad5eb0cd,
-        type: 3}
-      propertyPath: m_Name
-      value: NiceDust
-      objectReference: {fileID: 0}
-    - target: {fileID: 8936004797664030469, guid: c86b3015815786745b76cb69ad5eb0cd,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9148750996605268654, guid: c86b3015815786745b76cb69ad5eb0cd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -494,6 +484,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8936004797664030469, guid: c86b3015815786745b76cb69ad5eb0cd,
+        type: 3}
+      propertyPath: m_Name
+      value: NiceDust
+      objectReference: {fileID: 0}
+    - target: {fileID: 8936004797664030469, guid: c86b3015815786745b76cb69ad5eb0cd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3308476453559102729, guid: c86b3015815786745b76cb69ad5eb0cd,
         type: 3}
