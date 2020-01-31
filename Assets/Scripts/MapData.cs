@@ -48,7 +48,7 @@ public class MapData : MonoBehaviour
         //подписка на событие.
         PlayerControl.onSquareCleared += CreateBaloons;
 
-        mapNum = System.Math.Max(1, SaveLoad.savedGame.map % LevelManager.TotalMapsNumber);
+        mapNum = System.Math.Max(1, SaveLoad.savedGame.map % (LevelManager.TotalMapsNumber + 1));
         RotateOn = SaveLoad.savedGame.rotateOn;
 
         cam = Camera.main;
